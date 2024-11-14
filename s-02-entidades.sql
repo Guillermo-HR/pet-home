@@ -32,10 +32,18 @@ CREATE TABLE ORIGEN(
     origen_id
 );
 
-
-
-
-
+IF EXISTS DROP TABLE centro_operativo(
+    centro_operativo_id NUMERIC(10,0),
+    gerente_id,
+    es_refugio BIT NOT NULL,
+    es_clinica BIT NOT NULL,
+    es_oficina BIT NOT NULL,
+    codigo VARCHAR(5) NOT NULL,
+    nombre VARCHAR2(40) NOT NULL,
+    direccion VARCHAR2(100) NOT NULL,
+    latitud VARCHAR2(10) NOT NULL,
+    longitud VARCHAR2(10) NOT NULL,
+);
 
 ------------------------------------------------------------
 IF EXISTS DROP TABLE empleado;
