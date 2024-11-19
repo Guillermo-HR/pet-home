@@ -49,8 +49,10 @@ CREATE TABLE origen (
   origen_id   NUMERIC(10,0),
   descripcion VARCHAR2(40) NOT NULL, 
   clave       NUMBER(1,0) NOT NULL, 
-  CONSTRAINT origen_pk PRIMARY KEY (origen_id)
+  CONSTRAINT origen_pk PRIMARY KEY (origen_id) 
 );
+
+
 
 -- Eliminación y creación de la tabla centro_operativo
 DROP TABLE IF EXISTS centro_operativo;
@@ -88,6 +90,13 @@ CREATE TABLE status_mascota (
 );
 
 
+CREATE TABLE status_solicitud(
+  status_solicitud_id NUMERIC(1,0), 
+  descripcion         VARCHAR(20)   NOT NULL,
+  CLAVE               NUMERIC(1,0)  NOT NULL,
+  CONSTRAINT status_solicitud_pk PRIMARY KEY(status_solicitud_id)
+);
+
 -- Eliminación y creación de la tabla cliente_mascota_solicitud
 DROP TABLE IF EXISTS cliente_mascota_solicitud;
 CREATE TABLE cliente_mascota_solicitud (
@@ -97,7 +106,10 @@ CREATE TABLE cliente_mascota_solicitud (
   descripcion_no_ganador       VARCHAR2(40),
   mascota_id,
   cliente_id,
+  status_solicitud_id,
   constraint cliente_mascota_solicitud_pk primary key ( cliente_mascota_solicitud_id ),
+  CONSTRAINT cliente_mascota_solicitud_status_solicitud_id_fk FOREIGN KEY (status_solicitud_id)
+    REFERENCES status_solicitud(status_solicitud_id),
   constraint cliente_mascota_solicitud_mascota_id_fk foreign key ( mascota_id )
     references mascota(mascota_id),
   constraint cliente_mascota_solicitud_cliente_id_fk foreign key ( cliente_id )
@@ -286,7 +298,16 @@ CREATE TABLE mascota (
     REFERENCES origen(origen_id), 
   CONSTRAINT mascota_cliente_donador_id_fk FOREIGN KEY (cliente_donador_id)
     REFERENCES cliente(cliente_id),
-  CONSTRAINT mascota_folio_uk UNIQUE(folio)
+
+  CONSTRAINT mascota_folio_uk UNIQUE(folio),
+  CONSTRAINT mascota_origen_chk CHECK (
+    (origen_id = 1 AND padre_id IS NULL AND madre_id IS NULL 
+      AND refugio_nacimiento_id IS NULL AND cliente_donador_id IS NOT NULL) OR
+    (origen_id = 2 AND padre_id IS NULL AND madre_id IS NULL 
+      AND refugio_nacimiento_id IS NULL AND cliente_donador_id IS NULL) OR
+    (origen_id = 3 AND madre_id IS NOT NULL AND refugio_nacimiento_id IS NOT NULL 
+      AND cliente_donador_id IS NULL)
+  )
 );
 
 -- Salir de la base
