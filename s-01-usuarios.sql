@@ -2,9 +2,12 @@
 --@Fecha creación: 14/11/2024
 --@Descripción: Creación de usuarios
 
---PROMPT conectando a PDB ahbd_s1 como sys
---CONNECT sys/system1@ahbd_s1 AS SYSDBA
+-- Conectarse a la base de datos
+PROMPT ========================================================
+PROMPT Conectando a la PDB
 CONNECT sys/system1@ghrbd_s1 AS SYSDBA
+PROMPT s-01-usuarios.sql
+PROMPT ========================================================
 
 -- Limpiar usuarios y roles
 PROMPT Limpiando usuarios y roles usados en la practica
@@ -42,5 +45,7 @@ CREATE USER ah_proy_invitado IDENTIFIED BY contrasena QUOTA UNLIMITED ON USERS;
 GRANT ah_invitado_rol TO ah_proy_invitado;
 
 -- Salir de la base
-PROMPT saliendo de la base
+PROMPT ========================================================
+PROMPT Saliendo de la PDB
 DISCONNECT;
+PROMPT ========================================================

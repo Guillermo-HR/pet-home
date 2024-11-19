@@ -2,6 +2,13 @@
 --@Fecha creación: 14/11/2024
 --@Descripción: Creación de tablas
 
+-- Conectarse a la base de datos
+PROMPT ========================================================
+PROMPT Conectando a la PDB
+CONNECT ah_admin_rol/contrasena@ghrbd_s1
+PROMPT s-02-entidades.sql
+PROMPT ========================================================
+
 -- Eliminación y creación de la tabla cliente
 DROP TABLE IF EXISTS cliente;
 CREATE TABLE cliente (
@@ -13,14 +20,15 @@ CREATE TABLE cliente (
   ocupacion        VARCHAR2(40) NOT NULL, 
   username         VARCHAR2(40) NOT NULL,
   password         VARCHAR2(40) NOT NULL,
-  CONSTRAINT cliente_pk PRIMARY KEY (cliente_id)
+  CONSTRAINT cliente_pk PRIMARY KEY (cliente_id),
+  CONSTRAINTcliente_password_chk CHECK (LENGTH(password) >= 8)
 );
 
 -- Eliminación y creación de la tabla donativo
 DROP TABLE IF EXISTS donativo;
 CREATE TABLE donativo (
   donativo_id GENERATED ALWAYS AS (donativo_id_seq.nextval) VIRTUAL,
-  fecha       DATE NOT NULL, 
+  fecha       DATE DEFAULT ON NULL SYSDATE,
   monto       NUMERIC(6,0) NOT NULL,
   CONSTRAINT donativo_pk PRIMARY KEY (donativo_id)
 );
@@ -90,12 +98,12 @@ CREATE TABLE status_solicitud(
 );
 
 -- Eliminación y creación de la tabla cliente_mascota_solicitud
-drop table if exists cliente_mascota_solicitud;
-create table cliente_mascota_solicitud (
+DROP TABLE IF EXISTS cliente_mascota_solicitud;
+CREATE TABLE cliente_mascota_solicitud (
   cliente_mascota_solicitud_id GENERATED ALWAYS AS (cliente_mascota_solicitud_id_seq.nextval) VIRTUAL,
-  fecha                        date not null,
-  ganador                      char(1) not null,
-  descripcion_no_ganador       varchar(40),
+  fecha                        DATE DEFAULT ON NULL SYSDATE,
+  ganador                      CHAR(1) NOT NULL,
+  descripcion_no_ganador       VARCHAR2(40),
   mascota_id,
   cliente_id,
   status_solicitud_id,
@@ -110,32 +118,32 @@ create table cliente_mascota_solicitud (
 );
 
 -- Eliminación y creación de la tabla monitoreo_cautiverio
-drop table if exists monitoreo_cautiverio;
-create table monitoreo_cautiverio (
+DROP TABLE IF EXISTS monitoreo_cautiverio;
+CREATE TABLE monitoreo_cautiverio (
   monitoreo_cautiverio_id GENERATED ALWAYS AS (monitoreo_cautiverio_id_id_seq.nextval) VIRTUAL,
-  fecha                   date not null,
-  diagnostico             varchar2(40) not null,
-  foto                    blob not null,
+  fecha                   DATE DEFAULT ON NULL SYSDATE,
+  diagnostico             VARCHAR2(40) NOT NULL, 
+  foto                    BLOB NOT NULL,
   mascota_id,
-  constraint monitoreo_cautiverio_pk primary key ( monitoreo_cautiverio_id ),
-  constraint monitoreo_cautiverio_mascota_id_fk foreign key ( mascota_id )
-    references mascota ( mascota_id )
+  CONSTRAINT monitoreo_cautiverio_pk PRIMARY KEY ( monitoreo_cautiverio_id ),
+  CONSTRAINT monitoreo_cautiverio_mascota_id_fk FOREIGN KEY ( mascota_id )
+    REFERENCES mascota ( mascota_id )
 );
 
 -- Eliminación y creación de la tabla empleado
-drop table if exists empleado;
-create table empleado (
+DROP TABLE IF EXISTS empleado;
+CREATE TABLE empleado (
    empleado_id       GENERATED ALWAYS AS (empleado_id_seq.nextval) VIRTUAL,
-   es_gerente        char(1) not null,
-   es_veterinaro     char(1) not null,
-   es_administrativo char(1) not null,
-   fecha_ingreso     date not null,
-   curp              varchar2(18) not null,
-   email             varchar2(40) not null,
-   nombre            varchar2(40) not null,
-   apellido_paterno  varchar2(40) not null,
-   apellido_materno  varchar2(40) not null,
-   sueldo            numeric(6,2) not null,
+   es_gerente        CHAR(1) NOT NULL,
+   es_veterinaro     CHAR(1) NOT NULL,
+   es_administrativo CHAR(1) NOT NULL,
+   fecha_ingreso     DATE DEFAULT ON NULL SYSDATE,
+   curp              VARCHAR2(18) NOT NULL,
+   email             VARCHAR2(40) NOT NULL,
+   nombre            VARCHAR2(40) NOT NULL,
+   apellido_paterno  VARCHAR2(40) NOT NULL,
+   apellido_materno  VARCHAR2(40) NOT NULL,
+   sueldo            NUMERIC(6,2) NOT NULL,
    CONSTRAINT empleado_pk PRIMARY KEY(empleado_id),
    CONSTRAINT empleado_curp_uk UNIQUE(curp),
    CONSTRAINT empleado_es_gerente_es_veterinario_es_administrativo_chk CHECK(
@@ -151,9 +159,9 @@ create table empleado (
 DROP TABLE IF EXISTS empleado_grado;
 CREATE TABLE empleado_grado (
    empleado_grado_id GENERATED ALWAYS AS (empleado_grado_id_seq.nextval) VIRTUAL,
-   cedula            varchar2(8) not null,
-   titulo            varchar2(40) not null,
-   fecha_titulacion  date not null,
+   cedula            VARCHAR2(8) not null,
+   titulo            VARCHAR2(40) not null,
+   fecha_titulacion  DATE DEFAULT ON NULL SYSDATE,
    empleado_id,
    CONSTRAINT empleado_grado_pk PRIMARY KEY(empleado_grado_id),
    CONSTRAINT empleado_grado_empleado_id_fk FOREIGN KEY ( empleado_id )
@@ -224,7 +232,7 @@ CREATE TABLE historico_status_mascota (
   historico_status_mascota_id GENERATED ALWAYS AS (historico_status_mascota_id_seq.nextval) VIRTUAL,
   status_mascota_id           NUMERIC(10,0) NOT NULL,
   mascota_id                 NUMERIC(10,0) NOT NULL,
-  fecha_status               DATE NOT NULL,
+  fecha_status               DATE DEFAULT ON NULL SYSDATE,
   CONSTRAINT historico_status_mascota_pk PRIMARY KEY (historico_status_mascota_id),
   CONSTRAINT historico_status_mascota_status_mascota_id_fk
     FOREIGN KEY (status_mascota_id) 
@@ -242,7 +250,7 @@ CREATE TABLE revision (
   costo                    NUMERIC(8,2) NOT NULL,
   observacion              VARCHAR2(300) NOT NULL,
   numero_revision          NUMERIC(10,0) NOT NULL,
-  fecha                    DATE NOT NULL,
+  fecha                    DATE DEFAULT ON NULL SYSDATE,
   calificacion             NUMERIC(2,0) NOT NULL,
   clinica_id               NUMERIC(10,0),
   CONSTRAINT revision_pk   PRIMARY KEY (revision_id),
@@ -290,6 +298,7 @@ CREATE TABLE mascota (
     REFERENCES origen(origen_id), 
   CONSTRAINT mascota_cliente_donador_id_fk FOREIGN KEY (cliente_donador_id)
     REFERENCES cliente(cliente_id),
+
   CONSTRAINT mascota_folio_uk UNIQUE(folio),
   CONSTRAINT mascota_origen_chk CHECK (
     (origen_id = 1 AND padre_id IS NULL AND madre_id IS NULL 
@@ -301,4 +310,8 @@ CREATE TABLE mascota (
   )
 );
 
-
+-- Salir de la base
+PROMPT ========================================================
+PROMPT Saliendo de la PDB
+DISCONNECT;
+PROMPT ========================================================
