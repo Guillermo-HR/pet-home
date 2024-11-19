@@ -5,7 +5,7 @@
 -- Eliminación y creación de la tabla cliente
 DROP TABLE IF EXISTS cliente;
 CREATE TABLE cliente (
-  cliente_id       NUMERIC(10,0),
+  cliente_id       GENERATED ALWAYS AS (cliente_id_seq.nextval) VIRTUAL,
   nombre           VARCHAR2(40) NOT NULL,
   apellido_paterno VARCHAR2(40) NOT NULL, 
   apellido_materno VARCHAR2(40) NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE cliente (
 -- Eliminación y creación de la tabla donativo
 DROP TABLE IF EXISTS donativo;
 CREATE TABLE donativo (
-  donativo_id NUMERIC(10,0),
+  donativo_id GENERATED ALWAYS AS (donativo_id_seq.nextval) VIRTUAL,
   fecha       DATE NOT NULL, 
   monto       NUMERIC(6,0) NOT NULL,
   CONSTRAINT donativo_pk PRIMARY KEY (donativo_id)
@@ -47,7 +47,7 @@ CREATE TABLE origen (
 -- Eliminación y creación de la tabla centro_operativo
 DROP TABLE IF EXISTS centro_operativo;
 CREATE TABLE centro_operativo (
-  centro_operativo_id NUMERIC(10,0),
+  centro_operativo_id GENERATED ALWAYS AS (centro_operativo_id_seq.nextval) VIRTUAL,
   gerente_id,
   es_refugio          CHAR(1) NOT NULL,
   es_clinica          CHAR(1) NOT NULL,
@@ -83,7 +83,7 @@ CREATE TABLE status_mascota (
 -- Eliminación y creación de la tabla cliente_mascota_solicitud
 drop table if exists cliente_mascota_solicitud;
 create table cliente_mascota_solicitud (
-  cliente_mascota_solicitud_id numeric(10,0),
+  cliente_mascota_solicitud_id GENERATED ALWAYS AS (cliente_mascota_solicitud_id_seq.nextval) VIRTUAL,
   fecha                        date not null,
   ganador                      char(1) not null,
   descripcion_no_ganador       varchar(40),
@@ -100,7 +100,7 @@ create table cliente_mascota_solicitud (
 -- Eliminación y creación de la tabla monitoreo_cautiverio
 drop table if exists monitoreo_cautiverio;
 create table monitoreo_cautiverio (
-  monitoreo_cautiverio_id numeric(10,0) not null,
+  monitoreo_cautiverio_id GENERATED ALWAYS AS (monitoreo_cautiverio_id_id_seq.nextval) VIRTUAL,
   fecha                   date not null,
   diagnostico             varchar2(40) not null,
   foto                    blob not null,
@@ -113,7 +113,7 @@ create table monitoreo_cautiverio (
 -- Eliminación y creación de la tabla empleado
 drop table if exists empleado;
 create table empleado (
-   empleado_id       numeric(10,0),
+   empleado_id       GENERATED ALWAYS AS (empleado_id_seq.nextval) VIRTUAL,
    es_gerente        char(1) not null,
    es_veterinaro     char(1) not null,
    es_administrativo char(1) not null,
@@ -138,41 +138,39 @@ create table empleado (
 -- Eliminación y creación de la tabla empleado_grado
 DROP TABLE IF EXISTS empleado_grado;
 CREATE TABLE empleado_grado (
-   empleado_grado_id numeric(10,0)
-      constraint empleado_grado_pk primary key,
+   empleado_grado_id GENERATED ALWAYS AS (empleado_grado_id_seq.nextval) VIRTUAL,
    cedula            varchar2(8) not null,
    titulo            varchar2(40) not null,
    fecha_titulacion  date not null,
    empleado_id,
-   constraint empleado_grado_empleado_id_fk foreign key ( empleado_id )
-      references empleado ( empleado_id ), 
-    CONSTRAINT empleado_grado_cedula_uk UNIQUE(cedula)
+   CONSTRAINT empleado_grado_pk PRIMARY KEY(empleado_grado_id),
+   CONSTRAINT empleado_grado_empleado_id_fk FOREIGN KEY ( empleado_id )
+      REFERENCES empleado ( empleado_id ), 
+  CONSTRAINT empleado_grado_cedula_uk UNIQUE(cedula)
 );
 
 -- Eliminación y creación de la tabla clinica
 DROP TABLE IF EXISTS clinica;
 CREATE TABLE clinica (
-  clinica_id               NUMERIC(10,0),
+  clinica_id,
   hora_atencion_inicio     DATE NOT NULL,
   hora_atencion_fin        DATE NOT NULL,
   telefono                 VARCHAR2(10) NOT NULL,
   telefono_emergencia      VARCHAR2(10) NOT NULL,
   CONSTRAINT clinica_pk    PRIMARY KEY (clinica_id),
-  CONSTRAINT clinica_clinica_id_fk
-    FOREIGN KEY (clinica_id) 
+  CONSTRAINT clinica_clinica_id_fk FOREIGN KEY (clinica_id) 
     REFERENCES centro_operativo(centro_operativo_id)
 );
 
 -- Eliminación y creación de la tabla oficina
 DROP TABLE IF EXISTS oficina;
 CREATE TABLE oficina (
-  oficina_id               NUMERIC(10,0),
+  oficina_id,
   rfc                      VARCHAR(12) NOT NULL,
   firma_electronica        BLOB NOT NULL,
   responsable_legal        VARCHAR2(40) NOT NULL,
   CONSTRAINT oficina_pk    PRIMARY KEY (oficina_id),
-  CONSTRAINT oficina_oficina_id_fk
-    FOREIGN KEY (oficina_id) 
+  CONSTRAINT oficina_oficina_id_fk FOREIGN KEY (oficina_id) 
     REFERENCES centro_operativo(centro_operativo_id),
   CONSTRAINT oficina_rfc_uk UNIQUE(rfc),
   CONSTRAINT oficina_firma_electronica_uk UNIQUE(firma_electronica)
@@ -181,15 +179,14 @@ CREATE TABLE oficina (
 -- Eliminación y creación de la tabla centro_refugio
 DROP TABLE IF EXISTS centro_refugio;
 CREATE TABLE centro_refugio (
-  centro_refugio_id        NUMERIC(10,0),
+  centro_refugio_id,
   capacidad_maxima         NUMERIC(3,0) NOT NULL,
   numero_registro          VARCHAR2(8) NOT NULL,
   logo                     BLOB NOT NULL,
   lema                     VARCHAR2(30) NOT NULL,
   refugio_alterno          NUMERIC(10,0),
   CONSTRAINT centro_refugio_pk PRIMARY KEY (centro_refugio_id),
-  CONSTRAINT centro_refugio_centro_refugio_id_fk
-    FOREIGN KEY (centro_refugio_id) 
+  CONSTRAINT centro_refugio_centro_refugio_id_fk FOREIGN KEY (centro_refugio_id) 
     REFERENCES centro_operativo(centro_operativo_id),
   CONSTRAINT centro_refugio_refugio_alterno_fk
     FOREIGN KEY (refugio_alterno) 
@@ -200,7 +197,7 @@ CREATE TABLE centro_refugio (
 -- Eliminación y creación de la tabla centro_refugio_web
 DROP TABLE IF EXISTS centro_refugio_web;
 CREATE TABLE centro_refugio_web (
-  centro_refugio_web_id    NUMERIC(10,2),
+  centro_refugio_web_id    GENERATED ALWAYS AS (centro_refugio_web_id_seq.nextval) VIRTUAL,
   centro_refugio_id        NUMERIC(10,0),
   url                      VARCHAR2(60) NOT NULL,
   CONSTRAINT centro_refugio_web_pk PRIMARY KEY (centro_refugio_web_id),
@@ -212,7 +209,7 @@ CREATE TABLE centro_refugio_web (
 -- Eliminación y creación de la tabla historico_status_mascota
 DROP TABLE IF EXISTS historico_status_mascota;
 CREATE TABLE historico_status_mascota (
-  historico_status_mascota_id NUMERIC(10,0),
+  historico_status_mascota_id GENERATED ALWAYS AS (historico_status_mascota_id_seq.nextval) VIRTUAL,
   status_mascota_id           NUMERIC(10,0) NOT NULL,
   mascota_id                 NUMERIC(10,0) NOT NULL,
   fecha_status               DATE NOT NULL,
@@ -228,7 +225,7 @@ CREATE TABLE historico_status_mascota (
 -- Eliminación y creación de la tabla revision
 DROP TABLE IF EXISTS revision;
 CREATE TABLE revision (
-  revision_id              NUMERIC(10,0) NOT NULL,
+  revision_id              GENERATED ALWAYS AS (revision_id_seq.nextval) VIRTUAL,
   mascota_id               NUMERIC(10,0) NOT NULL,
   costo                    NUMERIC(8,2) NOT NULL,
   observacion              VARCHAR2(300) NOT NULL,
@@ -249,7 +246,7 @@ CREATE TABLE revision (
 -- Eliminación y creación de la tabla mascota
 DROP TABLE IF EXISTS mascota;
 CREATE TABLE mascota (
-  mascota_id          NUMERIC(10,0) NOT NULL, 
+  mascota_id          GENERATED ALWAYS AS (mascota_id_seq.nextval) VIRTUAL,
   fecha_status        DATE NOT NULL,
   fecha_ingreso       DATE NOT NULL, 
   fecha_nacimiento    DATE NOT NULL,

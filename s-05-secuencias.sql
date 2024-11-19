@@ -19,25 +19,8 @@ CREATE SEQUENCE donativo_id_seq
   NOCACHE
   ORDER;
 
-CREATE SEQUENCE mascota_tipo_id_seq
-  MAXVALUE 100
-  NOCYCLE
-  NOCACHE
-  ORDER;
-
-CREATE SEQUENCE origen_id_seq
-  MAXVALUE 100
-  NOCYCLE
-  NOCACHE
-  ORDER;
 
 CREATE SEQUENCE centro_operativo_id_seq
-  MAXVALUE 100
-  NOCYCLE
-  NOCACHE
-  ORDER;
-
-CREATE SEQUENCE status_mascota_id_seq
   MAXVALUE 100
   NOCYCLE
   NOCACHE
