@@ -36,7 +36,7 @@ CREATE TABLE donativo (
 -- Eliminación y creación de la tabla mascota_tipo
 DROP TABLE IF EXISTS mascota_tipo;
 CREATE TABLE mascota_tipo (
-  mascota_tipo_id NUMERIC(10,0),
+  mascota_tipo_id GENERATED ALWAYS AS (mascota_tipo_seq.nextval) VIRTUAL,
   tipo            VARCHAR2(40) NOT NULL,
   subcadena       VARCHAR2(40) NOT NULL,
   nivel_cuidado   CHAR(1) NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE centro_operativo (
   es_refugio          CHAR(1) NOT NULL,
   es_clinica          CHAR(1) NOT NULL,
   es_oficina          CHAR(1) NOT NULL,
-  codigo              VARCHAR(5) NOT NULL,
+  codigo              VARCHAR2(5) NOT NULL,
   nombre              VARCHAR2(40) NOT NULL,
   direccion           VARCHAR2(100) NOT NULL,
   latitud             VARCHAR2(10) NOT NULL,
@@ -84,7 +84,7 @@ CREATE TABLE centro_operativo (
 DROP TABLE IF EXISTS status_mascota;
 CREATE TABLE status_mascota (
   status_mascota_id NUMERIC(10,0), 
-  descripcion       VARCHAR(40) NOT NULL, 
+  descripcion       VARCHAR2(40) NOT NULL, 
   clave             NUMBER(1,0) NOT NULL, 
   CONSTRAINT status_mascota_pk PRIMARY KEY (status_mascota_id)
 );
@@ -186,7 +186,7 @@ CREATE TABLE clinica (
 DROP TABLE IF EXISTS oficina;
 CREATE TABLE oficina (
   oficina_id,
-  rfc                      VARCHAR(12) NOT NULL,
+  rfc                      VARCHAR2(12) NOT NULL,
   firma_electronica        BLOB NOT NULL,
   responsable_legal        VARCHAR2(40) NOT NULL,
   CONSTRAINT oficina_pk    PRIMARY KEY (oficina_id),
@@ -272,7 +272,7 @@ CREATE TABLE mascota (
   fecha_nacimiento    DATE NOT NULL,
   nombre              VARCHAR2(40) NOT NULL, 
   folio               VARCHAR2(8) NOT NULL, 
-  causa_muerte        VARCHAR(100) NOT NULL,
+  causa_muerte        VARCHAR2(100) NOT NULL,
   fecha_adopcion      DATE NOT NULL,
   madre_id, 
   padre_id, 

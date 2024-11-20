@@ -19,24 +19,24 @@ INSERT INTO origen_mascota(origen_id, clave, descripcion)
 
 -- Agregar tipos de mascotas
   -- Nivel cuidado [1, 5] (1: minimo, 5: maximo)
-INSERT INTO mascota_tipo(mascota_tipo_id, tipo, subcategoria, nivel_cuidado)
-  VALUES(1, 'Ave', 'Canario', 1);
-INSERT INTO mascota_tipo(mascota_tipo_id, tipo, subcategoria, nivel_cuidado)
-  VALUES(2, 'Ave', 'Perico', 2);
-INSERT INTO mascota_tipo(mascota_tipo_id, tipo, subcategoria, nivel_cuidado)
-  VALUES(3, 'Ave', 'Loro', 2);
-INSERT INTO mascota_tipo(mascota_tipo_id, tipo, subcategoria, nivel_cuidado)
-  VALUES(4, 'Ave', 'Guacamaya', 3);
-INSERT INTO mascota_tipo(mascota_tipo_id, tipo, subcategoria, nivel_cuidado)
-  VALUES(5, 'Perro', 'Pastor Aleman', 4);
-INSERT INTO mascota_tipo(mascota_tipo_id, tipo, subcategoria, nivel_cuidado)
-  VALUES(6, 'Perro', 'Chihuahua', 2);
-INSERT INTO mascota_tipo(mascota_tipo_id, tipo, subcategoria, nivel_cuidado)
-  VALUES(7, 'Perro', 'Pitbull', 3);
-INSERT INTO mascota_tipo(mascota_tipo_id, tipo, subcategoria, nivel_cuidado)
-  VALUES(8, 'Gato', 'Siames', 2);
-INSERT INTO mascota_tipo(mascota_tipo_id, tipo, subcategoria, nivel_cuidado)
-  VALUES(9, 'Gato', 'Persa', 3);
+INSERT INTO mascota_tipo(tipo, subcategoria, nivel_cuidado)
+  VALUES('Ave', 'Canario', 1);
+INSERT INTO mascota_tipo(tipo, subcategoria, nivel_cuidado)
+  VALUES('Ave', 'Perico', 2);
+INSERT INTO mascota_tipo(tipo, subcategoria, nivel_cuidado)
+  VALUES('Ave', 'Loro', 2);
+INSERT INTO mascota_tipo(tipo, subcategoria, nivel_cuidado)
+  VALUES('Ave', 'Guacamaya', 3);
+INSERT INTO mascota_tipo(tipo, subcategoria, nivel_cuidado)
+  VALUES('Perro', 'Pastor Aleman', 4);
+INSERT INTO mascota_tipo(tipo, subcategoria, nivel_cuidado)
+  VALUES('Perro', 'Chihuahua', 2);
+INSERT INTO mascota_tipo(tipo, subcategoria, nivel_cuidado)
+  VALUES('Perro', 'Pitbull', 3);
+INSERT INTO mascota_tipo(tipo, subcategoria, nivel_cuidado)
+  VALUES('Gato', 'Siames', 2);
+INSERT INTO mascota_tipo(tipo, subcategoria, nivel_cuidado)
+  VALUES('Gato', 'Persa', 3);
 
 -- Agregar status de mascotas
 INSERT INTO status_mascota(status_mascota_id, clave, descripcion)
