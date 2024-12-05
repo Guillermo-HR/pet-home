@@ -1,101 +1,84 @@
-
-
 --@Autor(es): Aburto López Roberto, Hernández Ruiz de Esparza Guillermo
 --@Fecha creación: 14/11/2024
 --@Descripción: MAIN
 
--- Conectarse a la base de datos
+SET SERVEROUTPUT OFF
+-- Conectarse a la base de datos como sys
 PROMPT ========================================================
 PROMPT Conectando a la PDB
-CONNECT ah_admin_rol/contrasena@ghrbd_s1
-PROMPT s-06-indices-inicial.sql
+CONNECT sys/system1@ghrbd_s1 AS SYSDBA
 PROMPT ========================================================
 
-PROMPT Eliminando todas las tablas y purgándolas
-BEGIN
-    FOR rec IN (
-        SELECT table_name FROM user_tables
-        WHERE table_name IN (
-            'DONATIVO', 
-            'CLIENTE',
-            'STATUS_SOLICITUD',
-            'CLIENTE_MASCOTA_SOLICITUD', 
-            'HISTORICO_STATUS_MASCOTA',
-            'MASCOTA', 
-            'STATUS_MASCOTA', 
-            'MASCOTA_TIPO', 
-            'ORIGEN', 
-            'MONITOREO_CAUTIVERIO',
-            'EMPLEADO_GRADO', 
-            'EMPLEADO', 
-            'REVISION',
-            'CENTRO_OPERATIVO', 
-            'CLINICA',
-            'OFICINA', 
-            'CENTRO_REFUGIO',
-            'CENTRO_REFUGIO_WEB' 
-        )
-    ) LOOP
-        BEGIN
-            EXECUTE IMMEDIATE 'DROP TABLE ' || rec.table_name || ' CASCADE CONSTRAINTS PURGE';
-        EXCEPTION
-            WHEN OTHERS THEN
-                -- Si hay algún error, continúa con la siguiente tabla
-                NULL;
-        END;
-    END LOOP;
-END;
-/
+-- Crear los usuarios y roles
+@s-01-usuarios.sql
 
-PROMPT Eliminando secuencias
+-- Conectar a la base de datos como usuario administrador
+PROMPT ========================================================
+PROMPT Conectando a la PDB como ah_proy_admin_rol
+CONNECT ah_proy_admin_rol/contrasena@ghrbd_s1
+PROMPT ========================================================
 
-BEGIN
-    FOR rec IN (
-        SELECT sequence_name FROM user_sequences
-        WHERE sequence_name 
-            IN ('CLIENTE_ID_SEQ', 
-                'DONATIVO_ID_SEQ', 
-                'CENTRO_OPERATIVO_ID_SEQ', 
-                'CLIENTE_MASCOTA_SOLICITUD_ID_SEQ', 
-                'MONITOREO_CAUTIVERIO_ID_SEQ', 
-                'EMPLEADO_ID_SEQ',
-                'EMPLEADO_GRADO_ID_SEQ', 
-                'CENTRO_REFUGIO_WEB_ID_SEQ', 
-                'HISTORICO_STATUS_MASCOTA_ID_SEQ', 
-                'REVISION_ID_SEQ', 
-                'MASCOTA_ID_SEQ'
-                )
-    ) LOOP
-        BEGIN
-            EXECUTE IMMEDIATE 'DROP SEQUENCE ' || rec.sequence_name;
-        EXCEPTION
-            WHEN OTHERS THEN
-                -- Si hay algún error, continúa con la siguiente secuencia
-                NULL;
-        END;
-    END LOOP;
-END;
-/
+-- Crear las secuencias
+@s-05-secuencias.sql
 
+-- Crear las tablas
+@s-02-entidades.sql
 
+-- Crear los índices
+@s-06-indices.sql
 
-/*
+-- Crear tablas externas
+--@s-04-tablas-externas.sql
 
+-- Crear tablas temporales
+--@s-03-tablas-temporales.sql
 
-* check cliente.contraseña que cumpla algunas reglas
-* triger 1: para actualizar los estatus 
-* vista 1: mostrar solicitudes, se ponen los datos del cliente, datos de las mascotas en las que tiene solicitud, estatus de la solicitud, si la solicitud es rechazada poner el motivo, si es aceptada poner la fecha de adopción, si es pendiente poner fecha del último monitoreo y calificación 
-* * agregar tabla estatus_solicitud puede tener 3 valores (pendiente, aceptada o rechazada)
-* tabla temporal: subtipos
-* vista 2: datos cliente, número de donativos, total de solicitudes, total solicitudes de cada tipo
-*/
+-- Crear sinónimos
+--@s-07-sinonimos.sql
 
+-- Crear vistas
+--@s-08-vistas.sql
 
+-- Crear trigger 1
+--@s-11-historico-status-mascota-trigger.sql
+
+-- Crear trigger 2
+
+-- Crear procedimiento almacenado 1
+
+-- Crear procedimiento almacenado 2
+
+-- Crear función 1
+@s-15-fx-generar-folio.sql
+
+-- Crear función 2
+
+-- Crear función 3
+
+-- Cargar datos
+@carga-datos/s-09-carga-inicial.sql
+
+-- Ejectuar pruebas
+PROMPT ========================================================
+PROMPT Ejecutando pruebas
+PROMPT ========================================================
+
+-- Prueba trigger 1
+
+-- Prueba trigger 2
+
+-- Prueba procedimiento almacenado 1
+
+-- Prueba procedimiento almacenado 2
+
+-- Prueba función 1
+
+-- Prueba función 2
+
+-- Prueba función 3
 
 -- Salir de la base
 PROMPT ========================================================
 PROMPT Saliendo de la PDB
 DISCONNECT;
 PROMPT ========================================================
-
-
