@@ -10,7 +10,7 @@
 -- Nombre del usuario empleado en el proyecto
 define p_usuario='ah_proy_admin'
 
--- Password del usuario empleado en el proyecto
+-- Password del usuario empleado en el proyecto para todos los usuarios 
 define p_usuario_pass='contrasena'
 
 -- Password del usuario sys
