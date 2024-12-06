@@ -2,11 +2,30 @@
 --@Fecha creación: 14/11/2024
 --@Descripción: MAIN
 
+
+--Modificar las siguientes variables en caso de ser necesario.
+--En scripts reales no deben incluirse passwords. Solo se hace para
+--propósitos de pruebas y evitar escribirlos cada vez que se quiera ejecutar 
+
+-- Nombre del usuario empleado en el proyecto
+define p_usuario='ah_proy_admin'
+
+-- Password del usuario empleado en el proyecto
+define p_usuario_pass='contrasena'
+
+-- Password del usuario sys
+define p_sys_password='system1'
+
+---Alias de servicio de la PDB
+define p_pdb='ralbd_s1'
+
+
+
 SET SERVEROUTPUT OFF
 -- Conectarse a la base de datos como sys
 PROMPT ========================================================
 PROMPT Conectando a la PDB
-CONNECT sys/system1@ghrbd_s1 AS SYSDBA
+CONNECT sys/&&p_sys_password@&&p_pdb AS SYSDBA
 PROMPT ========================================================
 
 -- Crear los usuarios y roles
@@ -14,8 +33,8 @@ PROMPT ========================================================
 
 -- Conectar a la base de datos como usuario ah_proy_cliente
 PROMPT ========================================================
-PROMPT Conectando a la PDB como ah_proy_admin
-CONNECT ah_proy_admin/contrasena@ghrbd_s1
+PROMPT Conectando a la PDB como usuario
+CONNECT ah_proy_admin/&&p_usuario_pass@&&p_pdb
 PROMPT ========================================================
 
 -- Crear las secuencias
