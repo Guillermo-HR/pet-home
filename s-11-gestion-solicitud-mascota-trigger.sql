@@ -29,6 +29,15 @@ CREATE OR REPLACE TRIGGER solicitud_mascota_trigger
 
     CASE
       WHEN inserting THEN
+        SELECT COUNT(*) INTO v_count_solicitudes
+        FROM cliente_mascota_solicitud
+        WHERE mascota_id = v_mascota_id AND
+          status_solicitud_id = 1;
+
+        IF v_count_solicitudes = 1 THEN
+          RAISE_APPLICATION_ERROR(-20006, 'Ya existe una solicitud de adopcion para la mascota');
+        END IF;
+        
         IF v_n_mascotas_actuales = 5 THEN
           RAISE_APPLICATION_ERROR(-20002, 'No se pueden realizar la solicitud de adopcion');
         END IF;
