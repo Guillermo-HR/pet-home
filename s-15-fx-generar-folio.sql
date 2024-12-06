@@ -18,7 +18,7 @@ CREATE OR REPLACE FUNCTION generar_folio(
   v_origen_id_con_formato VARCHAR2(1);
   v_numero_folio VARCHAR2(3);
   BEGIN
-    SELECT SUBSTR(LPAD(p_centro_refugio_id, 2, '0'), -2) INTO v_refugio_id_con_formato FROM dual;
+    v_refugio_id_con_formato := SUBSTR(LPAD(p_centro_refugio_id, 2, '0'), -2);
     v_origen_id_con_formato := TO_CHAR(p_origen_id);
 
     SELECT tipo INTO v_tipo FROM mascota_tipo WHERE mascota_tipo_id = p_mascota_tipo_id;
