@@ -13,7 +13,7 @@ CREATE OR REPLACE FUNCTION generar_folio(
   p_origen_id origen.origen_id%TYPE
 ) RETURN VARCHAR2 IS
   v_folio VARCHAR2(8) := '';
-  v_tipo NUMBER;
+  v_tipo VARCHAR2(40);
   v_refugio_id_con_formato VARCHAR2(2);
   v_origen_id_con_formato VARCHAR2(1);
   v_numero_folio VARCHAR2(3);
@@ -24,15 +24,17 @@ CREATE OR REPLACE FUNCTION generar_folio(
     SELECT tipo INTO v_tipo FROM mascota_tipo WHERE mascota_tipo_id = p_mascota_tipo_id;
     IF v_tipo = 'Perro' THEN
       SELECT SUBSTR(LPAD(folio_perro_seq.nextval, 3, '0'), -3) INTO v_numero_folio FROM dual;
-      v_folio := 'PR' || v_refugio_id_con_formato || v_origen_id_con_formato || v_numero_folio;
+      v_folio := 'PR' || TO_CHAR(v_refugio_id_con_formato) || TO_CHAR(v_origen_id_con_formato) || TO_CHAR(v_numero_folio);
     ELSIF v_tipo = 'Gato' THEN
       SELECT SUBSTR(LPAD(folio_gato_seq.nextval, 3, '0'), -3) INTO v_numero_folio FROM dual;
-      v_folio := 'GA' || v_refugio_id_con_formato || v_origen_id_con_formato || v_numero_folio;
+      v_folio := 'GA' || TO_CHAR(v_refugio_id_con_formato) || TO_CHAR(v_origen_id_con_formato) || TO_CHAR(v_numero_folio);
     ELSE
-      RAISE_APPLICATION_ERROR(-20003, 'Tipo de mascota no registrado');
+      RAISE_APPLICATION_ERROR(-20001, 'Tipo de mascota no registrado');
     END IF;
+    RETURN v_folio;
   EXCEPTION
     WHEN OTHERS THEN
       RAISE;
 END generar_folio;
 /   
+SHOW ERRORS;

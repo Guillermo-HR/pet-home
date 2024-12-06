@@ -29,15 +29,18 @@ END;
 -- Crear roles
 PROMPT creando roles
 CREATE ROLE ah_admin_rol;
-GRANT CREATE SESSION, CREATE TABLE, CREATE SEQUENCE, CREATE VIEW, CREATE TRIGGER, CREATE PROCEDURE TO ah_admin_rol;
+GRANT CREATE SESSION, CREATE TABLE, CREATE SEQUENCE, CREATE VIEW, CREATE TRIGGER, CREATE PROCEDURE, CREATE PUBLIC SYNONYM TO ah_admin_rol;
 
 CREATE ROLE ah_invitado_rol;
-GRANT CREATE SESSION TO ah_invitado_rol;
+GRANT CREATE SESSION, CREATE SYNONYM TO ah_invitado_rol;
 
 -- Crear usuarios
 PROMPT creando usuarios
-CREATE USER ah_proy_admin_rol IDENTIFIED BY contrasena QUOTA UNLIMITED ON USERS;
-GRANT ah_admin_rol TO ah_proy_admin_rol;
+CREATE USER ah_proy_admin IDENTIFIED BY contrasena QUOTA UNLIMITED ON USERS;
+GRANT ah_admin_rol TO ah_proy_admin;
 
 CREATE USER ah_proy_invitado IDENTIFIED BY contrasena QUOTA UNLIMITED ON USERS;
 GRANT ah_invitado_rol TO ah_proy_invitado;
+
+CREATE user ah_proy_cliente IDENTIFIED BY contrasena QUOTA UNLIMITED ON USERS;
+GRANT ah_invitado_rol TO ah_proy_cliente;

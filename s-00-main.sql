@@ -12,10 +12,10 @@ PROMPT ========================================================
 -- Crear los usuarios y roles
 @s-01-usuarios.sql
 
--- Conectar a la base de datos como usuario administrador
+-- Conectar a la base de datos como usuario ah_proy_cliente
 PROMPT ========================================================
-PROMPT Conectando a la PDB como ah_proy_admin_rol
-CONNECT ah_proy_admin_rol/contrasena@ghrbd_s1
+PROMPT Conectando a la PDB como ah_proy_admin
+CONNECT ah_proy_admin/contrasena@ghrbd_s1
 PROMPT ========================================================
 
 -- Crear las secuencias
@@ -30,19 +30,17 @@ PROMPT ========================================================
 -- Crear tablas externas
 --@s-04-tablas-externas.sql
 
--- Crear tablas temporales
---@s-03-tablas-temporales.sql
+-- Crear vistas
+@s-08-vistas.sql
 
 -- Crear sinónimos
---@s-07-sinonimos.sql
-
--- Crear vistas
---@s-08-vistas.sql
+@s-07-sinonimos.sql
 
 -- Crear trigger 1
---@s-11-historico-status-mascota-trigger.sql
+@s-11-historico-status-mascota-trigger.sql
 
 -- Crear trigger 2
+@s-11-gestion-solicitud-mascota-trigger.sql
 
 -- Crear procedimiento almacenado 1
 
@@ -52,11 +50,15 @@ PROMPT ========================================================
 @s-15-fx-generar-folio.sql
 
 -- Crear función 2
+@s-15-fx-generar-numero-consulta.sql
 
 -- Crear función 3
 
 -- Cargar datos
 @carga-datos/s-09-carga-inicial.sql
+
+-- Crear tablas temporales
+@s-03-tablas-temporales.sql
 
 -- Ejectuar pruebas
 PROMPT ========================================================
@@ -64,6 +66,7 @@ PROMPT Ejecutando pruebas
 PROMPT ========================================================
 
 -- Prueba trigger 1
+@s-12-historico-status-mascota-trigger-prueba.sql
 
 -- Prueba trigger 2
 
