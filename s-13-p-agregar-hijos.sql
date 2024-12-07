@@ -9,7 +9,7 @@ PROMPT ========================================================
 
 SET SERVEROUTPUT ON
 CREATE OR REPLACE PROCEDURE agregar_hijos(
-  p_padre_id IN NUMBER,
+  p_padre_id IN NUMBER DEFAULT NULL,
   p_madre_id IN NUMBER,
   p_numero_hijos IN NUMBER,
   p_fecha_nacimiento IN DATE DEFAULT SYSDATE
