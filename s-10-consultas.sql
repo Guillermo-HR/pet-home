@@ -54,8 +54,8 @@ WHERE m.mascota_id IN (
 
 /*
 Para la entrega de reconocimientos al empleado del mes, se requiere identificar 
-al veterinario con la mayor cantidad de diagnósticos registrados y el tipo de mascotas 
-que están bajo su cuidado.
+al veterinario con la mayor cantidad de diagnósticos registrados por cada tipo 
+de mascota que están bajo su cuidado.
 */
 
 SELECT e.nombre, 
