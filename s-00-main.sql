@@ -50,7 +50,7 @@ PROMPT ========================================================
 @s-06-indices.sql
 
 -- Crear tablas externas
---@s-04-tablas-externas.sql
+@s-04-tablas-externas.sql
 
 -- Crear vistas
 @s-08-vistas.sql

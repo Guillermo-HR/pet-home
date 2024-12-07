@@ -1,3 +1,6 @@
+--@Autor(es):  Hernández Ruiz de Esparza Guillermo
+--@Fecha creación: 5/12/2024
+--@Descripción: Creación de trigger para el historico de status mascota
 PROMPT ========================================================
 PROMPT Creación del triger para el historico de status mascota
 PROMPT s-11-historico-status-mascota-trigger.sql

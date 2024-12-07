@@ -1,3 +1,7 @@
+--@Autor(es):  Hernández Ruiz de Esparza Guillermo
+--@Fecha creación: 5/12/2024
+--@Descripción: Creación de tablas temporales
+
 PROMPT ========================================================
 PROMPT Creación de tablas temporales
 PROMPT s-03-tablas-temporales.sql
