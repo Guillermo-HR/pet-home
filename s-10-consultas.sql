@@ -50,3 +50,34 @@ WHERE m.mascota_id IN (
     UNION
     SELECT madre_id FROM mascota
 );
+
+
+/*
+Para la entrega de reconocimientos al empleado del mes, se requiere identificar 
+al veterinario con la mayor cantidad de diagnósticos registrados y el tipo de mascotas 
+que están bajo su cuidado.
+*/
+
+SELECT e.nombre, 
+       e.apellido_paterno, 
+       e.apellido_materno, 
+       mt.tipo AS tipo_mascota, 
+       COUNT(mc.veterinario_id) AS total_diagnosticos
+FROM mascota m
+JOIN mascota_tipo mt 
+    ON mt.mascota_tipo_id = m.mascota_tipo_id
+JOIN monitoreo_cautiverio mc 
+    ON mc.mascota_id = m.mascota_id
+JOIN empleado e 
+    ON e.empleado_id = mc.veterinario_id
+GROUP BY mt.tipo, 
+         mc.veterinario_id
+HAVING COUNT(mc.veterinario_id) = (
+    SELECT MAX(total_diagnosticos)
+    FROM (
+        SELECT COUNT(mc1.veterinario_id) AS total_diagnosticos
+        FROM monitoreo_cautiverio mc1
+        GROUP BY mc1.veterinario_id
+    )
+);
+
