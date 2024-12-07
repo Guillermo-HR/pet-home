@@ -55,16 +55,37 @@ PROMPT Creando el directorio /unam/bd/proyecto/pet-home en caso de que no exista
 PROMPT Creando un archivo csv de prueba
 !touch /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
 
-!echo "100,Pet Supplies,555-1234,Alimentos,100.00,7 días,Activo" > /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "100,Pet Supplies,555-1234,Comida,100.00,7 días,Activo" > /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
 !echo "101,Medicamentos Veterinarios,555-2345,Medicamentos,250.50,10 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
 !echo "102,Accesorios PetWorld,555-3456,Accesorios,30.75,5 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
-!echo "103,Alimentos NutriPets,555-4567,Alimentos,120.00,7 días,Inactivo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
-!echo "104,Distribuciones PetShop,555-5678,Alimentos,150.00,8 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
-!echo "105,Tienda Animalia,555-6789,Accesorios,45.00,5 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
-!echo "106,Suministros Veterinarios,555-7890,Medicamentos,300.00,12 días,Inactivo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
-!echo "107,Peluquería Animal,555-8901,Servicios,80.00,3 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
-!echo "108,Alimentos PetCare,555-9012,Alimentos,120.50,7 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
-!echo "109,Accesorios del Pet,555-0123,Accesorios,60.00,4 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "103,Instrumental VetMed,555-4567,Instrumental Médico,450.00,15 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "104,Peluquería Mascotitas,555-5678,Servicios,75.00,3 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "105,Comida Orgánica PetCare,555-6789,Comida,120.00,7 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "106,Tienda Happy Pets,555-7890,Accesorios,40.00,4 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "107,MedicVet Solutions,555-8901,Medicamentos,180.00,12 días,Inactivo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "108,Distribuidora VetTools,555-9012,Instrumental Médico,520.00,18 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "109,Peluquería Happy Tails,555-0123,Servicios,95.00,5 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "110,Alimentos Premium Pets,555-1235,Comida,135.00,8 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "111,VetTech Pro,555-2346,Medicamentos,300.00,11 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "112,Accesorios Fancy Pets,555-3457,Accesorios,25.00,6 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "113,Instrumental Médico Animed,555-4568,Instrumental Médico,490.00,20 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "114,Comida Natural VetCare,555-5679,Comida,155.00,9 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "115,Tienda Accesorios Felices,555-6780,Accesorios,50.00,4 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "116,Medicamentos ExpressVet,555-7891,Medicamentos,275.00,13 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "117,Alimentos Organics Pro,555-8902,Comida,165.00,7 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "118,Distribuidora VetEquipos,555-9013,Instrumental Médico,600.00,22 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "119,Servicios Groomer Pro,555-0124,Servicios,85.00,3 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "120,NutriPet Alimentos,555-1237,Comida,140.00,6 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "121,Accesorios TotalPets,555-2348,Accesorios,65.00,5 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "122,Medicamentos PharmaVet,555-3459,Medicamentos,320.00,14 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "123,VetTools Equipos,555-4560,Instrumental Médico,550.00,18 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "124,Peluquería Peludos,555-5671,Servicios,75.00,4 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "125,Distribuidora SuperPets,555-6782,Comida,150.00,8 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "126,Accesorios PetLovers,555-7893,Accesorios,55.00,5 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "127,Medicamentos MascotVet,555-8904,Medicamentos,275.00,13 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "128,Alimentos EcoPets,555-9015,Comida,140.00,6 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "129,Instrumental Médico ProVet,555-0126,Instrumental Médico,500.00,21 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
+!echo "130,Grooming Services,555-1238,Servicios,90.00,3 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
 
 
 PROMPT Cambiando permisos
