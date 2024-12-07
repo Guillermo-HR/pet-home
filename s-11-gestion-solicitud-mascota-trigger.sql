@@ -88,13 +88,13 @@ CREATE OR REPLACE TRIGGER solicitud_mascota_trigger
 
         IF v_status_solicitud = 2 THEN
           UPDATE cliente_mascota_solicitud
-          SET status_solicitud_id = 2,
+          SET status_solicitud_id = 3,
             comentario = 'La mascota ha sido adoptada por otro cliente. Más adelante se le notificará el motivo'
           WHERE mascota_id = v_mascota_id AND
             status_solicitud_id = 1 AND
             cliente_id != :new.cliente_id;
 
-          :new.comentario := 'Solicitud de adopcion aprobada';
+          :new.comentario := 'Se aprobo la solicitud de adopcion';
           DBMS_OUTPUT.PUT_LINE('Se aprobo la solicitud de adopcion (' || :new.cliente_mascota_solicitud_id || ') para la mascota: ' 
           || v_mascota_id);
         ELSIF v_status_solicitud = 3 THEN

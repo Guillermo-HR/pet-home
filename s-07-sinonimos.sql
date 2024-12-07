@@ -19,7 +19,7 @@ CONNECT ah_proy_cliente/&&p_usuario_pass@&&p_pdb
 PROMPT ========================================================
 CREATE SYNONYM mascotas_disponibles FOR ah_proy_admin.mascota_mascota_tipo_monitoreo_cautiverio_centro_refugio;
 CREATE SYNONYM mascotas_adoptadas FOR ah_proy_admin.cliente_cliente_mascota_solicitud_mascota_revision;
-CREATE SYNONYM solicituddes_registradas FOR ah_proy_admin.solicitudes_adopcion_cliente;
+CREATE SYNONYM solicitudes_registradas FOR ah_proy_admin.solicitudes_adopcion_cliente;
 
 -- Conectar a la base de datos como usuario ah_proy_invitado
 PROMPT ========================================================

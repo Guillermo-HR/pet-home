@@ -17,11 +17,11 @@ define p_usuario_pass='contrasena'
 define p_sys_password='system1'
 
 ---Alias de servicio de la PDB
-define p_pdb='ralbd_s1'
+define p_pdb='ghrbd_s1'
 
 
 
-SET SERVEROUTPUT OFF
+SET SERVEROUTPUT ON
 -- Conectarse a la base de datos como sys
 PROMPT ========================================================
 PROMPT Conectando a la PDB
@@ -73,7 +73,7 @@ PROMPT ========================================================
 -- Crear procedimiento almacenado 2
 
 -- Crear función 2
-@s-15-fx-generar-numero-consulta.sql
+@s-15-fx-generar-numero-revision.sql
 
 -- Crear función 3
 
