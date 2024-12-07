@@ -30,7 +30,7 @@ CREATE SYNONYM empleados FOR ah_proy_admin.empleado_empleado_grado;
 CREATE SYNONYM refugios FOR ah_proy_admin.centro_operativo_centro_refugio_mascota;
 CREATE SYNONYM reporte_mensual_clinica FOR ah_proy_admin.ora$ptt_reporte_mensual_clinica;
 
--- Conectar a la base de datos como usuario ah_proy_cliente
+-- Conectar a la base de datos como usuario ah_proy_admin
 PROMPT ========================================================
 PROMPT Conectando a la PDB como ah_proy_admin
 CONNECT ah_proy_admin/contrasena@ghrbd_s1

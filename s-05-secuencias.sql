@@ -80,6 +80,12 @@ CREATE SEQUENCE cliente_mascota_solicitud_seq
   NOCYCLE
   NOCACHE
   ORDER;
+
+CREATE SEQUENCE monitoreo_cautiverio_seq
+  MAXVALUE 99999
+  NOCYCLE
+  NOCACHE
+  ORDER;
 -- Secuencias para los folios de mascotas
 CREATE SEQUENCE folio_perro_seq
   MAXVALUE 999

@@ -11,6 +11,7 @@ CREATE OR REPLACE TRIGGER historico_status_macota_trigger
   v_status_id  mascota.status_mascota_id%type;
   v_mascota_id       mascota.mascota_id%type;
   v_folio            mascota.folio%type;
+  v_veterinario_id   monitoreo_cautiverio.veterinario_id%type;
 
   BEGIN
     v_fecha_status := :new.fecha_status;
@@ -21,6 +22,16 @@ CREATE OR REPLACE TRIGGER historico_status_macota_trigger
     CASE
       WHEN inserting THEN
           DBMS_OUTPUT.PUT_LINE('Se registro la mascota con mascota_id: ' || v_mascota_id);
+
+          SELECT empleado_id INTO v_veterinario_id
+          FROM empleado
+          WHERE es_veterinario = 1 AND
+          rownum = 1
+          ORDER BY dbms_random.value;
+
+          INSERT INTO monitoreo_cautiverio (monitoreo_cautiverio_id, fecha, diagnostico, foto, mascota_id, veterinario_id)
+          VALUES (monitoreo_cautiverio_seq.NEXTVAL, v_fecha_status, 'Mascota recibida en el centro de adopcion', 
+            EMPTY_BLOB(), v_mascota_id, v_veterinario_id);
       WHEN updating('status_mascota_id') THEN
         IF v_status_id = 5 THEN
           UPDATE cliente_mascota_solicitud
