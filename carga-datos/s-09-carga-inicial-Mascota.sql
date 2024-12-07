@@ -35,13 +35,13 @@ BEGIN
   -- Perros donados
   FOR v_index_loop IN 1 .. v_n_perros_donados LOOP
     v_mascota_id := mascota_seq.NEXTVAL;
-    v_fecha_ingreso := TO_DATE('01-01-2002', 'DD-MM-YYYY') + DBMS_RANDOM.VALUE(1, 2.4*365);
-    v_fecha_nacimiento := TO_DATE('01-01-2022', 'DD-MM-YYYY') - DBMS_RANDOM.VALUE(15, 5*365);
+    v_fecha_ingreso := TO_DATE('01-01-2021', 'DD-MM-YYYY') + DBMS_RANDOM.VALUE(1, 2.4*365);
+    v_fecha_nacimiento := TO_DATE('01-01-2021', 'DD-MM-YYYY') - DBMS_RANDOM.VALUE(15, 5*365);
     SELECT nombre INTO v_nombre FROM (SELECT * FROM nombre_perro ORDER BY DBMS_RANDOM.VALUE) WHERE ROWNUM = 1;
     v_mascota_tipo_id := TRUNC(DBMS_RANDOM.VALUE(1, 23));
     v_refugio_id := TRUNC(DBMS_RANDOM.VALUE(1, 3));
     v_cliente_donador_id := TRUNC(DBMS_RANDOM.VALUE(1, 27));
-    SELECT generar_folio(v_mascota_tipo_id, v_refugio_id, 1) INTO v_folio FROM dual;
+    v_folio := generar_folio(v_mascota_tipo_id, v_refugio_id, 1);
     
     v_sql := 'INSERT INTO mascota (mascota_id, fecha_status, fecha_ingreso, fecha_nacimiento, nombre, folio, mascota_tipo_id, status_mascota_id, refugio_id, origen_id, cliente_donador_id)' ||
     'VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11)';
@@ -52,12 +52,12 @@ BEGIN
   -- Perros abandonados
   FOR v_index_loop IN 1 .. v_n_perros_abandonados LOOP
     v_mascota_id := mascota_seq.NEXTVAL;
-    v_fecha_ingreso := TO_DATE('01-01-2002', 'DD-MM-YYYY') + DBMS_RANDOM.VALUE(1, 2.4*365);
-    v_fecha_nacimiento := TO_DATE('01-01-2022', 'DD-MM-YYYY') - DBMS_RANDOM.VALUE(15, 5*365);
+    v_fecha_ingreso := TO_DATE('01-01-2021', 'DD-MM-YYYY') + DBMS_RANDOM.VALUE(1, 2.4*365);
+    v_fecha_nacimiento := TO_DATE('01-01-2021', 'DD-MM-YYYY') - DBMS_RANDOM.VALUE(15, 5*365);
     SELECT nombre INTO v_nombre FROM (SELECT * FROM nombre_perro ORDER BY DBMS_RANDOM.VALUE) WHERE ROWNUM = 1;
     v_mascota_tipo_id := TRUNC(DBMS_RANDOM.VALUE(1, 23));
     v_refugio_id := TRUNC(DBMS_RANDOM.VALUE(1, 3));
-    SELECT generar_folio(v_mascota_tipo_id, v_refugio_id, 1) INTO v_folio FROM dual;
+    v_folio := generar_folio(v_mascota_tipo_id, v_refugio_id, 1);
 
     v_sql := 'INSERT INTO mascota (mascota_id, fecha_status, fecha_ingreso, fecha_nacimiento, nombre, folio, mascota_tipo_id, status_mascota_id, refugio_id, origen_id)' ||
     'VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10)';
@@ -68,13 +68,13 @@ BEGIN
   -- Gatos donados
   FOR v_index_loop IN 1 .. v_n_gatos_donados LOOP
     v_mascota_id := mascota_seq.NEXTVAL;
-    v_fecha_ingreso := TO_DATE('01-01-2002', 'DD-MM-YYYY') + DBMS_RANDOM.VALUE(1, 2.4*365);
-    v_fecha_nacimiento := TO_DATE('01-01-2022', 'DD-MM-YYYY') - DBMS_RANDOM.VALUE(15, 5*365);
+    v_fecha_ingreso := TO_DATE('01-01-2021', 'DD-MM-YYYY') + DBMS_RANDOM.VALUE(1, 2.4*365);
+    v_fecha_nacimiento := TO_DATE('01-01-2021', 'DD-MM-YYYY') - DBMS_RANDOM.VALUE(15, 5*365);
     SELECT nombre INTO v_nombre FROM (SELECT * FROM nombre_gato ORDER BY DBMS_RANDOM.VALUE) WHERE ROWNUM = 1;
     v_mascota_tipo_id := TRUNC(DBMS_RANDOM.VALUE(24, 29));
     v_refugio_id := TRUNC(DBMS_RANDOM.VALUE(1, 3));
     v_cliente_donador_id := TRUNC(DBMS_RANDOM.VALUE(1, 27));
-    SELECT generar_folio(v_mascota_tipo_id, v_refugio_id, 1) INTO v_folio FROM dual;
+    v_folio := generar_folio(v_mascota_tipo_id, v_refugio_id, 1);
 
     v_sql := 'INSERT INTO mascota (mascota_id, fecha_status, fecha_ingreso, fecha_nacimiento, nombre, folio, mascota_tipo_id, status_mascota_id, refugio_id, origen_id, cliente_donador_id)' ||
     'VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11)';
@@ -85,12 +85,12 @@ BEGIN
   -- Gatos abandonados
   FOR v_index_loop IN 1 .. v_n_gatos_abandonados LOOP
     v_mascota_id := mascota_seq.NEXTVAL;
-    v_fecha_ingreso := TO_DATE('01-01-2002', 'DD-MM-YYYY') + DBMS_RANDOM.VALUE(1, 2.4*365);
-    v_fecha_nacimiento := TO_DATE('01-01-2022', 'DD-MM-YYYY') - DBMS_RANDOM.VALUE(15, 5*365);
+    v_fecha_ingreso := TO_DATE('01-01-2021', 'DD-MM-YYYY') + DBMS_RANDOM.VALUE(1, 2.4*365);
+    v_fecha_nacimiento := TO_DATE('01-01-2021', 'DD-MM-YYYY') - DBMS_RANDOM.VALUE(15, 5*365);
     SELECT nombre INTO v_nombre FROM (SELECT * FROM nombre_gato ORDER BY DBMS_RANDOM.VALUE) WHERE ROWNUM = 1;
     v_mascota_tipo_id := TRUNC(DBMS_RANDOM.VALUE(24, 29));
     v_refugio_id := TRUNC(DBMS_RANDOM.VALUE(1, 3));
-    SELECT generar_folio(v_mascota_tipo_id, v_refugio_id, 1) INTO v_folio FROM dual;
+    v_folio := generar_folio(v_mascota_tipo_id, v_refugio_id, 1);
 
     v_sql := 'INSERT INTO mascota (mascota_id, fecha_status, fecha_ingreso, fecha_nacimiento, nombre, folio, mascota_tipo_id, status_mascota_id, refugio_id, origen_id)' ||
     'VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10)';

@@ -64,12 +64,13 @@ PROMPT ========================================================
 -- Crear trigger 2
 @s-11-gestion-solicitud-mascota-trigger.sql
 
--- Crear procedimiento almacenado 1
-
--- Crear procedimiento almacenado 2
-
 -- Crear función 1
 @s-15-fx-generar-folio.sql
+
+-- Crear procedimiento almacenado 1
+@s-13-p-agregar-hijos.sql
+
+-- Crear procedimiento almacenado 2
 
 -- Crear función 2
 @s-15-fx-generar-numero-consulta.sql
@@ -101,6 +102,8 @@ PROMPT ========================================================
 -- Prueba función 2
 
 -- Prueba función 3
+
+COMMIT;
 
 -- Salir de la base
 PROMPT ========================================================

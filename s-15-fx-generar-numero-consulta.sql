@@ -17,3 +17,4 @@ CREATE OR REPLACE FUNCTION generar_n_consulta(
     WHERE mascota_id = p_mascota_id;
     RETURN v_count + 1;
   END generar_n_consulta;
+/
