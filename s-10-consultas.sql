@@ -81,3 +81,17 @@ HAVING COUNT(mc.veterinario_id) = (
     )
 );
 
+SELECT * FROM proveedor_ext;
+
+/*
+Mostrar el id, nombres y tipo de producto de el proximo 
+pedido en llegar de medicamentos
+
+*/
+SELECT proveedor_id, nombre, tipo_producto, tiempo_entrega_dias
+FROM proveedor_ext
+WHERE UPPER(tipo_producto) = 'MEDICAMENTOS'
+    AND tiempo_entrega_dias = (
+        SELECT MIN(tiempo_entrega_dias)
+        FROM proveedor_ext
+    );
