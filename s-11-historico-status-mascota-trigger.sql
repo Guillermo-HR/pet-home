@@ -25,14 +25,21 @@ CREATE OR REPLACE TRIGGER historico_status_macota_trigger
 
           SELECT empleado_id INTO v_veterinario_id
           FROM empleado
-          WHERE es_veterinario = 1 AND
-          rownum = 1
-          ORDER BY dbms_random.value;
+          WHERE es_veterinario = 1
+          ORDER BY dbms_random.value
+          FETCH FIRST 1 ROWS ONLY;
 
           INSERT INTO monitoreo_cautiverio (monitoreo_cautiverio_id, fecha, diagnostico, foto, mascota_id, veterinario_id)
           VALUES (monitoreo_cautiverio_seq.NEXTVAL, v_fecha_status, 'Mascota recibida en el centro de adopcion', 
             EMPTY_BLOB(), v_mascota_id, v_veterinario_id);
       WHEN updating('status_mascota_id') THEN
+        IF v_status_id = :old.status_mascota_id THEN
+          RAISE_APPLICATION_ERROR(-20007, 'El status de la mascota no ha cambiado');
+        END IF;
+
+        IF :old.status_mascota_id IN (6, 7) THEN
+          RAISE_APPLICATION_ERROR(-20008, 'No se puede cambiar el status de la mascota');
+        END IF;
         IF v_status_id = 5 THEN
           UPDATE cliente_mascota_solicitud
           SET comentario = 'La mascota esta enferma, se cancela el proceso de adopcion'
