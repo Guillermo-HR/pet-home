@@ -1,3 +1,6 @@
+--@Autor(es):  Hernández Ruiz de Esparza Guillermo
+--@Fecha creación: 5/12/2024
+--@Descripción: Creación de vistas
 PROMPT ========================================================
 PROMPT Creación de vistas
 PROMPT s-08-vistas.sql

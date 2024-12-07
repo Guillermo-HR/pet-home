@@ -1,4 +1,4 @@
---@Autor(es): Aburto López Roberto, Hernández Ruiz de Esparza Guillermo
+--@Autor(es): Hernández Ruiz de Esparza Guillermo
 --@Fecha creación: 14/11/2024
 --@Descripción: Llamar a todos los archivos que hacen la carga inicial de datos
 
@@ -19,5 +19,5 @@ PROMPT ========================================================
 @carga-datos/s-09-carga-inicial-EmpleadoGrado.sql
 @carga-datos/s-09-carga-inicial-CentroOperativo.sql
 @carga-datos/s-09-carga-inicial-Donativo.sql
-@carga-datos/s-09-carga-inicial-Mascota.sql
+--@carga-datos/s-09-carga-inicial-Mascota.sql
 --@carga-datos/s-09-carga-inicial-Simulacion.sql

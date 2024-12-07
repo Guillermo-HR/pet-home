@@ -1,3 +1,6 @@
+--@Autor(es):  Hernández Ruiz de Esparza Guillermo
+--@Fecha creación: 5/12/2024
+--@Descripción: Creación de sinónimos
 PROMPT ========================================================
 PROMPT Creación de sinónimos
 PROMPT s-07-sinonimos.sql

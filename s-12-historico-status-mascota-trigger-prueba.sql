@@ -1,3 +1,6 @@
+--@Autor(es):  Hernández Ruiz de Esparza Guillermo
+--@Fecha creación: 5/12/2024
+--@Descripción: Creación de pruebas para el triger historico de status mascota
 PROMPT ========================================================
 PROMPT Creación de pruebas para el triger historico de status mascota
 PROMPT s-12-historico-status-mascota-trigger-prueba.sql
