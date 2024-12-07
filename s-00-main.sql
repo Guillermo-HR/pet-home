@@ -43,6 +43,9 @@ PROMPT ========================================================
 -- Crear las tablas
 @s-02-entidades.sql
 
+--crea tabla externa
+@s-04-tablas-externas.sql
+
 -- Crear los índices
 @s-06-indices.sql
 
