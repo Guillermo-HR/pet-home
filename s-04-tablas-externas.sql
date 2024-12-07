@@ -83,10 +83,6 @@ PROMPT Creando un archivo csv de prueba
 !echo "125,Distribuidora SuperPets,555-6782,Comida,150.00,8 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
 !echo "126,Accesorios PetLovers,555-7893,Accesorios,55.00,5 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
 !echo "127,Medicamentos MascotVet,555-8904,Medicamentos,275.00,13 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
-!echo "128,Alimentos EcoPets,555-9015,Comida,140.00,6 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
-!echo "129,Instrumental Médico ProVet,555-0126,Instrumental Médico,500.00,21 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
-!echo "130,Grooming Services,555-1238,Servicios,90.00,3 días,Activo" >> /unam/bd/Proyecto/pet-home/tabla-externa/proveedor_table_ext.csv
-
 
 PROMPT Cambiando permisos
 !chmod 755 /unam/bd/Proyecto/pet-home
