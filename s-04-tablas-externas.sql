@@ -7,6 +7,8 @@ PROMPT Creación de tablas externas
 PROMPT s-04-tablas-externas.sql
 PROMPT ========================================================
 
+
+
 PROMPT Conectando como sys
 CONNECT sys/&&p_sys_password@&&p_pdb AS SYSDBA
 

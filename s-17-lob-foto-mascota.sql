@@ -2,11 +2,28 @@
 --@FECHA CREACIÓN:  07/12/2024
 --@DESCRIPCIÓN:     Procedimiento para almacenar fotos en la tabla monitoreo_cautiverio
 
+define p_usuario='ah_proy_admin'
+define p_usuario_pass='contrasena'
+define p_sys_password='system1'
+define p_pdb='ralbd_s1'
 
 PROMPT ========================================================
 PROMPT Procedimiento para almacenar fotos en la tabla monitoreo_cautiverio
 PROMPT s-17-lob-foto_mascota.sql
 PROMPT ======================================
+
+PROMPT Conectando como sys
+CONNECT sys/&&p_sys_password@&&p_pdb AS SYSDBA 
+
+CREATE OR REPLACE DIRECTORY FOTOS_MONITOREO AS '/unam/bd/Proyecto/pet-home/tabla-externa';
+GRANT READ, WRITE ON DIRECTORY FOTOS_MONITOREO TO &&p_usuario;
+
+PROMPT Conectando con usuario admin para crear la tabla externa
+CONNECT &&p_usuario/&&p_usuario_pass@&&p_pdb
+
+PROMPT Cambiando permisos
+!chmod 755 /unam/bd/Proyecto/pet-home/
+!chmod 777 /unam/bd/Proyecto/pet-home/fotos
 
 CREATE OR REPLACE PROCEDURE insertar_foto_monitoreo(
   p_monitoreo_cautiverio_id IN NUMBER, 
