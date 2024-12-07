@@ -49,7 +49,7 @@ INSERT INTO nombre_perro (nombre_perro_id, nombre)
 VALUES (nombre_perro_seq.NEXTVAL, 'Bonnie');
 
 INSERT INTO nombre_perro (nombre_perro_id, nombre)
-VALUES (nombre_perro_seq.NEXTVAL, 'Bella');
+VALUES (nombre_perro_seq.NEXTVAL, 'Raiza');
 
 INSERT INTO nombre_perro (nombre_perro_id, nombre)
 VALUES (nombre_perro_seq.NEXTVAL, 'Luna');
