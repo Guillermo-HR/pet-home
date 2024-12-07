@@ -10,7 +10,7 @@
 -- Nombre del usuario empleado en el proyecto
 define p_usuario='ah_proy_admin'
 
--- Password del usuario empleado en el proyecto
+-- Password del usuario empleado en el proyecto para todos los usuarios 
 define p_usuario_pass='contrasena'
 
 -- Password del usuario sys
@@ -42,6 +42,9 @@ PROMPT ========================================================
 
 -- Crear las tablas
 @s-02-entidades.sql
+
+--crea tabla externa
+@s-04-tablas-externas.sql
 
 -- Crear los índices
 @s-06-indices.sql
