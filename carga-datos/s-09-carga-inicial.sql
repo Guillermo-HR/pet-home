@@ -19,5 +19,5 @@ PROMPT ========================================================
 @carga-datos/s-09-carga-inicial-EmpleadoGrado.sql
 @carga-datos/s-09-carga-inicial-CentroOperativo.sql
 @carga-datos/s-09-carga-inicial-Donativo.sql
---@carga-datos/s-09-carga-inicial-Mascota.sql
+@carga-datos/s-09-carga-inicial-Mascota.sql
 --@carga-datos/s-09-carga-inicial-Simulacion.sql
