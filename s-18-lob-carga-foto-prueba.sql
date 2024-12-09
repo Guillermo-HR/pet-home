@@ -14,8 +14,14 @@ BEGIN
   DECLARE
     v_blob BLOB;
   BEGIN
-    carga_foto_centro_refugio(1, 'refugio1.jpg');
-    
+    carga_foto_dinamico(
+        'centro_refugio',         -- Tabla
+        'logo',                   -- Columna BLOB
+        'centro_refugio_id',      -- Columna ID
+        1,                        -- ID del registro
+        'LOGO_REFUGIO',           -- Directorio lógico
+        'refugio1.jpg'            -- Archivo a cargar
+    );
     SELECT logo 
     INTO v_blob
     FROM centro_refugio
@@ -46,7 +52,14 @@ DECLARE
 BEGIN
   SAVEPOINT prueba_2;
   BEGIN
-    carga_foto_centro_refugio(1000, 'refugio3.jpg');
+    carga_foto_dinamico(
+        'centro_refugio',         -- Tabla
+        'logo',                   -- Columna BLOB
+        'centro_refugio_id',      -- Columna ID
+        999,                      -- ID del registro incorrecto
+        'LOGO_REFUGIO',           -- Directorio lógico
+        'refugio1.jpg'            -- Archivo a cargar
+    );
   EXCEPTION
     WHEN OTHERS THEN 
       v_codigo := SQLCODE;
@@ -77,7 +90,14 @@ DECLARE
 BEGIN 
   SAVEPOINT prueba_3;
   BEGIN
-    carga_foto_centro_refugio(2, 'refugio2.zip');
+    carga_foto_dinamico(
+        'centro_refugio',         -- Tabla
+        'logo',                   -- Columna BLOB
+        'centro_refugio_id',      -- Columna ID
+        1,                      -- ID del registro incorrecto
+        'LOGO_REFUGIO',           -- Directorio lógico
+        'refugio1.zip'            -- Archivo a cargar
+    );
   EXCEPTION 
     WHEN OTHERS THEN 
       v_codigo := SQLCODE;
@@ -109,7 +129,14 @@ DECLARE
 BEGIN
   SAVEPOINT prueba_4;
   BEGIN
-    carga_foto_centro_refugio(3, 'noExiste.jpg');
+        carga_foto_dinamico(
+        'centro_refugio',         -- Tabla
+        'logo',                   -- Columna BLOB
+        'centro_refugio_id',      -- Columna ID
+        1,                        -- ID del registro incorrecto
+        'LOGO_REFUGIO',           -- Directorio lógico
+        'esteArchivoNoExiste.jpg' -- Archivo a cargar incorrecto
+    );
   EXCEPTION 
     WHEN OTHERS THEN 
       v_codigo := SQLCODE;
