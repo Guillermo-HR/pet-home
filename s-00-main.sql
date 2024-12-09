@@ -8,10 +8,14 @@
 define p_usuario='ah_proy_admin' 
 define p_usuario_pass='contrasena'
 define p_sys_password='system1'
-define p_pdb='ralbd_s1'
 
 
 SET SERVEROUTPUT OFF
+define p_pdb='ghrbd_s1'
+
+
+
+SET SERVEROUTPUT ON
 -- Conectarse a la base de datos como sys
 PROMPT ========================================================
 PROMPT Conectando a la PDB
@@ -39,9 +43,6 @@ PROMPT ========================================================
 -- Crear los índices
 @s-06-indices.sql
 
--- Crear tablas externas
-@s-04-tablas-externas.sql
-/*
 -- Crear vistas
 @s-08-vistas.sql
 
@@ -54,13 +55,16 @@ PROMPT ========================================================
 -- Crear trigger 2
 @s-11-gestion-solicitud-mascota-trigger.sql
 
+-- Crear función 1
+@s-15-fx-generar-folio.sql
+
 -- Crear procedimiento almacenado 1
+@s-13-p-agregar-hijos.sql
 
 -- Crear procedimiento almacenado 2
 
-
 -- Crear función 2
-@s-15-fx-generar-numero-consulta.sql
+@s-15-fx-generar-numero-revision.sql
 
 -- Crear función 3
 
@@ -89,7 +93,9 @@ PROMPT ========================================================
 -- Prueba función 2
 
 -- Prueba función 3
-*/
+
+COMMIT;
+
 -- Salir de la base
 PROMPT ========================================================
 PROMPT Saliendo de la PDB

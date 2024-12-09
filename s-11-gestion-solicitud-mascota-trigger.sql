@@ -1,3 +1,6 @@
+--@Autor(es):  Hernández Ruiz de Esparza Guillermo
+--@Fecha creación: 5/12/2024
+--@Descripción: Creación de trigger para gestion de solicitudes de adopcion
 PROMPT ========================================================
 PROMPT Creación del triger para la gestion de solicitudes de adopcion
 PROMPT s-11-gestion-solicitud-mascota-trigger.sql
@@ -29,6 +32,15 @@ CREATE OR REPLACE TRIGGER solicitud_mascota_trigger
 
     CASE
       WHEN inserting THEN
+        SELECT COUNT(*) INTO v_count_solicitudes
+        FROM cliente_mascota_solicitud
+        WHERE mascota_id = v_mascota_id AND
+          status_solicitud_id = 1;
+
+        IF v_count_solicitudes = 1 THEN
+          RAISE_APPLICATION_ERROR(-20006, 'Ya existe una solicitud de adopcion para la mascota');
+        END IF;
+        
         IF v_n_mascotas_actuales = 5 THEN
           RAISE_APPLICATION_ERROR(-20002, 'No se pueden realizar la solicitud de adopcion');
         END IF;
@@ -67,50 +79,25 @@ CREATE OR REPLACE TRIGGER solicitud_mascota_trigger
           || v_mascota_id);
 
       WHEN updating('status_solicitud_id') THEN
-        IF v_n_mascotas_actuales = 4 THEN
-          DECLARE 
-          CURSOR cur_solicitudes_cliente IS
-            SELECT cliente_mascota_solicitud_id
-            FROM cliente_mascota_solicitud
-            WHERE status_solicitud_id = 1 AND
-              cliente_id = :new.cliente_id AND
-              cliente_mascota_solicitud_id != :new.cliente_mascota_solicitud_id;
-          BEGIN
-            FOR c IN cur_solicitudes_cliente LOOP
-              UPDATE cliente_mascota_solicitud
-              SET status_solicitud_id = 3,
-                comentario = 'El cliente ha alcanzado el limite de mascotas permitidas'
-              WHERE cliente_mascota_solicitud_id = c.cliente_mascota_solicitud_id;
-            END LOOP;
-          EXCEPTION
-            WHEN OTHERS THEN
-              RAISE;
-          END;
+        IF v_n_mascotas_actuales > 4 THEN
+          UPDATE cliente_mascota_solicitud 
+          SET status_solicitud_id = 3,
+            comentario = 'El cliente ha alcanzado el limite de mascotas permitidas'
+          WHERE cliente_id = :new.cliente_id AND
+            status_solicitud_id = 1;
+          v_status_solicitud := 3;
+          :new.status_solicitud_id := 3;
         END IF;
 
         IF v_status_solicitud = 2 THEN
-          
-          DECLARE
-          CURSOR cur_solicitudes_otros_clientes IS
-            SELECT cliente_mascota_solicitud_id
-            FROM cliente_mascota_solicitud
-            WHERE mascota_id = v_mascota_id AND
-              status_solicitud_id = 1 AND
-              cliente_id != :new.cliente_id;
-            
-          BEGIN
-            FOR c IN cur_solicitudes_otros_clientes LOOP
-              UPDATE cliente_mascota_solicitud
-              SET status_solicitud_id = 3,
-                comentario = 'La mascota ha sido adoptada por otro cliente. Más adelante se le notificará el motivo'
-              WHERE cliente_mascota_solicitud_id = c.cliente_mascota_solicitud_id;
-            END LOOP;
-          EXCEPTION
-            WHEN OTHERS THEN
-              RAISE;
-          END;
+          UPDATE cliente_mascota_solicitud
+          SET status_solicitud_id = 3,
+            comentario = 'La mascota ha sido adoptada por otro cliente. Más adelante se le notificará el motivo'
+          WHERE mascota_id = v_mascota_id AND
+            status_solicitud_id = 1 AND
+            cliente_id != :new.cliente_id;
 
-          :new.comentario := 'Solicitud de adopcion aprobada';
+          :new.comentario := 'Se aprobo la solicitud de adopcion';
           DBMS_OUTPUT.PUT_LINE('Se aprobo la solicitud de adopcion (' || :new.cliente_mascota_solicitud_id || ') para la mascota: ' 
           || v_mascota_id);
         ELSIF v_status_solicitud = 3 THEN

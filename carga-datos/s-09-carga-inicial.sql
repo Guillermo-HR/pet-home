@@ -1,4 +1,4 @@
---@Autor(es): Aburto López Roberto, Hernández Ruiz de Esparza Guillermo
+--@Autor(es): Hernández Ruiz de Esparza Guillermo
 --@Fecha creación: 14/11/2024
 --@Descripción: Llamar a todos los archivos que hacen la carga inicial de datos
 

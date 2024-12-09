@@ -34,4 +34,3 @@
 ║ -20009     │ El archivo se encuentra abierto      │ s-17-lob-foto-mascota │ Cerrar el archivo en uso antes de intentar realizar la       ║
 ║            │                                      │                       │ operación                                                    ║
 ╚════════════╧══════════════════════════════════════╧═══════════════════════╧══════════════════════════════════════════════════════════════╝
-
