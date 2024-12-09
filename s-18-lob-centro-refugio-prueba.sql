@@ -10,7 +10,7 @@ PROMPT Prueba 1.
 PROMPT Procedimiento con datos correctos
 PROMPT =============================================
 BEGIN
-  SAVEPOINT prueba_1; -- Definir el punto de guardado dentro del mismo bloque
+  --SAVEPOINT prueba_1; -- Definir el punto de guardado dentro del mismo bloque
   DECLARE
     v_blob BLOB;
   BEGIN
@@ -28,7 +28,8 @@ BEGIN
       RAISE_APPLICATION_ERROR(-20000, 'ERROR: No se supero la prueba');
     END IF;
   END; -- Fin del bloque de pruebas
-  ROLLBACK TO prueba_1; -- Revertir los cambios aquí
+  --ROLLBACK TO prueba_1; -- Revertir los cambios aquí
+  COMMIT;
 END;
 /
 SHOW ERRORS;
