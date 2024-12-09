@@ -25,59 +25,54 @@ PROMPT Cambiando permisos
 !chmod 755 /unam/bd/Proyecto/pet-home/
 !chmod 777 /unam/bd/Proyecto/pet-home/fotos
 
-CREATE OR REPLACE PROCEDURE insertar_foto_monitoreo(
-  p_monitoreo_cautiverio_id IN NUMBER, 
-  p_nombre_archivo IN VARCHAR2 
+PROMPT Creando procedimiento carga_foto_monitoreo_cautiverio 
+CREATE OR REPLACE PROCEDURE carga_foto_monitoreo_cautiverio(
+  p_monitoreo_cautiverio_id number, 
+  p_nombre_archivo in varchar2 
 )
-IS 
-  v_bfile BFILE;
-  v_blob BLOB;
-  v_count NUMBER;
-BEGIN
-  -- VERIFICANDO EXISTENCIA DEL REGISTRO DE MONITOREO
-  SELECT COUNT(*) INTO v_count
+is 
+v_bfile bfile;
+v_blob blob;
+v_count number;
+begin
+ --Verificando existencia del servicio
+  SELECT COUNT(*)
+  INTO v_count
   FROM monitoreo_cautiverio
   WHERE monitoreo_cautiverio_id = p_monitoreo_cautiverio_id;
 
-  IF v_count = 0 THEN 
-    RAISE_APPLICATION_ERROR(-20001, 'ERROR: REGISTRO DE MONITOREO NO EXISTE');
-  
-  -- VERIFICANDO QUE LA EXTENSIÓN SEA .PNG
-  ELSIF LOWER(SUBSTR(p_nombre_archivo, -4)) != '.png' THEN
-    RAISE_APPLICATION_ERROR(-20002, 'ERROR: NO ES EXTENSIÓN .PNG');
-  ELSE
-    -- INICIALIZANDO EL BFILE, QUE UBICA DE MANERA FÍSICA EL ARCHIVO
-    v_bfile := BFILENAME('FOTOS_MONITOREO', p_nombre_archivo);
+  if v_count = 0 then 
+     RAISE_APPLICATION_ERROR(-20007, 'ERROR: Monitoreo no existe');
+  --verificando que la extension sea .jpg
+  elsif LOWER(SUBSTR(p_nombre_archivo, -4)) != '.jpg' then
+    raise_application_error(-20006, 'ERROR: No es extension .jpg');
+  else
+    --Inicializando el bfile, que ubica de manera fisica el archivo
+    v_bfile := BFILENAME('FOTOS_MONITOREO',p_nombre_archivo);
 
-    -- VALIDANDO QUE EL ARCHIVO EXISTA EN EL DIRECTORIO FOTOS_MONITOREO
-    IF DBMS_LOB.FILEEXISTS(v_bfile) != 1 THEN
-      RAISE_APPLICATION_ERROR(-20003, 'EL ARCHIVO NO EXISTE EN EL DIRECTORIO FOTOS_MONITOREO');
-    
-    -- VALIDANDO QUE EL ARCHIVO ESTÉ CERRADO
-    ELSIF DBMS_LOB.ISOPEN(v_bfile) = 1 THEN
-      RAISE_APPLICATION_ERROR(-20004, 'EL ARCHIVO ESTÁ ABIERTO');
-    ELSE
-      -- OBTENIENDO EL EMPTY_BLOB Y GUARDÁNDOLO EN v_blob CON UN BLOQUEO
-      SELECT foto INTO v_blob
+    --Validando que el archivo exista en el directorio ICONOS
+    if dbms_lob.fileexists(v_bfile) != 1 then
+      raise_application_error(-20008, 'EL ARCHIVO NO EXISTE EN EL DIRECTORIO');
+    --Validando que el archivo este cerrado
+    elsif dbms_lob.isopen(v_bfile) = 1 then
+      raise_application_error(-20009, 'EL ARCHIVO SE ENCUENTRA ABIERTO');
+    else
+      --Obteniendo el empty_blob y guardandolo en v_blob con un bloqueo
+      SELECT foto 
+      INTO v_blob
       FROM monitoreo_cautiverio
       WHERE monitoreo_cautiverio_id = p_monitoreo_cautiverio_id
       FOR UPDATE;
-
-      -- LEYENDO EL ARCHIVO
-      DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY);
-
-      -- CARGANDO EL ARCHIVO EN LA BASE
-      DBMS_LOB.LOADFROMFILE(v_blob, v_bfile, DBMS_LOB.GETLENGTH(v_bfile));
-
-      -- CERRANDO EL ARCHIVO
+      --leyendo el archivo
+      DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY); 
+      --cargando el archivo en la base
+      DBMS_LOB.LOADFROMFILE(v_blob,v_bfile,DBMS_LOB.GETLENGTH(v_bfile));
+      --cerrando el archivo
       DBMS_LOB.CLOSE(v_bfile);  
+      commit; 
+    end if;
+  end if;
 
-      COMMIT; 
-    END IF;
-  END IF;
-EXCEPTION
-  WHEN OTHERS THEN
-    RAISE_APPLICATION_ERROR(-20099, 'ERROR DESCONOCIDO: ' || SQLERRM);
-END;
+end;
 /
-SHOW ERRORS;
+show errors;
