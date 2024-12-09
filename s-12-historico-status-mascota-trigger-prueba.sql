@@ -8,176 +8,303 @@ PROMPT ========================================================
 
 SET SERVEROUTPUT ON
 
--- Probar caso insert
+-- Probar insert
 PROMPT ========================================================
-PROMPT Probar caso insert
+PROMPT Probar insert
 PROMPT ========================================================
 SAVEPOINT sp_insert;
 
-INSERT INTO mascota(mascota_id, fecha_nacimiento, nombre, folio, mascota_tipo_id, status_mascota_id, refugio_id, origen_id)
-VALUES(mascota_seq.NEXTVAL, SYSDATE - 360, 'Prueba1', '0000000', 1, 1, 1, 2);
+INSERT INTO mascota(mascota_id, fecha_status, fecha_ingreso, fecha_nacimiento, nombre, folio, mascota_tipo_id, status_mascota_id, refugio_id, origen_id)
+VALUES(mascota_seq.NEXTVAL, SYSDATE -30, SYSDATE -30, SYSDATE - 360, 'Mascota 1', '0000001', 1, 1, 1, 2);
+
+-- Prueba 1 positiva
 
 DECLARE
-  v_count NUMBER;
+  v_count_historico NUMBER;
+  v_ultimo_status_historico NUMBER;
+  v_count_monitoreo NUMBER;
   v_mascota_id mascota.mascota_id%TYPE;
-
-  v_codigo NUMBER;
 BEGIN
+  DBMS_OUTPUT.PUT_LINE('Iniciando prueba 1 insert');
+
   v_mascota_id := mascota_seq.CURRVAL;
 
-  SELECT COUNT(*) INTO v_count
+  -- Verificar que se inserto en historico_status_mascota
+  SELECT COUNT(*) INTO v_count_historico
   FROM historico_status_mascota
   WHERE mascota_id = v_mascota_id;
 
-  IF v_count > 0 THEN
-    DBMS_OUTPUT.PUT_LINE('-- Prueba insert exitosa');
+  IF v_count_historico = 1 THEN
+    DBMS_OUTPUT.PUT_LINE(' -> Parte (1/3) prueba insert exitosa');
   ELSE
-    RAISE_APPLICATION_ERROR(-20000, '-- Prueba fallida');
+    RAISE_APPLICATION_ERROR(-20000, ' -> Prueba fallida');
   END IF;
+
+  -- Verificar que el status en historico sea el correcto
+  SELECT status_mascota_id INTO v_ultimo_status_historico
+  FROM historico_status_mascota
+  WHERE mascota_id = v_mascota_id
+  ORDER BY historico_status_mascota_id DESC
+  FETCH FIRST 1 ROWS ONLY;
+
+  IF v_ultimo_status_historico = 1 THEN
+    DBMS_OUTPUT.PUT_LINE(' -> Parte (2/3) prueba insert exitosa');
+  ELSE
+    RAISE_APPLICATION_ERROR(-20000, ' -> Prueba fallida');
+  END IF;
+
+  -- Verificar que se inserto en monitoreo_cautiverio
+  SELECT COUNT(*) INTO v_count_monitoreo
+  FROM monitoreo_cautiverio
+  WHERE mascota_id = v_mascota_id;
+
+  IF v_count_monitoreo = 1 THEN
+    DBMS_OUTPUT.PUT_LINE(' -> Parte (3/3) prueba insert exitosa');
+  ELSE
+    RAISE_APPLICATION_ERROR(-20000, ' -> Prueba fallida');
+  END IF;
+
+  DBMS_OUTPUT.PUT_LINE('Prueba insert 1 exitosa');
+  DBMS_OUTPUT.PUT_LINE('Prueba insert 1 terminada');
+  
 EXCEPTION
   WHEN OTHERS THEN
-    v_codigo := SQLCODE;
-    IF v_codigo != -20000 THEN
-      DBMS_OUTPUT.PUT_LINE('Ocurrio un error inesperado');
-      DBMS_OUTPUT.PUT_LINE('Codigo: ' || v_codigo);
-      DBMS_OUTPUT.PUT_LINE('Mensaje: ' || SQLERRM);
-      RAISE;
-    END IF;
+    DBMS_OUTPUT.PUT_LINE('Ocurrio un error inesperado');
+    DBMS_OUTPUT.PUT_LINE('Codigo: ' || SQLCODE);
+    DBMS_OUTPUT.PUT_LINE('Mensaje: ' || SQLERRM);
+    DBMS_OUTPUT.PUT_LINE('Prueba insert 1 terminada');
+    RAISE;
 END;
 /
-SHOW ERRORS;
 
 ROLLBACK TO sp_insert;
+
+-- Probar update
+PROMPT ========================================================
+PROMPT Probar update
+PROMPT ========================================================
+SAVEPOINT sp_update;
+
+INSERT INTO mascota(mascota_id, fecha_status, fecha_ingreso, fecha_nacimiento, nombre, folio, mascota_tipo_id, status_mascota_id, refugio_id, origen_id)
+VALUES(mascota_seq.NEXTVAL, SYSDATE -30, SYSDATE -30, SYSDATE - 360, 'Mascota 2', '0000002', 1, 1, 1, 2);
+
+-- Prueba 1 positiva
+SAVEPOINT sp_update_1;
+UPDATE mascota
+SET status_mascota_id = 2,
+  fecha_status = SYSDATE - 20
+WHERE mascota_id = (SELECT MAX(mascota_id) FROM mascota);
+
+DECLARE 
+  v_mascota_id mascota.mascota_id%TYPE;
+  v_count_historico NUMBER;
+  v_ultimo_status_historico NUMBER;
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('Iniciando prueba 1 update (positiva)');
+
+  v_mascota_id := mascota_seq.CURRVAL;
+
+  -- Verificar que se inserto en historico_status_mascota
   
--- Probar casos update
-PROMPT ========================================================
-PROMPT Probar caso update simple
-PROMPT ========================================================
-SAVEPOINT sp_update_1;
-
-INSERT INTO mascota(mascota_id, fecha_nacimiento, nombre, folio, mascota_tipo_id, status_mascota_id, refugio_id, origen_id)
-VALUES(mascota_seq.NEXTVAL, SYSDATE - 360, 'Prueba2', '0000001', 1, 1, 1, 2);
-
-UPDATE mascota
-SET status_mascota_id = 2
-WHERE folio = '0000001';
-
-DECLARE
-  v_count NUMBER;
-  v_fecha_status mascota.fecha_status%TYPE;
-  v_status_id mascota.status_mascota_id%TYPE;
-  v_mascota_id mascota.mascota_id%TYPE;
-
-  v_codigo NUMBER;
-BEGIN
-  v_mascota_id := mascota_seq.CURRVAL;
-
-  SELECT fecha_status, status_mascota_id INTO v_fecha_status, v_status_id
-  FROM mascota
+  SELECT COUNT(*) INTO v_count_historico
+  FROM historico_status_mascota
   WHERE mascota_id = v_mascota_id;
 
-  SELECT COUNT(*) INTO v_count
-  FROM historico_status_mascota
-  WHERE fecha_status = v_fecha_status AND
-  status_mascota_id = v_status_id AND
-  mascota_id = v_mascota_id;
-
-  IF v_count > 0 THEN
-    DBMS_OUTPUT.PUT_LINE('-- Prueba update 1 exitosa');
+  IF v_count_historico = 2 THEN
+    DBMS_OUTPUT.PUT_LINE(' -> Parte (1/2) prueba update 1 exitosa');
   ELSE
-    RAISE_APPLICATION_ERROR(-20000, '-- Prueba fallida');
+    RAISE_APPLICATION_ERROR(-20000, ' -> Prueba fallida');
   END IF;
+
+  -- Verificar que el status en historico sea el correcto
+  SELECT status_mascota_id INTO v_ultimo_status_historico
+  FROM historico_status_mascota
+  WHERE mascota_id = v_mascota_id
+  ORDER BY fecha_status DESC
+  FETCH FIRST 1 ROWS ONLY;
+
+  IF v_ultimo_status_historico = 2 THEN
+    DBMS_OUTPUT.PUT_LINE(' -> Parte (2/2) prueba update 1 exitosa');
+  ELSE
+    RAISE_APPLICATION_ERROR(-20000, ' -> Prueba fallida');
+  END IF;
+  
+  DBMS_OUTPUT.PUT_LINE('Prueba update 1 exitosa');
+  DBMS_OUTPUT.PUT_LINE('Prueba update 1 terminada');
 EXCEPTION
   WHEN OTHERS THEN
-    v_codigo := SQLCODE;
-    IF v_codigo != -20000 THEN
-      DBMS_OUTPUT.PUT_LINE('Ocurrio un error inesperado');
-      DBMS_OUTPUT.PUT_LINE('Codigo: ' || v_codigo);
-      DBMS_OUTPUT.PUT_LINE('Mensaje: ' || SQLERRM);
-      RAISE;
-    END IF;
+    DBMS_OUTPUT.PUT_LINE('Ocurrio un error inesperado');
+    DBMS_OUTPUT.PUT_LINE('Codigo: ' || SQLCODE);
+    DBMS_OUTPUT.PUT_LINE('Mensaje: ' || SQLERRM);
+    DBMS_OUTPUT.PUT_LINE('Prueba insert 1 terminada (con errores)');
+    RAISE;
 END;
 /
-SHOW ERRORS;
 
 ROLLBACK TO sp_update_1;
 
-PROMPT ========================================================
-PROMPT Probar caso update con nuevo status: 5
-PROMPT ========================================================
-SAVEPOINT sp_update_1;
+-- Prueba 2 positiva
+SAVEPOINT sp_update_2;
+UPDATE mascota
+SET status_mascota_id = 2,
+  fecha_status = SYSDATE - 20
+WHERE mascota_id = (SELECT MAX(mascota_id) FROM mascota);
 
-INSERT INTO mascota(mascota_id, fecha_nacimiento, nombre, folio, mascota_tipo_id, status_mascota_id, refugio_id, origen_id)
-VALUES(mascota_seq.NEXTVAL, SYSDATE - 360, 'Prueba3', '0000002', 1, 1, 1, 2);
+INSERT INTO cliente_mascota_solicitud (cliente_mascota_solicitud_id, fecha_status, mascota_id, cliente_id, status_solicitud_id)
+VALUES(cliente_mascota_solicitud_seq.NEXTVAL, SYSDATE - 10, mascota_seq.CURRVAL, 1, 1);
 
 UPDATE mascota
-SET status_mascota_id = 2
-WHERE folio = '0000002';
-
-INSERT INTO cliente (cliente_id, nombre, apellido_paterno, apellido_materno, direccion, ocupacion, username, password)
-VALUES (cliente_seq.NEXTVAL, 'Cliente1P3', 'Cliente1P3', 'Cliente1P3', 'Cliente1P3', 'Cliente1P3', 'Cliente1P3', 'contraseña');
-
-INSERT INTO cliente_mascota_solicitud (cliente_mascota_solicitud_id, mascota_id, cliente_id, status_solicitud_id)
-VALUES (cliente_mascota_solicitud_seq.NEXTVAL, mascota_seq.CURRVAL, cliente_seq.CURRVAL, 1);
-
-INSERT INTO cliente (cliente_id, nombre, apellido_paterno, apellido_materno, direccion, ocupacion, username, password)
-VALUES (cliente_seq.NEXTVAL, 'Cliente2P3', 'Cliente2P3', 'Cliente2P3', 'Cliente2P3', 'Cliente2P3', 'Cliente2P3', 'contraseña');
-
-INSERT INTO cliente_mascota_solicitud (cliente_mascota_solicitud_id, mascota_id, cliente_id, status_solicitud_id)
-VALUES (cliente_mascota_solicitud_seq.NEXTVAL, mascota_seq.CURRVAL, cliente_seq.CURRVAL, 1);
-
-UPDATE mascota
-SET status_mascota_id = 5
-WHERE folio = '0000002';
-
-DECLARE
-  CURSOR cur_solicitud IS
-    SELECT status_solicitud_id
-    FROM cliente_mascota_solicitud
-    WHERE mascota_id = (SELECT mascota_id FROM mascota WHERE folio = '0000002');
-
-  v_count NUMBER;
-  v_fecha_status mascota.fecha_status%TYPE;
-  v_status_id mascota.status_mascota_id%TYPE;
+SET status_mascota_id = 5,
+  fecha_status = SYSDATE - 5
+WHERE mascota_id = (SELECT MAX(mascota_id) FROM mascota);
+DECLARE 
   v_mascota_id mascota.mascota_id%TYPE;
+  v_count_historico NUMBER;
+  v_ultimo_status_historico NUMBER;
+  v_status_solicitud NUMBER;
 
   v_codigo NUMBER;
 BEGIN
+  DBMS_OUTPUT.PUT_LINE('Iniciando prueba 2 update (positiva)');
+
   v_mascota_id := mascota_seq.CURRVAL;
 
-  SELECT fecha_status, status_mascota_id INTO v_fecha_status, v_status_id
-  FROM mascota
-  WHERE mascota_id = v_mascota_id;
-
-  SELECT COUNT(*) INTO v_count
+  -- Verificar que se inserto en historico_status_mascota
+  
+  SELECT COUNT(*) INTO v_count_historico
   FROM historico_status_mascota
-  WHERE fecha_status = v_fecha_status AND
-  status_mascota_id = v_status_id AND
-  mascota_id = v_mascota_id;
-
-  IF v_count = 0 THEN
-    RAISE_APPLICATION_ERROR(-20000, '-- Prueba fallida');
+  WHERE mascota_id = v_mascota_id
+  ORDER BY historico_status_mascota_id DESC;
+  
+  IF v_count_historico = 4 THEN
+    DBMS_OUTPUT.PUT_LINE(' -> Parte (1/3) prueba update 2 exitosa');
+  ELSE
+    RAISE_APPLICATION_ERROR(-20000, ' -> Prueba fallida');
   END IF;
 
-  FOR c in cur_solicitud LOOP
-    IF c.status_solicitud_id != 3 THEN
-      RAISE_APPLICATION_ERROR(-20000, '-- Prueba fallida');
-    END IF;
-  END LOOP;
-  DBMS_OUTPUT.PUT_LINE('-- Prueba update 2 exitosa');
+  -- Verificar que el status en historico sea el correcto
+  SELECT status_mascota_id INTO v_ultimo_status_historico
+  FROM historico_status_mascota
+  WHERE mascota_id = v_mascota_id
+  ORDER BY historico_status_mascota_id DESC
+  FETCH FIRST 1 ROWS ONLY;
 
+  IF v_ultimo_status_historico = 5 THEN
+    DBMS_OUTPUT.PUT_LINE(' -> Parte (2/3) prueba update 2 exitosa');
+  ELSE
+    RAISE_APPLICATION_ERROR(-20000, ' -> Prueba fallida');
+  END IF;
 
+  -- Verificar que se actualizo la solicitud
+  SELECT status_solicitud_id INTO v_status_solicitud
+  FROM cliente_mascota_solicitud
+  WHERE cliente_mascota_solicitud_id = (SELECT MAX(cliente_mascota_solicitud_id) FROM cliente_mascota_solicitud);
+
+  IF v_status_solicitud = 3 THEN
+    DBMS_OUTPUT.PUT_LINE(' -> Parte (3/3) prueba update 2 exitosa');
+  ELSE
+    RAISE_APPLICATION_ERROR(-20000, ' -> Prueba fallida');
+  END IF;
+
+  DBMS_OUTPUT.PUT_LINE('Prueba update 2 exitosa');
+  DBMS_OUTPUT.PUT_LINE('Prueba update 2 terminada');
 EXCEPTION
   WHEN OTHERS THEN
     v_codigo := SQLCODE;
-    IF v_codigo != -20000 THEN
+    IF v_codigo = -20000 THEN
+      DBMS_OUTPUT.PUT_LINE('Prueba update 2 terminada (con errores)');
+    ELSE 
       DBMS_OUTPUT.PUT_LINE('Ocurrio un error inesperado');
-      DBMS_OUTPUT.PUT_LINE('Codigo: ' || v_codigo);
+      DBMS_OUTPUT.PUT_LINE('Codigo: ' || SQLCODE);
       DBMS_OUTPUT.PUT_LINE('Mensaje: ' || SQLERRM);
+      DBMS_OUTPUT.PUT_LINE('Prueba update 2 terminada (con errores)');
       RAISE;
     END IF;
 END;
 /
-SHOW ERRORS;
 
-ROLLBACK TO sp_update_1;
+ROLLBACK TO sp_update_2;
+
+-- Prueba 3 positiva
+SAVEPOINT sp_update_3;
+UPDATE mascota
+SET status_mascota_id = 2,
+  fecha_status = SYSDATE - 20
+WHERE mascota_id = (SELECT MAX(mascota_id) FROM mascota);
+
+INSERT INTO cliente_mascota_solicitud (cliente_mascota_solicitud_id, fecha_status, mascota_id, cliente_id, status_solicitud_id)
+VALUES(cliente_mascota_solicitud_seq.NEXTVAL, SYSDATE - 10, mascota_seq.CURRVAL, 1, 1);
+
+UPDATE mascota
+SET status_mascota_id = 6,
+  fecha_status = SYSDATE - 5
+WHERE mascota_id = (SELECT MAX(mascota_id) FROM mascota);
+
+DECLARE 
+  v_mascota_id mascota.mascota_id%TYPE;
+  v_count_historico NUMBER;
+  v_ultimo_status_historico NUMBER;
+  v_status_solicitud NUMBER;
+
+  v_codigo NUMBER;
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('Iniciando prueba 3 update (positiva)');
+
+  v_mascota_id := mascota_seq.CURRVAL;
+
+  -- Verificar que se inserto en historico_status_mascota
+  
+  SELECT COUNT(*) INTO v_count_historico
+  FROM historico_status_mascota
+  WHERE mascota_id = v_mascota_id;
+  
+  IF v_count_historico = 4 THEN
+    DBMS_OUTPUT.PUT_LINE(' -> Parte (1/3) prueba update 3 exitosa');
+  ELSE
+    RAISE_APPLICATION_ERROR(-20000, ' -> Prueba fallida');
+  END IF;
+
+  -- Verificar que el status en historico sea el correcto
+  SELECT status_mascota_id INTO v_ultimo_status_historico
+  FROM historico_status_mascota
+  WHERE mascota_id = v_mascota_id
+  ORDER BY fecha_status DESC
+  FETCH FIRST 1 ROWS ONLY;
+
+  IF v_ultimo_status_historico = 6 THEN
+    DBMS_OUTPUT.PUT_LINE(' -> Parte (2/3) prueba update 3 exitosa');
+  ELSE
+    RAISE_APPLICATION_ERROR(-20000, ' -> Prueba fallida');
+  END IF;
+
+  -- Verificar que se actualizo la solicitud
+  SELECT status_solicitud_id INTO v_status_solicitud
+  FROM cliente_mascota_solicitud
+  WHERE cliente_mascota_solicitud_id = (SELECT MAX(cliente_mascota_solicitud_id) FROM cliente_mascota_solicitud);
+
+  IF v_status_solicitud = 3 THEN
+    DBMS_OUTPUT.PUT_LINE(' -> Parte (3/3) prueba update 3 exitosa');
+  ELSE
+    RAISE_APPLICATION_ERROR(-20000, ' -> Prueba fallida');
+  END IF;
+
+  DBMS_OUTPUT.PUT_LINE('Prueba update 3 exitosa');
+  DBMS_OUTPUT.PUT_LINE('Prueba update 3 terminada');
+EXCEPTION
+  WHEN OTHERS THEN
+    v_codigo := SQLCODE;
+    IF v_codigo = -20000 THEN
+      DBMS_OUTPUT.PUT_LINE('Prueba update 3 terminada (con errores)');
+    ELSE 
+      DBMS_OUTPUT.PUT_LINE('Ocurrio un error inesperado');
+      DBMS_OUTPUT.PUT_LINE('Codigo: ' || SQLCODE);
+      DBMS_OUTPUT.PUT_LINE('Mensaje: ' || SQLERRM);
+      DBMS_OUTPUT.PUT_LINE('Prueba update 3 terminada (con errores)');
+      RAISE;
+    END IF;
+END;
+/
+
+ROLLBACK TO sp_update_3;
+
+ROLLBACK TO sp_update;

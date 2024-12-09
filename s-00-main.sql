@@ -38,7 +38,7 @@ PROMPT ========================================================
 @s-02-entidades.sql
 
 --crea tabla externa
-@s-04-tablas-externas.sql
+--@s-04-tablas-externas.sql
 
 -- Crear los índices
 @s-06-indices.sql
@@ -72,7 +72,7 @@ PROMPT ========================================================
 @/unam/bd/Proyecto/pet-home/carga-datos/s-09-carga-inicial.sql
 
 -- Crear tablas temporales
-@s-03-tablas-temporales.sql
+--@s-03-tablas-temporales.sql
 
 -- Ejectuar pruebas
 PROMPT ========================================================
