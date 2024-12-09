@@ -3,22 +3,12 @@
 --@Descripción: MAIN
 
 
---Modificar las siguientes variables en caso de ser necesario.
---En scripts reales no deben incluirse passwords. Solo se hace para
---propósitos de pruebas y evitar escribirlos cada vez que se quiera ejecutar 
+--Modificar las siguientes variables en caso de ser necesario
 
--- Nombre del usuario empleado en el proyecto
-define p_usuario='ah_proy_admin'
-
--- Password del usuario empleado en el proyecto para todos los usuarios 
+define p_usuario='ah_proy_admin' 
 define p_usuario_pass='contrasena'
-
--- Password del usuario sys
 define p_sys_password='system1'
-
----Alias de servicio de la PDB
 define p_pdb='ralbd_s1'
-
 
 
 SET SERVEROUTPUT OFF
@@ -77,7 +67,7 @@ PROMPT ========================================================
 -- Crear función 3
 
 -- Cargar datos
-@carga-datos/s-09-carga-inicial.sql
+@/unam/bd/Proyecto/pet-home/carga-datos/s-09-carga-inicial.sql
 
 -- Crear tablas temporales
 @s-03-tablas-temporales.sql

@@ -1,6 +1,6 @@
 --@AUTOR(ES):       Aburto López Roberto
 --@FECHA CREACIÓN:  07/12/2024
---@DESCRIPCIÓN:     Procedimiento para almacenar fotos en la tabla monitoreo_cautiverio
+--@DESCRIPCIÓN:     Procedimiento para almacenar fotos en la tabla centro_refugio
 
 define p_usuario='ah_proy_admin'
 define p_usuario_pass='contrasena'
@@ -8,15 +8,15 @@ define p_sys_password='system1'
 define p_pdb='ralbd_s1'
 
 PROMPT ========================================================
-PROMPT Procedimiento para almacenar fotos en la tabla monitoreo_cautiverio
-PROMPT s-17-lob-foto_mascota.sql
+PROMPT Procedimiento para almacenar fotos en la tabla centro_refugio
+PROMPT s-17-lob-foto-mascota.sql
 PROMPT ======================================
 
 PROMPT Conectando como sys
 CONNECT sys/&&p_sys_password@&&p_pdb AS SYSDBA 
 
-CREATE OR REPLACE DIRECTORY FOTOS_MONITOREO AS '/unam/bd/Proyecto/pet-home/fotos_mascota';
-GRANT READ, WRITE ON DIRECTORY FOTOS_MONITOREO TO &&p_usuario;
+CREATE OR REPLACE DIRECTORY LOGO_REFUGIO AS '/unam/bd/Proyecto/pet-home/logo_centro';
+GRANT READ, WRITE ON DIRECTORY LOGO_REFUGIO TO &&p_usuario;
 
 PROMPT Conectando con usuario admin
 CONNECT &&p_usuario/&&p_usuario_pass@&&p_pdb
@@ -25,10 +25,9 @@ PROMPT Cambiando permisos
 !chmod 755 /unam/bd/Proyecto/pet-home/
 !chmod 777 /unam/bd/Proyecto/pet-home/fotos
 
-PROMPT Creando procedimiento carga_foto_monitoreo_cautiverio
-
-CREATE OR REPLACE PROCEDURE carga_foto_monitoreo_cautiverio(
-  p_monitoreo_cautiverio_id number, 
+PROMPT Creando procedimiento carga_foto_centro_refugio 
+CREATE OR REPLACE PROCEDURE carga_foto_centro_refugio(
+  p_centro_refugio number, 
   p_nombre_archivo in varchar2 
 )
 IS
@@ -39,8 +38,8 @@ BEGIN
  --Verificando existencia del servicio
   SELECT COUNT(*)
   INTO v_count
-  FROM monitoreo_cautiverio
-  WHERE monitoreo_cautiverio_id = p_monitoreo_cautiverio_id;
+  FROM centro_refugio
+  WHERE centro_refugio_id = p_centro_refugio;
 
   if v_count = 0 then 
      RAISE_APPLICATION_ERROR(-20007, 'ERROR: Monitoreo no existe');
@@ -49,7 +48,7 @@ BEGIN
     raise_application_error(-20006, 'ERROR: No es extension .jpg');
   else
     --Inicializando el bfile, que ubica de manera fisica el archivo
-    v_bfile := BFILENAME('FOTOS_MONITOREO',p_nombre_archivo);
+    v_bfile := BFILENAME('LOGO_REFUGIO',p_nombre_archivo);
 
     --Validando que el archivo exista en el directorio ICONOS
     if dbms_lob.fileexists(v_bfile) != 1 then
@@ -59,10 +58,10 @@ BEGIN
       raise_application_error(-20009, 'EL ARCHIVO SE ENCUENTRA ABIERTO');
     else
       --Obteniendo el empty_blob y guardandolo en v_blob con un bloqueo
-      SELECT foto 
+      SELECT logo 
       INTO v_blob
-      FROM monitoreo_cautiverio
-      WHERE monitoreo_cautiverio_id = p_monitoreo_cautiverio_id
+      FROM centro_refugio
+      WHERE centro_refugio_id = p_centro_refugio
       FOR UPDATE;
       --leyendo el archivo
       DBMS_LOB.OPEN(v_bfile, DBMS_LOB.LOB_READONLY); 

@@ -70,8 +70,11 @@ JOIN monitoreo_cautiverio mc
     ON mc.mascota_id = m.mascota_id
 JOIN empleado e 
     ON e.empleado_id = mc.veterinario_id
-GROUP BY mt.tipo, 
-         mc.veterinario_id
+GROUP BY e.nombre, 
+       e.apellido_paterno, 
+       e.apellido_materno, 
+       mt.tipo,
+       mc.veterinario_id
 HAVING COUNT(mc.veterinario_id) = (
     SELECT MAX(total_diagnosticos)
     FROM (
