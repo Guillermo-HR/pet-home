@@ -70,8 +70,11 @@ JOIN monitoreo_cautiverio mc
     ON mc.mascota_id = m.mascota_id
 JOIN empleado e 
     ON e.empleado_id = mc.veterinario_id
-GROUP BY mt.tipo, 
-         mc.veterinario_id
+GROUP BY e.nombre, 
+       e.apellido_paterno, 
+       e.apellido_materno, 
+       mt.tipo,
+       mc.veterinario_id
 HAVING COUNT(mc.veterinario_id) = (
     SELECT MAX(total_diagnosticos)
     FROM (
@@ -86,7 +89,6 @@ SELECT * FROM proveedor_ext;
 /*
 Mostrar el id, nombres y tipo de producto de el proximo 
 pedido en llegar de medicamentos
-
 */
 SELECT proveedor_id, nombre, tipo_producto, tiempo_entrega_dias
 FROM proveedor_ext
@@ -95,3 +97,4 @@ WHERE UPPER(tipo_producto) = 'MEDICAMENTOS'
         SELECT MIN(tiempo_entrega_dias)
         FROM proveedor_ext
     );
+

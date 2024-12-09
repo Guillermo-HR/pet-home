@@ -23,3 +23,5 @@ INSERT INTO status_mascota(status_mascota_id, clave, descripcion)
   VALUES(7, 7, 'FALLECIDA_HOGAR'); 
 
 COMMIT;
+
+--select * from STATUS_MASCOTA;
