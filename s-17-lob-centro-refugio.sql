@@ -69,10 +69,10 @@ BEGIN
       DBMS_LOB.LOADFROMFILE(v_blob,v_bfile,DBMS_LOB.GETLENGTH(v_bfile));
       --cerrando el archivo
       DBMS_LOB.CLOSE(v_bfile);  
-      commit; 
     end if;
   end if;
 
 end;
 /
-show errors;
+
+--select * from centro_refugio;

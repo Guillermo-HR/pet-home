@@ -77,3 +77,4 @@ BEGIN
 end;
 /
 show errors;
+--select * from monitoreo_cautiverio;

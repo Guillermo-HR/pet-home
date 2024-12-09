@@ -41,7 +41,7 @@ PROMPT ========================================================
 
 -- Crear tablas externas
 @s-04-tablas-externas.sql
-
+/*
 -- Crear vistas
 @s-08-vistas.sql
 
@@ -58,8 +58,6 @@ PROMPT ========================================================
 
 -- Crear procedimiento almacenado 2
 
--- Crear función 1
-@s-15-fx-generar-folio.sql
 
 -- Crear función 2
 @s-15-fx-generar-numero-consulta.sql
@@ -91,7 +89,7 @@ PROMPT ========================================================
 -- Prueba función 2
 
 -- Prueba función 3
-
+*/
 -- Salir de la base
 PROMPT ========================================================
 PROMPT Saliendo de la PDB
