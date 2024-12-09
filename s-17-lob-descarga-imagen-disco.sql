@@ -1,7 +1,6 @@
 --@AUTOR(ES):       Aburto López Roberto
 --@FECHA CREACIÓN:  07/12/2024
---@DESCRIPCIÓN:     Procedimiento para almacenar en disco las 
---fotos de la tabla monitoreo_cautiverio
+--@DESCRIPCIÓN:     Procedimiento para almacenar en disco las fotos de la base
 
 define p_usuario='ah_proy_admin'
 define p_usuario_pass='contrasena'
@@ -98,8 +97,3 @@ EXCEPTION
 END;
 /
 SHOW ERRORS;
-
-
-
-
-
