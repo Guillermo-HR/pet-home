@@ -8,16 +8,18 @@ PROMPT s-09-carga-inicial.sql
 PROMPT ========================================================
 
 -- Llamar a todos los archivos que hacen la carga inicial de datos
-@carga-datos/s-09-carga-inicial-Empleado.sql
-@carga-datos/s-09-carga-inicial-Origen.sql
-@carga-datos/s-09-carga-inicial-MascotaTipo.sql
-@carga-datos/s-09-carga-inicial-statusMascota.sql
-@carga-datos/s-09-carga-inicial-Cliente.sql
-@carga-datos/s-09-carga-inicial-StatusSolicitud.sql
-@carga-datos/s-09-carga-inicial-NombrePerro.sql
-@carga-datos/s-09-carga-inicial-NombreGato.sql
-@carga-datos/s-09-carga-inicial-EmpleadoGrado.sql
-@carga-datos/s-09-carga-inicial-CentroOperativo.sql
-@carga-datos/s-09-carga-inicial-Donativo.sql
-@carga-datos/s-09-carga-inicial-Mascota.sql
---@carga-datos/s-09-carga-inicial-Simulacion.sql
+
+@/unam/bd/Proyecto/pet-home/carga-datos/s-09-carga-inicial-Empleado.sql
+@/unam/bd/Proyecto/pet-home/carga-datos/s-09-carga-inicial-Origen.sql
+@/unam/bd/Proyecto/pet-home/carga-datos/s-09-carga-inicial-MascotaTipo.sql
+@/unam/bd/Proyecto/pet-home/carga-datos/s-09-carga-inicial-statusMascota.sql
+@/unam/bd/Proyecto/pet-home/carga-datos/s-09-carga-inicial-Cliente.sql
+@/unam/bd/Proyecto/pet-home/carga-datos/s-09-carga-inicial-StatusSolicitud.sql
+@/unam/bd/Proyecto/pet-home/carga-datos/s-09-carga-inicial-NombrePerro.sql
+@/unam/bd/Proyecto/pet-home/carga-datos/s-09-carga-inicial-NombreGato.sql
+@/unam/bd/Proyecto/pet-home/carga-datos/s-09-carga-inicial-EmpleadoGrado.sql
+@/unam/bd/Proyecto/pet-home/carga-datos/s-09-carga-inicial-CentroOperativo.sql
+@/unam/bd/Proyecto/pet-home/carga-datos/s-09-carga-inicial-Donativo.sql
+@/unam/bd/Proyecto/pet-home/s-15-fx-generar-folio.sql
+@/unam/bd/Proyecto/pet-home/carga-datos/s-09-carga-inicial-Mascota.sql
+--@/unam/bd/Proyecto/pet-home/carga-datos/s-09-carga-inicial-Simulacion.sql

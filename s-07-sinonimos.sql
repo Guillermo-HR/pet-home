@@ -6,6 +6,10 @@ PROMPT Creación de sinónimos
 PROMPT s-07-sinonimos.sql
 PROMPT ========================================================
 
+define p_usuario='ah_proy_admin' 
+define p_usuario_pass='contrasena'
+define p_sys_password='system1'
+define p_pdb='ralbd_s1'
 -- Sinonimos publicos de ah_proy_admin
 CREATE OR REPLACE PUBLIC SYNONYM mascotas_adoptadas FOR cliente_cliente_mascota_solicitud_mascota_revision;
 
