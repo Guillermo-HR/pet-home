@@ -121,7 +121,7 @@ PROMPT Consultas
 PROMPT ========================================================
 
 -- Consultas
-@s-10-consultas.sql
+--@s-10-consultas.sql
 
 -- Salir de la base
 PROMPT ========================================================

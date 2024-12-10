@@ -1,0 +1,9 @@
+Mascota id: 1
+nombre: Sultan
+Tipo: Perro
+Subcategoría: Mastín Inglés
+Dueño/Refugio: Refugio y Clínica Veterinaria Corazón Animal
+--------------------------
+Fecha: 09-05-2023
+Diagnóstico: Mascota recibida en el centro de adopcion
+-----------------------------
