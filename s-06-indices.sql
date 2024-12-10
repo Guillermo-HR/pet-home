@@ -14,3 +14,13 @@ CREATE INDEX mascota_tipo_id_ix
 DROP INDEX IF EXISTS cliente_username_iuk;
 CREATE UNIQUE INDEX cliente_username_iuk 
   ON cliente(username);
+
+DROP INDEX IF EXISTS centro_refugio_estado_idfx;
+CREATE INDEX centro_refugio_estado_idfx ON centro_refugio (
+  SUBSTR(numero_registro, 1, 2) -- Extraer las primeras dos letras (estado)
+);
+
+DROP INDEX IF EXISTS centro_refugio_municipio_idfx;
+CREATE INDEX centro_refugio_municipio_idfx ON centro_refugio (
+  SUBSTR(numero_registro, 3, 3) -- Extraer los tres caracteres siguientes (municipio/delegación)
+);

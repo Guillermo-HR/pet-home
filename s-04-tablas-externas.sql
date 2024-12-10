@@ -12,7 +12,7 @@ define p_usuario_pass='contrasena'
 define p_sys_password='system1'
 
 ---Alias de servicio de la PDB
-define p_pdb='ghrbd_s1'
+define p_pdb='ralbd_s1'
 
 PROMPT ========================================================
 PROMPT Creación de tablas externas
