@@ -1,5 +1,5 @@
 --@AUTOR(ES):       Aburto López Roberto
---@FECHA CREACIÓN:  10/12/2024
+--@FECHA CREACIÓN:  06/12/2024
 --@DESCRIPCIÓN:     Procedimiento para guardar historial clínico en archivo .txt
 
 DEFINE p_usuario='ah_proy_admin'
@@ -46,34 +46,51 @@ CREATE OR REPLACE PROCEDURE guardar_historial_clinico(
         WHERE mc.mascota_id = p_mascota_id
         ORDER BY mc.fecha;
 
+    e_invalid_file EXCEPTION;
+    PRAGMA EXCEPTION_INIT(e_invalid_file, -20006);
+
+    e_invalid_mascota_id EXCEPTION;
+    PRAGMA EXCEPTION_INIT(e_invalid_mascota_id, -20013);
+
 BEGIN
+    -- Validar que el nombre del archivo termine en '.txt'
+    IF NOT p_nombre_archivo LIKE '%.txt' THEN
+        RAISE e_invalid_file;
+    END IF;
+
     -- Recuperar datos básicos de la mascota
-    SELECT m.nombre as nombre_mascota, 
-        mt.tipo, mt.subcategoria as raza_mascota, 
-        co.nombre as nombre_refugio
-    INTO v_nombre_mascota, v_tipo, v_subcategoria, v_refugio
-    FROM mascota m
-    JOIN mascota_tipo mt ON mt.mascota_tipo_id = m.mascota_tipo_id
-    JOIN centro_refugio cf ON m.refugio_id = cf.centro_refugio_id
-    JOIN centro_operativo co ON co.centro_operativo_id = cf.centro_refugio_id
-    WHERE m.mascota_id = p_mascota_id;
+    BEGIN
+        SELECT m.nombre AS nombre_mascota, 
+               mt.tipo, 
+               mt.subcategoria AS raza_mascota, 
+               co.nombre AS nombre_refugio
+        INTO v_nombre_mascota, v_tipo, v_subcategoria, v_refugio
+        FROM mascota m
+        JOIN mascota_tipo mt ON mt.mascota_tipo_id = m.mascota_tipo_id
+        JOIN centro_refugio cf ON m.refugio_id = cf.centro_refugio_id
+        JOIN centro_operativo co ON co.centro_operativo_id = cf.centro_refugio_id
+        WHERE m.mascota_id = p_mascota_id;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            RAISE e_invalid_mascota_id;
+    END;
 
     -- Abrir archivo para escritura
     v_file := UTL_FILE.FOPEN('HISTORIAL_CLINICO_DIR', p_nombre_archivo, 'W');
 
     -- Escribir cabecera
     UTL_FILE.PUT_LINE(v_file, 'Mascota id: ' || p_mascota_id);
-    UTL_FILE.PUT_LINE(v_file, 'nombre: ' || v_nombre_mascota);
+    UTL_FILE.PUT_LINE(v_file, 'Nombre: ' || v_nombre_mascota);
     UTL_FILE.PUT_LINE(v_file, 'Tipo: ' || v_tipo);
     UTL_FILE.PUT_LINE(v_file, 'Subcategoría: ' || v_subcategoria);
-    UTL_FILE.PUT_LINE(v_file, 'Dueño/Refugio: ' || v_refugio);
-    UTL_FILE.PUT_LINE(v_file, '--------------------------');
+    UTL_FILE.PUT_LINE(v_file, 'Refugio: ' || v_refugio);
+    UTL_FILE.PUT_LINE(v_file, '-------------------------------------------------------------');
 
     -- Iterar sobre los diagnósticos
     FOR r_diag IN c_diagnosticos LOOP
         UTL_FILE.PUT_LINE(v_file, 'Fecha: ' || r_diag.fecha);
         UTL_FILE.PUT_LINE(v_file, 'Diagnóstico: ' || r_diag.diagnostico);
-        UTL_FILE.PUT_LINE(v_file, '-----------------------------');
+        UTL_FILE.PUT_LINE(v_file, '-------------------------------------------------------------');
     END LOOP;
 
     -- Cerrar archivo
@@ -82,6 +99,12 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('Historial clínico guardado exitosamente en el archivo ' || p_nombre_archivo);
 
 EXCEPTION
+    WHEN e_invalid_file THEN
+        DBMS_OUTPUT.PUT_LINE('Error: El nombre del archivo debe terminar en .txt (Código -20006).');
+        RAISE_APPLICATION_ERROR(-20006, 'El nombre del archivo debe terminar en .txt');
+    WHEN e_invalid_mascota_id THEN
+        DBMS_OUTPUT.PUT_LINE('Error: Mascota no registrada (Código -20013).');
+        RAISE_APPLICATION_ERROR(-20013, 'Mascota no registrada');
     WHEN OTHERS THEN
         IF UTL_FILE.IS_OPEN(v_file) THEN
             UTL_FILE.FCLOSE(v_file);
@@ -90,11 +113,4 @@ EXCEPTION
         RAISE;
 END guardar_historial_clinico;
 /
-SHOW ERRORS;
-
-
-
-BEGIN
-    guardar_historial_clinico(1, 'historial_101.txt');
-END;
-/
+show errors;

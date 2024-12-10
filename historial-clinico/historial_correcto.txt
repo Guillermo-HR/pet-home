@@ -1,0 +1,9 @@
+Mascota id: 2
+Nombre: Bruno
+Tipo: Perro
+Subcategoría: Mastín Inglés
+Refugio: Refugio de Animales Esperanza
+-------------------------------------------------------------
+Fecha: 21-12-2022
+Diagnóstico: Mascota recibida en el centro de adopcion
+-------------------------------------------------------------
