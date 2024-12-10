@@ -22,4 +22,4 @@ PROMPT ========================================================
 @/unam/bd/Proyecto/pet-home/carga-datos/s-09-carga-inicial-Donativo.sql
 @/unam/bd/Proyecto/pet-home/s-15-fx-generar-folio.sql
 @/unam/bd/Proyecto/pet-home/carga-datos/s-09-carga-inicial-Mascota.sql
---@/unam/bd/Proyecto/pet-home/carga-datos/s-09-carga-inicial-Simulacion.sql
+@/unam/bd/Proyecto/pet-home/carga-datos/s-09-carga-inicial-Simulacion.sql

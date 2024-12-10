@@ -15,7 +15,7 @@ CREATE OR REPLACE TRIGGER solicitud_mascota_trigger
   v_count_solicitudes NUMBER;
   v_fecha_primera_solicitud DATE;
   v_fecha_status DATE;
-  v_rechazar_solicitudes BOOLEAN:= FALSE;
+  v_solicitud_aprobada BOOLEAN:= FALSE;
 
   v_codigo NUMBER;
 
@@ -31,8 +31,8 @@ CREATE OR REPLACE TRIGGER solicitud_mascota_trigger
         WHERE mascota_id = v_mascota_id AND
           status_solicitud_id = 1 AND
           cliente_id = :new.cliente_id;
-
-        IF v_count_solicitudes = 1 THEN
+          
+        IF v_count_solicitudes > 0 THEN
           RAISE_APPLICATION_ERROR(-20006, 'Ya existe una solicitud de adopcion para la mascota');
         END IF;
 
@@ -80,23 +80,49 @@ CREATE OR REPLACE TRIGGER solicitud_mascota_trigger
           SET status_mascota_id = 4,
             fecha_status = :new.fecha_status
           WHERE mascota_id = v_mascota_id;
-          v_rechazar_solicitudes := TRUE;
+          v_solicitud_aprobada := TRUE;
         ELSIF v_status_solicitud = 3 THEN
+          :new.comentario := 'La mascota ha sido adoptada por otro cliente. Más adelante se le notificará el motivo';
           DBMS_OUTPUT.PUT_LINE('Se rechazo la solicitud de adopcion (' || :new.cliente_mascota_solicitud_id || ') para la mascota (' 
             || v_mascota_id || ') del cliente: ' || :new.cliente_id);
         END IF;
+
     END CASE;
   END BEFORE EACH ROW;
 
   AFTER STATEMENT IS
+    v_clinica_id NUMBER;
+
+    v_count_solicitudes_activas NUMBER;
   BEGIN
-    IF v_rechazar_solicitudes THEN
+    IF v_solicitud_aprobada THEN
+      -- primera revision
+      SELECT clinica_id INTO v_clinica_id
+      FROM clinica
+      ORDER BY DBMS_RANDOM.VALUE
+      FETCH FIRST 1 ROWS ONLY;
+
+      INSERT INTO revision (mascota_id, numero_revision, costo, observacion, fecha, calificacion, clinica_id)
+      VALUES (v_mascota_id, 1, 0, 'Primera revision', v_fecha_status, 10, v_clinica_id);
+
       UPDATE cliente_mascota_solicitud
       SET status_solicitud_id = 3,
         comentario = 'La mascota ha sido adoptada por otro cliente. Más adelante se le notificará el motivo',
         fecha_status = v_fecha_status
       WHERE mascota_id = v_mascota_id AND
         status_solicitud_id = 1;
+    END IF;
+
+    SELECT COUNT(*) INTO v_count_solicitudes_activas
+    FROM cliente_mascota_solicitud
+    WHERE mascota_id = v_mascota_id AND
+      status_solicitud_id IN (1, 2);
+
+    IF v_count_solicitudes_activas = 0 THEN
+      UPDATE mascota
+      SET status_mascota_id = 2,
+        fecha_status = v_fecha_status
+      WHERE mascota_id = v_mascota_id;
     END IF;
   END AFTER STATEMENT;
 END solicitud_mascota_trigger;
