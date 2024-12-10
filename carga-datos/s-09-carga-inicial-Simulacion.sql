@@ -6,7 +6,7 @@ PROMPT ========================================================
 PROMPT Simular cambio de status, revisiones, consultas, solicitudes
 PROMPT ========================================================
 
-SET SERVEROUTPUT ON
+SET SERVEROUTPUT OFF
 
 DECLARE
 v_fecha_actual_simulacion DATE;
@@ -303,3 +303,4 @@ END;
 /
 
 COMMIT;
+SET SERVEROUTPUT ON
