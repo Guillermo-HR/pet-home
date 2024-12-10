@@ -93,6 +93,7 @@ PROMPT ========================================================
 @s-16-fx-generar-folio-prueba.sql
 
 -- Prueba función 2
+@s-16-fx-generar-numero-revision-prueba.sql
 
 -- Prueba función 3
 

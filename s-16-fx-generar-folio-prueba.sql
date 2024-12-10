@@ -1,6 +1,6 @@
 --@Autor(es):  Hernández Ruiz de Esparza Guillermo
 --@Fecha creación: 5/12/2024
---@Descripción: Creación de pruebas para el triger historico de status mascota
+--@Descripción: Creación de pruebas para la funcion que genera folios
 PROMPT ========================================================
 PROMPT Creación de pruebas para la funcion que genera folios
 PROMPT s-16-fx-generar-folio-prueba.sql
@@ -95,7 +95,6 @@ SAVEPOINT sp_3;
 
 DECLARE
   v_n_perros_registrados NUMBER;
-  v_folio_correcto VARCHAR2(8);
   v_folio_generado VARCHAR2(8);
 
   v_codigo NUMBER;
@@ -125,7 +124,6 @@ SAVEPOINT sp_4;
 
 DECLARE
   v_n_perros_registrados NUMBER;
-  v_folio_correcto VARCHAR2(8);
   v_folio_generado VARCHAR2(8);
 
   v_codigo NUMBER;
@@ -155,7 +153,6 @@ SAVEPOINT sp_5;
 
 DECLARE
   v_n_perros_registrados NUMBER;
-  v_folio_correcto VARCHAR2(8);
   v_folio_generado VARCHAR2(8);
 
   v_codigo NUMBER;
