@@ -103,6 +103,14 @@ PROMPT ========================================================
 
 -- Prueba función 3
 
+-- Validador
+PROMPT ========================================================
+PROMPT Validador
+PROMPT ========================================================
+
+-- Validador
+@resultados-proyecto-final.sql
+
 COMMIT;
 
 -- Consultas
