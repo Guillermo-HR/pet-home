@@ -2,7 +2,7 @@
 --@Fecha creación: 14/11/2024
 --@Descripción: MAIN
 
-
+spool /unam/bd/Proyecto/pet-home/s-00-main-spool.txt
 --Modificar las siguientes variables en caso de ser necesario
 
 define p_usuario='ah_proy_admin' 
@@ -38,7 +38,7 @@ PROMPT ========================================================
 @s-02-entidades.sql
 
 --crea tabla externa
---@s-04-tablas-externas.sql
+@s-04-tablas-externas.sql
 
 -- Crear los índices
 @s-06-indices.sql
@@ -62,6 +62,10 @@ PROMPT ========================================================
 @s-13-p-agregar-hijos.sql
 
 -- Crear procedimiento almacenado 2
+@s-13-p-lob-carga-foto.sql
+
+-- Crear procedimiento almacenado 3
+@s-13-p-lob-descarga-imagen-disco.sql
 
 -- Crear función 2
 @s-15-fx-generar-numero-revision.sql
@@ -72,7 +76,7 @@ PROMPT ========================================================
 @/unam/bd/Proyecto/pet-home/carga-datos/s-09-carga-inicial.sql
 
 -- Crear tablas temporales
---@s-03-tablas-temporales.sql
+@s-03-tablas-temporales.sql
 
 -- Ejectuar pruebas
 PROMPT ========================================================
@@ -83,10 +87,15 @@ PROMPT ========================================================
 @s-12-historico-status-mascota-trigger-prueba.sql
 
 -- Prueba trigger 2
+@s-12-gestion-solicitud-mascota-trigger-prueba.sql
 
 -- Prueba procedimiento almacenado 1
 
 -- Prueba procedimiento almacenado 2
+@s-14-p-lob-carga-foto-prueba.sql
+
+-- Prueba procedimiento almacenado 3
+@s-14-p-lob-descarga-imagen-disco-prueba.sql
 
 -- Prueba función 1
 
@@ -96,8 +105,17 @@ PROMPT ========================================================
 
 COMMIT;
 
+-- Consultas
+PROMPT ========================================================
+PROMPT Consultas
+PROMPT ========================================================
+
+-- Consultas
+@s-10-consultas.sql
+
 -- Salir de la base
 PROMPT ========================================================
 PROMPT Saliendo de la PDB
 DISCONNECT;
 PROMPT ========================================================
+SPOOL OFF

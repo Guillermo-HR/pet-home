@@ -5,11 +5,11 @@
 define p_usuario='ah_proy_admin'
 define p_usuario_pass='contrasena'
 define p_sys_password='system1'
-define p_pdb='ralbd_s1'
+define p_pdb='ghrbd_s1'
 
 PROMPT ========================================================
 PROMPT Procedimiento para almacenar en disco las fotos de la tabla monitoreo_cautiverio
-PROMPT s-17-lob-foto_mascota.sql
+PROMPT s-13-p-lob-descarga-imagen-disco.sql
 PROMPT ========================================================
 
 PROMPT Conectando como sys
