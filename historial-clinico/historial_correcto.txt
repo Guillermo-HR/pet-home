@@ -1,9 +1,9 @@
 Mascota id: 2
-Nombre: Bruno
+Nombre: Lucy
 Tipo: Perro
-Subcategoría: Mastín Inglés
-Refugio: Refugio de Animales Esperanza
+Subcategoría: Labrador Retriever
+Refugio: Refugio y Clínica Veterinaria Los Amigos
 -------------------------------------------------------------
-Fecha: 21-12-2022
+Fecha: 06-04-2021
 Diagnóstico: Mascota recibida en el centro de adopcion
 -------------------------------------------------------------

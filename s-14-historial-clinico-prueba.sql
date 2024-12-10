@@ -28,7 +28,7 @@ PROMPT =============================================
 PROMPT Prueba 2: Archivo con extension erroneo
 PROMPT =============================================
 BEGIN
-    guardar_historial_clinico(101,'archivo_invalido.pdf');
+    guardar_historial_clinico(2,'archivo_invalido.pdf');
 EXCEPTION
     WHEN OTHERS THEN
         IF SQLCODE = -20006 THEN

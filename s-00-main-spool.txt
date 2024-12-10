@@ -1306,6 +1306,36 @@ Procedure created.
 
 No errors.
 ========================================================
+Procedimiento para guardar historial clínico
+s-13-p-historial-clinico.sql
+========================================================
+Conectando como sys
+Connected.
+
+
+
+
+
+Directory created.
+
+old   1: GRANT READ, WRITE ON DIRECTORY HISTORIAL_CLINICO_DIR TO &&p_usuario
+new   1: GRANT READ, WRITE ON DIRECTORY HISTORIAL_CLINICO_DIR TO ah_proy_admin
+
+Grant succeeded.
+
+Cambiando permisos
+
+
+Conectando con usuario admin
+Connected.
+
+
+
+
+Procedure created.
+
+No errors.
+========================================================
 Iniciando carga de datos
 s-09-carga-inicial.sql
 ========================================================
@@ -2691,6 +2721,39 @@ No errors.
 =============================================
 Fin de las pruebas
 =============================================
+=============================================
+PRUEBAS s-14-historial-clinico-prueba.sql
+=============================================
+=============================================
+Prueba 1: Procedimiento con datos correctos
+=============================================
+Historial clínico guardado exitosamente en el archivo historial_correcto.txt
+Prueba 1: OK => Procedimiento ejecutado correctamente.
+
+PL/SQL procedure successfully completed.
+
+No errors.
+=============================================
+Prueba 2: Archivo con extension erroneo
+=============================================
+Error: El nombre del archivo debe terminar en .txt (Código -20006).
+Prueba 2: OK => manejo de error de extension
+
+PL/SQL procedure successfully completed.
+
+No errors.
+=============================================
+Prueba 3: ID de mascota inexistente
+=============================================
+Error: Mascota no registrada (Código -20013).
+Prueba 3: OK => Validación de ID inexistente correcta.
+
+PL/SQL procedure successfully completed.
+
+No errors.
+=============================================
+Fin de las pruebas
+=============================================
 ========================================================
 Validador
 ========================================================
@@ -2709,7 +2772,7 @@ CONSTRAINT REF     25
 COL DEFAULT        9
 COL VIRTUAL        3
 COL LOB            5
-DIRECTORIES        5
+DIRECTORIES        6
 INDEX UK (PK)      20
 INDEX UK           1
 INDEX NON UNIQUE   1
@@ -2718,7 +2781,7 @@ INDEX F-BASED      2
 PUBLIC SYNONYMS    4
 PRIVATE SYNONYMS   0
 VIEWS              4
-PROCEDURES         3
+PROCEDURES         4
 TRIGGERS           2
 FUNCTIONS          2
 INVALID            0
