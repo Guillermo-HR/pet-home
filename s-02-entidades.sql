@@ -14,15 +14,19 @@ DROP TABLE IF EXISTS empleado CASCADE CONSTRAINTS;
 CREATE TABLE empleado (
   empleado_id       NUMBER(3, 0) NOT NULL,
   es_gerente        CHAR(1) NOT NULL,
-  es_veterinario     CHAR(1) NOT NULL,
+  es_veterinario    CHAR(1) NOT NULL,
   es_administrativo CHAR(1) NOT NULL,
   fecha_ingreso     DATE DEFAULT ON NULL SYSDATE,
+  fecha_actual      DATE DEFAULT ON NULL SYSDATE, -- Columna para referencia de fecha
   curp              VARCHAR2(18) NOT NULL,
   email             VARCHAR2(50) NOT NULL,
   nombre            VARCHAR2(40) NOT NULL,
   apellido_paterno  VARCHAR2(40) NOT NULL,
   apellido_materno  VARCHAR2(40) NOT NULL,
   sueldo            NUMBER(7,2) NOT NULL,
+  bono              NUMBER GENERATED ALWAYS AS (
+                      (sueldo * 0.2) * (1 + FLOOR(MONTHS_BETWEEN(fecha_actual, fecha_ingreso) / 12))
+                    ) VIRTUAL, -- Columna virtual
   CONSTRAINT empleado_pk PRIMARY KEY (empleado_id),
   CONSTRAINT empleado_curp_chk CHECK (
     LENGTH(curp) = 18
@@ -36,6 +40,7 @@ CREATE TABLE empleado (
     (es_gerente = '0' AND es_veterinario = '1' AND es_administrativo = '1')
   )
 );
+
 
 -- Eliminación y creación de la tabla origen
 DROP TABLE IF EXISTS origen CASCADE CONSTRAINTS;

@@ -1,0 +1,9 @@
+Mascota id: 2
+Nombre: Lucy
+Tipo: Perro
+Subcategoría: Labrador Retriever
+Refugio: Refugio y Clínica Veterinaria Los Amigos
+-------------------------------------------------------------
+Fecha: 06-04-2021
+Diagnóstico: Mascota recibida en el centro de adopcion
+-------------------------------------------------------------

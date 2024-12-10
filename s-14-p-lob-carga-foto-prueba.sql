@@ -1,7 +1,8 @@
---@Autor(es):       Aburto López Roberto
---@Fecha creación:  08/12/2024
---@Descripción:     scripts de pruabas para almacenar fotos en tabla monitoreo_cautiverio
+-- @Autor(es):       Aburto López Roberto
+-- @Fecha creación:  08/12/2024
+-- @Descripción:     Scripts de pruebas para almacenar fotos en tabla centro_refugio con manejo de rollbacks
 
+SET SERVEROUTPUT ON 
 
 -- Prueba 1: Procedimiento con datos correctos
 PROMPT =============================================
@@ -13,12 +14,18 @@ BEGIN
   DECLARE
     v_blob BLOB;
   BEGIN
-    carga_foto_monitoreo_cautiverio(1,'perro1.jpg');
-
-    SELECT foto 
+    carga_foto_dinamico(
+        'centro_refugio',         -- Tabla
+        'logo',                   -- Columna BLOB
+        'centro_refugio_id',      -- Columna ID
+        1,                        -- ID del registro
+        'LOGO_REFUGIO',           -- Directorio lógico
+        'refugio1.jpg'            -- Archivo a cargar
+    );
+    SELECT logo 
     INTO v_blob
-    FROM monitoreo_cautiverio
-    WHERE monitoreo_cautiverio_id = 1;
+    FROM centro_refugio
+    WHERE centro_refugio_id = 1;
     
     IF LENGTH(v_blob) > 0 THEN
       DBMS_OUTPUT.PUT_LINE('Ok => prueba 1 ');
@@ -28,6 +35,7 @@ BEGIN
     END IF;
   END; -- Fin del bloque de pruebas
   ROLLBACK TO prueba_1; -- Revertir los cambios aquí
+  COMMIT;
 END;
 /
 SHOW ERRORS;
@@ -44,7 +52,14 @@ DECLARE
 BEGIN
   SAVEPOINT prueba_2;
   BEGIN
-    carga_foto_monitoreo_cautiverio(1000,'perro2.jpg');;
+    carga_foto_dinamico(
+        'centro_refugio',         -- Tabla
+        'logo',                   -- Columna BLOB
+        'centro_refugio_id',      -- Columna ID
+        999,                      -- ID del registro incorrecto
+        'LOGO_REFUGIO',           -- Directorio lógico
+        'refugio1.jpg'            -- Archivo a cargar
+    );
   EXCEPTION
     WHEN OTHERS THEN 
       v_codigo := SQLCODE;
@@ -64,7 +79,7 @@ END;
 SHOW ERRORS;
 
 
-- Prueba 3: Procedimiento con extensión incorrecta
+-- Prueba 3: Procedimiento con extensión incorrecta
 PROMPT =============================================
 PROMPT Prueba 3.
 PROMPT Procedimiento con extensión incorrecta
@@ -75,7 +90,14 @@ DECLARE
 BEGIN 
   SAVEPOINT prueba_3;
   BEGIN
-    carga_foto_monitoreo_cautiverio(2,'perro2.zip');
+    carga_foto_dinamico(
+        'centro_refugio',         -- Tabla
+        'logo',                   -- Columna BLOB
+        'centro_refugio_id',      -- Columna ID
+        1,                      -- ID del registro incorrecto
+        'LOGO_REFUGIO',           -- Directorio lógico
+        'refugio1.zip'            -- Archivo a cargar
+    );
   EXCEPTION 
     WHEN OTHERS THEN 
       v_codigo := SQLCODE;
@@ -94,6 +116,8 @@ END;
 /
 SHOW ERRORS;
 
+
+
 -- Prueba 4: Procedimiento con archivo inexistente
 PROMPT =============================================
 PROMPT Prueba 4.
@@ -105,7 +129,14 @@ DECLARE
 BEGIN
   SAVEPOINT prueba_4;
   BEGIN
-    carga_foto_monitoreo_cautiverio(2,'esteArchivoNoExiste.jpg');
+        carga_foto_dinamico(
+        'centro_refugio',         -- Tabla
+        'logo',                   -- Columna BLOB
+        'centro_refugio_id',      -- Columna ID
+        1,                        -- ID del registro incorrecto
+        'LOGO_REFUGIO',           -- Directorio lógico
+        'esteArchivoNoExiste.jpg' -- Archivo a cargar incorrecto
+    );
   EXCEPTION 
     WHEN OTHERS THEN 
       v_codigo := SQLCODE;
@@ -124,7 +155,8 @@ END;
 /
 SHOW ERRORS;
 
+
+
 PROMPT =============================================
 PROMPT Fin de pruebas
 PROMPT =============================================
-

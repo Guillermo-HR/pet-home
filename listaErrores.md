@@ -33,4 +33,13 @@
 ╟────────────┼──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────╢
 ║ -20009     │ El archivo se encuentra abierto      │ s-17-lob-foto-mascota │ Cerrar el archivo en uso antes de intentar realizar la       ║
 ║            │                                      │                       │ operación                                                    ║
+╟────────────┼──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────╢
+║ -20010     │ Numero de refugio no valido          │ fx-generar-folio      │ Verificar que el número de refugio sea un número válido      ║
+╟────────────┼──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────╢
+║ -20011     │ Origen no valido de una mascota      │ fx-generar-folio      │ Verificar que el origen de la mascota sea un valor válido    ║
+╟────────────┼──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────╢
+║ -20012     │ Tipo de mascota no valido            │ fx-generar-folio      │ Verificar que el tipo de mascota sea un valor válido         ║
+╟────────────┼──────────────────────────────────────┼───────────────────────┼──────────────────────────────────────────────────────────────╢
+║ -20013     │ Mascota no registrada                │ fx-generar-numero-    | Verificar que la mascota esté registrada en el sistema como  ║
+║            |                                      | revision              | adoptada                                                     ║
 ╚════════════╧══════════════════════════════════════╧═══════════════════════╧══════════════════════════════════════════════════════════════╝

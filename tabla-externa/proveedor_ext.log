@@ -1,6 +1,6 @@
 
 
- LOG file opened at 12/07/24 10:39:12
+ LOG file opened at 12/10/24 13:16:09
 
 Total Number of Files=1
 
@@ -10,7 +10,7 @@ Log File: proveedor_ext.log
 
 
 
- LOG file opened at 12/07/24 10:39:12
+ LOG file opened at 12/10/24 13:16:09
 
 Bad File: proveedor_ext_bad.log
 
@@ -44,7 +44,7 @@ Field Definitions for table PROVEEDOR_EXT
       Trim whitespace from left and right
 
 
- LOG file opened at 12/07/24 10:39:35
+ LOG file opened at 12/10/24 13:16:15
 
 Total Number of Files=1
 
@@ -54,7 +54,7 @@ Log File: proveedor_ext.log
 
 
 
- LOG file opened at 12/07/24 10:39:35
+ LOG file opened at 12/10/24 13:16:15
 
 Bad File: proveedor_ext_bad.log
 
@@ -88,7 +88,7 @@ Field Definitions for table PROVEEDOR_EXT
       Trim whitespace from left and right
 
 
- LOG file opened at 12/07/24 11:56:08
+ LOG file opened at 12/10/24 13:16:29
 
 Total Number of Files=1
 
@@ -98,7 +98,7 @@ Log File: proveedor_ext.log
 
 
 
- LOG file opened at 12/07/24 11:56:08
+ LOG file opened at 12/10/24 13:16:29
 
 Bad File: proveedor_ext_bad.log
 
@@ -132,7 +132,7 @@ Field Definitions for table PROVEEDOR_EXT
       Trim whitespace from left and right
 
 
- LOG file opened at 12/07/24 12:01:38
+ LOG file opened at 12/10/24 13:16:32
 
 Total Number of Files=1
 
@@ -142,17 +142,7 @@ Log File: proveedor_ext.log
 
 
 
- LOG file opened at 12/07/24 12:01:38
-
-Total Number of Files=1
-
-Data File: proveedor_table_ext.csv
-
-Log File: proveedor_ext.log
-
-
-
- LOG file opened at 12/07/24 12:01:38
+ LOG file opened at 12/10/24 13:16:32
 
 Bad File: proveedor_ext_bad.log
 
@@ -186,7 +176,17 @@ Field Definitions for table PROVEEDOR_EXT
       Trim whitespace from left and right
 
 
- LOG file opened at 12/07/24 12:01:38
+ LOG file opened at 12/10/24 13:18:16
+
+Total Number of Files=1
+
+Data File: proveedor_table_ext.csv
+
+Log File: proveedor_ext.log
+
+
+
+ LOG file opened at 12/10/24 13:18:16
 
 Bad File: proveedor_ext_bad.log
 
@@ -220,7 +220,7 @@ Field Definitions for table PROVEEDOR_EXT
       Trim whitespace from left and right
 
 
- LOG file opened at 12/07/24 12:02:28
+ LOG file opened at 12/10/24 13:18:22
 
 Total Number of Files=1
 
@@ -230,17 +230,7 @@ Log File: proveedor_ext.log
 
 
 
- LOG file opened at 12/07/24 12:02:28
-
-Total Number of Files=1
-
-Data File: proveedor_table_ext.csv
-
-Log File: proveedor_ext.log
-
-
-
- LOG file opened at 12/07/24 12:02:28
+ LOG file opened at 12/10/24 13:18:22
 
 Bad File: proveedor_ext_bad.log
 
@@ -274,7 +264,17 @@ Field Definitions for table PROVEEDOR_EXT
       Trim whitespace from left and right
 
 
- LOG file opened at 12/07/24 12:02:28
+ LOG file opened at 12/10/24 13:19:35
+
+Total Number of Files=1
+
+Data File: proveedor_table_ext.csv
+
+Log File: proveedor_ext.log
+
+
+
+ LOG file opened at 12/10/24 13:19:35
 
 Bad File: proveedor_ext_bad.log
 
@@ -308,7 +308,7 @@ Field Definitions for table PROVEEDOR_EXT
       Trim whitespace from left and right
 
 
- LOG file opened at 12/08/24 21:09:19
+ LOG file opened at 12/10/24 13:19:37
 
 Total Number of Files=1
 
@@ -318,667 +318,7 @@ Log File: proveedor_ext.log
 
 
 
- LOG file opened at 12/08/24 21:09:19
-
-Bad File: proveedor_ext_bad.log
-
-Field Definitions for table PROVEEDOR_EXT
-  Record format DELIMITED BY NEWLINE
-  Data in file has same endianness as the platform
-  Rows with all null fields are accepted
-
-  Fields in Data Source: 
-
-    PROVEEDOR_ID                    CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    NOMBRE                          CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TELEFONO                        CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIPO_PRODUCTO                   CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    PRECIO_UNITARIO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIEMPO_ENTREGA_DIAS             CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    ESTADO_CONTRATO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-
-
- LOG file opened at 12/08/24 21:09:19
-
-Total Number of Files=1
-
-Data File: proveedor_table_ext.csv
-
-Log File: proveedor_ext.log
-
-
-
- LOG file opened at 12/08/24 21:09:19
-
-Bad File: proveedor_ext_bad.log
-
-Field Definitions for table PROVEEDOR_EXT
-  Record format DELIMITED BY NEWLINE
-  Data in file has same endianness as the platform
-  Rows with all null fields are accepted
-
-  Fields in Data Source: 
-
-    PROVEEDOR_ID                    CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    NOMBRE                          CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TELEFONO                        CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIPO_PRODUCTO                   CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    PRECIO_UNITARIO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIEMPO_ENTREGA_DIAS             CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    ESTADO_CONTRATO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-
-
- LOG file opened at 12/08/24 21:19:33
-
-Total Number of Files=1
-
-Data File: proveedor_table_ext.csv
-
-Log File: proveedor_ext.log
-
-
-
- LOG file opened at 12/08/24 21:19:33
-
-Bad File: proveedor_ext_bad.log
-
-Field Definitions for table PROVEEDOR_EXT
-  Record format DELIMITED BY NEWLINE
-  Data in file has same endianness as the platform
-  Rows with all null fields are accepted
-
-  Fields in Data Source: 
-
-    PROVEEDOR_ID                    CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    NOMBRE                          CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TELEFONO                        CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIPO_PRODUCTO                   CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    PRECIO_UNITARIO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIEMPO_ENTREGA_DIAS             CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    ESTADO_CONTRATO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-
-
- LOG file opened at 12/08/24 21:19:40
-
-Total Number of Files=1
-
-Data File: proveedor_table_ext.csv
-
-Log File: proveedor_ext.log
-
-
-
- LOG file opened at 12/08/24 21:19:40
-
-Bad File: proveedor_ext_bad.log
-
-Field Definitions for table PROVEEDOR_EXT
-  Record format DELIMITED BY NEWLINE
-  Data in file has same endianness as the platform
-  Rows with all null fields are accepted
-
-  Fields in Data Source: 
-
-    PROVEEDOR_ID                    CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    NOMBRE                          CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TELEFONO                        CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIPO_PRODUCTO                   CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    PRECIO_UNITARIO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIEMPO_ENTREGA_DIAS             CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    ESTADO_CONTRATO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-
-
- LOG file opened at 12/08/24 21:27:26
-
-Total Number of Files=1
-
-Data File: proveedor_table_ext.csv
-
-Log File: proveedor_ext.log
-
-
-
- LOG file opened at 12/08/24 21:27:26
-
-Bad File: proveedor_ext_bad.log
-
-Field Definitions for table PROVEEDOR_EXT
-  Record format DELIMITED BY NEWLINE
-  Data in file has same endianness as the platform
-  Rows with all null fields are accepted
-
-  Fields in Data Source: 
-
-    PROVEEDOR_ID                    CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    NOMBRE                          CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TELEFONO                        CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIPO_PRODUCTO                   CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    PRECIO_UNITARIO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIEMPO_ENTREGA_DIAS             CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    ESTADO_CONTRATO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-
-
- LOG file opened at 12/08/24 21:27:27
-
-Total Number of Files=1
-
-Data File: proveedor_table_ext.csv
-
-Log File: proveedor_ext.log
-
-
-
- LOG file opened at 12/08/24 21:27:27
-
-Bad File: proveedor_ext_bad.log
-
-Field Definitions for table PROVEEDOR_EXT
-  Record format DELIMITED BY NEWLINE
-  Data in file has same endianness as the platform
-  Rows with all null fields are accepted
-
-  Fields in Data Source: 
-
-    PROVEEDOR_ID                    CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    NOMBRE                          CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TELEFONO                        CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIPO_PRODUCTO                   CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    PRECIO_UNITARIO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIEMPO_ENTREGA_DIAS             CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    ESTADO_CONTRATO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-
-
- LOG file opened at 12/08/24 21:28:25
-
-Total Number of Files=1
-
-Data File: proveedor_table_ext.csv
-
-Log File: proveedor_ext.log
-
-
-
- LOG file opened at 12/08/24 21:28:25
-
-Bad File: proveedor_ext_bad.log
-
-Field Definitions for table PROVEEDOR_EXT
-  Record format DELIMITED BY NEWLINE
-  Data in file has same endianness as the platform
-  Rows with all null fields are accepted
-
-  Fields in Data Source: 
-
-    PROVEEDOR_ID                    CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    NOMBRE                          CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TELEFONO                        CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIPO_PRODUCTO                   CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    PRECIO_UNITARIO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIEMPO_ENTREGA_DIAS             CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    ESTADO_CONTRATO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-
-
- LOG file opened at 12/08/24 21:28:25
-
-Total Number of Files=1
-
-Data File: proveedor_table_ext.csv
-
-Log File: proveedor_ext.log
-
-
-
- LOG file opened at 12/08/24 21:28:25
-
-Bad File: proveedor_ext_bad.log
-
-Field Definitions for table PROVEEDOR_EXT
-  Record format DELIMITED BY NEWLINE
-  Data in file has same endianness as the platform
-  Rows with all null fields are accepted
-
-  Fields in Data Source: 
-
-    PROVEEDOR_ID                    CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    NOMBRE                          CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TELEFONO                        CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIPO_PRODUCTO                   CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    PRECIO_UNITARIO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIEMPO_ENTREGA_DIAS             CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    ESTADO_CONTRATO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-
-
- LOG file opened at 12/08/24 21:35:56
-
-Total Number of Files=1
-
-Data File: proveedor_table_ext.csv
-
-Log File: proveedor_ext.log
-
-
-
- LOG file opened at 12/08/24 21:35:56
-
-Bad File: proveedor_ext_bad.log
-
-Field Definitions for table PROVEEDOR_EXT
-  Record format DELIMITED BY NEWLINE
-  Data in file has same endianness as the platform
-  Rows with all null fields are accepted
-
-  Fields in Data Source: 
-
-    PROVEEDOR_ID                    CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    NOMBRE                          CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TELEFONO                        CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIPO_PRODUCTO                   CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    PRECIO_UNITARIO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIEMPO_ENTREGA_DIAS             CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    ESTADO_CONTRATO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-
-
- LOG file opened at 12/08/24 21:35:56
-
-Total Number of Files=1
-
-Data File: proveedor_table_ext.csv
-
-Log File: proveedor_ext.log
-
-
-
- LOG file opened at 12/08/24 21:35:56
-
-Bad File: proveedor_ext_bad.log
-
-Field Definitions for table PROVEEDOR_EXT
-  Record format DELIMITED BY NEWLINE
-  Data in file has same endianness as the platform
-  Rows with all null fields are accepted
-
-  Fields in Data Source: 
-
-    PROVEEDOR_ID                    CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    NOMBRE                          CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TELEFONO                        CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIPO_PRODUCTO                   CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    PRECIO_UNITARIO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIEMPO_ENTREGA_DIAS             CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    ESTADO_CONTRATO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-
-
- LOG file opened at 12/08/24 21:43:07
-
-Total Number of Files=1
-
-Data File: proveedor_table_ext.csv
-
-Log File: proveedor_ext.log
-
-
-
- LOG file opened at 12/08/24 21:43:07
-
-Total Number of Files=1
-
-Data File: proveedor_table_ext.csv
-
-Log File: proveedor_ext.log
-
-
-
- LOG file opened at 12/08/24 21:43:07
-
-Bad File: proveedor_ext_bad.log
-
-Field Definitions for table PROVEEDOR_EXT
-  Record format DELIMITED BY NEWLINE
-  Data in file has same endianness as the platform
-  Rows with all null fields are accepted
-
-  Fields in Data Source: 
-
-    PROVEEDOR_ID                    CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    NOMBRE                          CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TELEFONO                        CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIPO_PRODUCTO                   CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    PRECIO_UNITARIO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIEMPO_ENTREGA_DIAS             CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    ESTADO_CONTRATO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-
-
- LOG file opened at 12/08/24 21:43:07
-
-Bad File: proveedor_ext_bad.log
-
-Field Definitions for table PROVEEDOR_EXT
-  Record format DELIMITED BY NEWLINE
-  Data in file has same endianness as the platform
-  Rows with all null fields are accepted
-
-  Fields in Data Source: 
-
-    PROVEEDOR_ID                    CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    NOMBRE                          CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TELEFONO                        CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIPO_PRODUCTO                   CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    PRECIO_UNITARIO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIEMPO_ENTREGA_DIAS             CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    ESTADO_CONTRATO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-
-
- LOG file opened at 12/09/24 12:02:48
-
-Total Number of Files=1
-
-Data File: proveedor_table_ext.csv
-
-Log File: proveedor_ext.log
-
-
-
- LOG file opened at 12/09/24 12:02:48
-
-Bad File: proveedor_ext_bad.log
-
-Field Definitions for table PROVEEDOR_EXT
-  Record format DELIMITED BY NEWLINE
-  Data in file has same endianness as the platform
-  Rows with all null fields are accepted
-
-  Fields in Data Source: 
-
-    PROVEEDOR_ID                    CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    NOMBRE                          CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TELEFONO                        CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIPO_PRODUCTO                   CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    PRECIO_UNITARIO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIEMPO_ENTREGA_DIAS             CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    ESTADO_CONTRATO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-
-
- LOG file opened at 12/09/24 12:02:48
-
-Total Number of Files=1
-
-Data File: proveedor_table_ext.csv
-
-Log File: proveedor_ext.log
-
-
-
- LOG file opened at 12/09/24 12:02:48
-
-Bad File: proveedor_ext_bad.log
-
-Field Definitions for table PROVEEDOR_EXT
-  Record format DELIMITED BY NEWLINE
-  Data in file has same endianness as the platform
-  Rows with all null fields are accepted
-
-  Fields in Data Source: 
-
-    PROVEEDOR_ID                    CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    NOMBRE                          CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TELEFONO                        CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIPO_PRODUCTO                   CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    PRECIO_UNITARIO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIEMPO_ENTREGA_DIAS             CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    ESTADO_CONTRATO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-
-
- LOG file opened at 12/09/24 12:05:05
-
-Total Number of Files=1
-
-Data File: proveedor_table_ext.csv
-
-Log File: proveedor_ext.log
-
-
-
- LOG file opened at 12/09/24 12:05:05
-
-Bad File: proveedor_ext_bad.log
-
-Field Definitions for table PROVEEDOR_EXT
-  Record format DELIMITED BY NEWLINE
-  Data in file has same endianness as the platform
-  Rows with all null fields are accepted
-
-  Fields in Data Source: 
-
-    PROVEEDOR_ID                    CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    NOMBRE                          CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TELEFONO                        CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIPO_PRODUCTO                   CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    PRECIO_UNITARIO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    TIEMPO_ENTREGA_DIAS             CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-    ESTADO_CONTRATO                 CHAR (255)
-      Terminated by ","
-      Trim whitespace from left and right
-
-
- LOG file opened at 12/09/24 12:05:05
-
-Total Number of Files=1
-
-Data File: proveedor_table_ext.csv
-
-Log File: proveedor_ext.log
-
-
-
- LOG file opened at 12/09/24 12:05:05
+ LOG file opened at 12/10/24 13:19:37
 
 Bad File: proveedor_ext_bad.log
 
