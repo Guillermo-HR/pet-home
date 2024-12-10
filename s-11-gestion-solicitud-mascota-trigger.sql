@@ -82,7 +82,9 @@ CREATE OR REPLACE TRIGGER solicitud_mascota_trigger
           WHERE mascota_id = v_mascota_id;
           v_solicitud_aprobada := TRUE;
         ELSIF v_status_solicitud = 3 THEN
-          :new.comentario := 'La mascota ha sido adoptada por otro cliente. Más adelante se le notificará el motivo';
+          IF :new.comentario IS NULL THEN
+            :new.comentario := 'La mascota ha sido adoptada por otro cliente. Más adelante se le notificará el motivo';
+          END IF;
           DBMS_OUTPUT.PUT_LINE('Se rechazo la solicitud de adopcion (' || :new.cliente_mascota_solicitud_id || ') para la mascota (' 
             || v_mascota_id || ') del cliente: ' || :new.cliente_id);
         END IF;
@@ -124,6 +126,9 @@ CREATE OR REPLACE TRIGGER solicitud_mascota_trigger
         fecha_status = v_fecha_status
       WHERE mascota_id = v_mascota_id;
     END IF;
+  EXCEPTION
+    WHEN OTHERS THEN
+      NULL;
   END AFTER STATEMENT;
 END solicitud_mascota_trigger;
 /

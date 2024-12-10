@@ -8,9 +8,6 @@ spool /unam/bd/Proyecto/pet-home/s-00-main-spool.txt
 define p_usuario='ah_proy_admin' 
 define p_usuario_pass='contrasena'
 define p_sys_password='system1'
-
-
-SET SERVEROUTPUT OFF
 define p_pdb='ghrbd_s1'
 
 
@@ -43,12 +40,6 @@ PROMPT ========================================================
 -- Crear los índices
 @s-06-indices.sql
 
--- Crear vistas
-@s-08-vistas.sql
-
--- Crear sinónimos
-@s-07-sinonimos.sql
-
 -- Crear trigger 1
 @s-11-historico-status-mascota-trigger.sql
 
@@ -74,6 +65,12 @@ PROMPT ========================================================
 
 -- Cargar datos
 @/unam/bd/Proyecto/pet-home/carga-datos/s-09-carga-inicial.sql
+
+-- Crear vistas
+@s-08-vistas.sql
+
+-- Crear sinónimos
+@s-07-sinonimos.sql
 
 -- Crear tablas temporales
 @s-03-tablas-temporales.sql
