@@ -4,6 +4,10 @@
 
 SET SERVEROUTPUT ON 
 
+PROMPT =============================================
+PROMPT PRUEBAS s-14-p-lob-carga-foto.sql
+PROMPT =============================================
+
 -- Prueba 1: Procedimiento con datos correctos
 PROMPT =============================================
 PROMPT Prueba 1.
@@ -33,8 +37,8 @@ BEGIN
     ELSE
       RAISE_APPLICATION_ERROR(-20000, 'ERROR: No se supero la prueba');
     END IF;
-  END; -- Fin del bloque de pruebas
-  ROLLBACK TO prueba_1; -- Revertir los cambios aquí
+  END; 
+  ROLLBACK TO prueba_1; 
   COMMIT;
 END;
 /
@@ -63,9 +67,7 @@ BEGIN
   EXCEPTION
     WHEN OTHERS THEN 
       v_codigo := SQLCODE;
-      v_mensaje := SQLERRM;
       DBMS_OUTPUT.PUT_LINE('Codigo: ' || v_codigo);
-      DBMS_OUTPUT.PUT_LINE('Mensaje: ' || v_mensaje);
       IF v_codigo = -20007 THEN
         DBMS_OUTPUT.PUT_LINE('OK => Prueba 2');
       ELSE 
@@ -101,9 +103,6 @@ BEGIN
   EXCEPTION 
     WHEN OTHERS THEN 
       v_codigo := SQLCODE;
-      v_mensaje := SQLERRM;
-      DBMS_OUTPUT.PUT_LINE('Codigo: ' || v_codigo);
-      DBMS_OUTPUT.PUT_LINE('Mensaje: ' || v_mensaje);
       IF v_codigo = -20006 THEN
         DBMS_OUTPUT.PUT_LINE('OK => Prueba 3');
       ELSE 
@@ -140,9 +139,6 @@ BEGIN
   EXCEPTION 
     WHEN OTHERS THEN 
       v_codigo := SQLCODE;
-      v_mensaje := SQLERRM;
-      DBMS_OUTPUT.PUT_LINE('Codigo: ' || v_codigo);
-      DBMS_OUTPUT.PUT_LINE('Mensaje: ' || v_mensaje);
       IF v_codigo = -20008 THEN
         DBMS_OUTPUT.PUT_LINE('OK => Prueba 4');
       ELSE 

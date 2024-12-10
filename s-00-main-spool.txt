@@ -2435,57 +2435,6 @@ Rollback complete.
 Rollback complete.
 
 ========================================================
-Pruebas para el trigger de gestión de solicitudes de adopción
-========================================================
-
-Savepoint created.
-
-========================================================
-Prueba 1: Insertar solicitud válida
-========================================================
--- Prueba 1 fallida. Código: -2290 Mensaje: ORA-02290: check constraint
-(AH_PROY_ADMIN.MASCOTA_ORIGEN_CHK) violated
-
-PL/SQL procedure successfully completed.
-
-========================================================
-Prueba 2: Límite de mascotas excedido
-========================================================
--- Prueba 2 fallida. Código: -2290 Mensaje: ORA-02290: check constraint
-(AH_PROY_ADMIN.MASCOTA_ORIGEN_CHK) violated
-
-PL/SQL procedure successfully completed.
-
-========================================================
-Prueba 3: Actualizar solicitud a "Aprobada"
-========================================================
-  WHERE cliente_mascota_solicitud_id = cliente_mascota_solicitud_seq.CURRVAL;
-                                                                     *
-ERROR at line 13:
-ORA-06550: line 13, column 70:
-PL/SQL: ORA-02287: sequence number not allowed here
-ORA-06550: line 11, column 3:
-PL/SQL: SQL Statement ignored
-Help: https://docs.oracle.com/error-help/db/ora-06550/
-
-
-========================================================
-Prueba 4: Rechazar solicitud
-========================================================
-  WHERE cliente_mascota_solicitud_id = cliente_mascota_solicitud_seq.CURRVAL;
-                                                                     *
-ERROR at line 13:
-ORA-06550: line 13, column 70:
-PL/SQL: ORA-02287: sequence number not allowed here
-ORA-06550: line 11, column 3:
-PL/SQL: SQL Statement ignored
-Help: https://docs.oracle.com/error-help/db/ora-06550/
-
-
-
-Rollback complete.
-
-========================================================
 Creación de pruebas para la funcion que genera folios
 s-16-fx-generar-folio-prueba.sql
 ========================================================
@@ -2565,14 +2514,14 @@ Prueba positiva
 
 Savepoint created.
 
-Se registro la mascota con mascota_id: 70
+Se registro la mascota con mascota_id: 68
 Se registro el status (1) con historico_status_mascota_id: 75 para la mascota:
-70
+68
 
 1 row created.
 
 Se registro el status (4) con historico_status_mascota_id: 76 para la mascota:
-70
+68
 
 1 row updated.
 
@@ -2603,9 +2552,9 @@ Rollback complete.
 
 Savepoint created.
 
-Se registro la mascota con mascota_id: 71
+Se registro la mascota con mascota_id: 69
 Se registro el status (1) con historico_status_mascota_id: 77 para la mascota:
-71
+69
 
 1 row created.
 
@@ -2683,13 +2632,45 @@ No errors.
 =============================================
 Fin de pruebas
 =============================================
+Archivo cargado correctamente.
+
+PL/SQL procedure successfully completed.
+
+
+Commit complete.
+
+
+CENTRO_REFUGIO_ID CAPACIDAD_MAXIMA NUMERO_R
+----------------- ---------------- --------
+LOGO
+--------------------------------------------------------------------------------
+LEMA                           REFUGIO_ALTERNO
+------------------------------ ---------------
+                1               50 MX001056
+FFD8FFE000104A46494600010100000100010000FFE202284943435F50524F46494C450001010000
+021800000000021000006D6E74725247422058595A20000000000000000000000000616373700000
+Refugio de Esperanza
+
+                2              120 MX005002
+
+
+CENTRO_REFUGIO_ID CAPACIDAD_MAXIMA NUMERO_R
+----------------- ---------------- --------
+LOGO
+--------------------------------------------------------------------------------
+LEMA                           REFUGIO_ALTERNO
+------------------------------ ---------------
+Refugio Animal Salvavidas
+
+                3               40 MX010103
+
+Refugio y Hogar Animal                       2
+
+
 =============================================
 Prueba 1: Procedimiento con datos correctos
 =============================================
-ORA-06512: at "AH_PROY_ADMIN.GUARDA_DISCO_BLOB", line 36
-
-Prueba 1: Error inesperado: ORA-20010: ERROR: El BLOB especificado no existe o
-está vacío.
+Prueba 1: Archivo exportado correctamente con longitud: 38159 bytes.
 
 PL/SQL procedure successfully completed.
 
@@ -2699,8 +2680,6 @@ Prueba 2: Registro no existente
 =============================================
 ORA-06512: at "AH_PROY_ADMIN.GUARDA_DISCO_BLOB", line 23
 
-Prueba 2: Código: -20007 - ORA-20007: ERROR: El registro con el ID especificado
-no existe.
 Prueba 2: OK => Registro no existente manejado correctamente.
 
 PL/SQL procedure successfully completed.
@@ -2711,8 +2690,6 @@ Prueba 3: BLOB vacío
 =============================================
 ORA-06512: at "AH_PROY_ADMIN.GUARDA_DISCO_BLOB", line 36
 
-Prueba 3: Código: -20010 - ORA-20010: ERROR: El BLOB especificado no existe o
-está vacío.
 Prueba 3: OK => BLOB vacío manejado correctamente.
 
 PL/SQL procedure successfully completed.
@@ -2794,5 +2771,810 @@ Commit complete.
 ========================================================
 Consultas
 ========================================================
+
+no rows selected
+
+
+no rows selected
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         100 Pet Supplies
+555-1234
+Comida
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+            100                   7
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         101 Medicamentos Veterinarios
+555-2345
+Medicamentos
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+          250.5                  10
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         102 Accesorios PetWorld
+555-3456
+Accesorios
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+          30.75                   5
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         103 Instrumental VetMed
+555-4567
+Instrumental Médico
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+            450                  15
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         104 Peluquería Mascotitas
+555-5678
+Servicios
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+             75                   3
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         105 Comida Orgánica PetCare
+555-6789
+Comida
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+            120                   7
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         106 Tienda Happy Pets
+555-7890
+Accesorios
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+             40                   4
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         107 MedicVet Solutions
+555-8901
+Medicamentos
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+            180                  12
+Inactivo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         108 Distribuidora VetTools
+555-9012
+Instrumental Médico
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+            520                  18
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         109 Peluquería Happy Tails
+555-0123
+Servicios
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+             95                   5
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         110 Alimentos Premium Pets
+555-1235
+Comida
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+            135                   8
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         111 VetTech Pro
+555-2346
+Medicamentos
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+            300                  11
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         112 Accesorios Fancy Pets
+555-3457
+Accesorios
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+             25                   6
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         113 Instrumental Médico Animed
+555-4568
+Instrumental Médico
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+            490                  20
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         114 Comida Natural VetCare
+555-5679
+Comida
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+            155                   9
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         115 Tienda Accesorios Felices
+555-6780
+Accesorios
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+             50                   4
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         116 Medicamentos ExpressVet
+555-7891
+Medicamentos
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+            275                  13
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         117 Alimentos Organics Pro
+555-8902
+Comida
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+            165                   7
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         118 Distribuidora VetEquipos
+555-9013
+Instrumental Médico
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+            600                  22
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         119 Servicios Groomer Pro
+555-0124
+Servicios
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+             85                   3
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         120 NutriPet Alimentos
+555-1237
+Comida
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+            140                   6
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         121 Accesorios TotalPets
+555-2348
+Accesorios
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+             65                   5
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         122 Medicamentos PharmaVet
+555-3459
+Medicamentos
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+            320                   2
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         123 VetTools Equipos
+555-4560
+Instrumental Médico
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+            550                  18
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         124 Peluquería Peludos
+555-5671
+Servicios
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+             75                   4
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         125 Distribuidora SuperPets
+555-6782
+Comida
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+            150                   8
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         126 Accesorios PetLovers
+555-7893
+Accesorios
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+             55                   5
+Activo
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+         127 Medicamentos MascotVet
+555-8904
+Medicamentos
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TELEFONO
+----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+PRECIO_UNITARIO TIEMPO_ENTREGA_DIAS
+--------------- -------------------
+ESTADO_CONTRATO
+--------------------------------------------------
+            275                 130
+Activo
+
+
+28 rows selected.
+
+
+PROVEEDOR_ID NOMBRE
+------------ ----------------------------------------
+TIPO_PRODUCTO
+--------------------------------------------------------------------------------
+TIEMPO_ENTREGA_DIAS
+-------------------
+         122 Medicamentos PharmaVet
+Medicamentos
+                  2
+
+
 ========================================================
 ========================================================
