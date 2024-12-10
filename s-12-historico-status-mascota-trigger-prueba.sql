@@ -24,6 +24,8 @@ DECLARE
   v_ultimo_status_historico NUMBER;
   v_count_monitoreo NUMBER;
   v_mascota_id mascota.mascota_id%TYPE;
+
+  v_codigo NUMBER;
 BEGIN
   DBMS_OUTPUT.PUT_LINE('Iniciando prueba 1 insert');
 
@@ -69,11 +71,16 @@ BEGIN
   
 EXCEPTION
   WHEN OTHERS THEN
-    DBMS_OUTPUT.PUT_LINE('Ocurrio un error inesperado');
-    DBMS_OUTPUT.PUT_LINE('Codigo: ' || SQLCODE);
-    DBMS_OUTPUT.PUT_LINE('Mensaje: ' || SQLERRM);
-    DBMS_OUTPUT.PUT_LINE('Prueba insert 1 terminada');
-    RAISE;
+    v_codigo := SQLCODE;
+    IF v_codigo = -20000 THEN
+      DBMS_OUTPUT.PUT_LINE('Prueba insert 1 terminada (con errores)');
+    ELSE 
+      DBMS_OUTPUT.PUT_LINE('Ocurrio un error inesperado');
+      DBMS_OUTPUT.PUT_LINE('Codigo: ' || SQLCODE);
+      DBMS_OUTPUT.PUT_LINE('Mensaje: ' || SQLERRM);
+      DBMS_OUTPUT.PUT_LINE('Prueba insert 1 terminada (con errores)');
+      RAISE;
+    END IF;
 END;
 /
 
@@ -99,6 +106,8 @@ DECLARE
   v_mascota_id mascota.mascota_id%TYPE;
   v_count_historico NUMBER;
   v_ultimo_status_historico NUMBER;
+
+  v_codigo NUMBER;
 BEGIN
   DBMS_OUTPUT.PUT_LINE('Iniciando prueba 1 update (positiva)');
 
@@ -133,11 +142,16 @@ BEGIN
   DBMS_OUTPUT.PUT_LINE('Prueba update 1 terminada');
 EXCEPTION
   WHEN OTHERS THEN
-    DBMS_OUTPUT.PUT_LINE('Ocurrio un error inesperado');
-    DBMS_OUTPUT.PUT_LINE('Codigo: ' || SQLCODE);
-    DBMS_OUTPUT.PUT_LINE('Mensaje: ' || SQLERRM);
-    DBMS_OUTPUT.PUT_LINE('Prueba insert 1 terminada (con errores)');
-    RAISE;
+    v_codigo := SQLCODE;
+    IF v_codigo = -20000 THEN
+      DBMS_OUTPUT.PUT_LINE('Prueba update 1 terminada (con errores)');
+    ELSE 
+      DBMS_OUTPUT.PUT_LINE('Ocurrio un error inesperado');
+      DBMS_OUTPUT.PUT_LINE('Codigo: ' || SQLCODE);
+      DBMS_OUTPUT.PUT_LINE('Mensaje: ' || SQLERRM);
+      DBMS_OUTPUT.PUT_LINE('Prueba update 1 terminada (con errores)');
+      RAISE;
+    END IF;
 END;
 /
 

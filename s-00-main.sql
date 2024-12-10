@@ -58,6 +58,11 @@ PROMPT ========================================================
 -- Crear función 1
 @s-15-fx-generar-folio.sql
 
+-- Crear función 2
+@s-15-fx-generar-numero-revision.sql
+
+-- Crear función 3
+
 -- Crear procedimiento almacenado 1
 @s-13-p-agregar-hijos.sql
 
@@ -66,11 +71,6 @@ PROMPT ========================================================
 
 -- Crear procedimiento almacenado 3
 @s-13-p-lob-descarga-imagen-disco.sql
-
--- Crear función 2
-@s-15-fx-generar-numero-revision.sql
-
--- Crear función 3
 
 -- Cargar datos
 @/unam/bd/Proyecto/pet-home/carga-datos/s-09-carga-inicial.sql
@@ -89,6 +89,13 @@ PROMPT ========================================================
 -- Prueba trigger 2
 @s-12-gestion-solicitud-mascota-trigger-prueba.sql
 
+-- Prueba función 1
+@s-16-fx-generar-folio-prueba.sql
+
+-- Prueba función 2
+
+-- Prueba función 3
+
 -- Prueba procedimiento almacenado 1
 
 -- Prueba procedimiento almacenado 2
@@ -96,12 +103,6 @@ PROMPT ========================================================
 
 -- Prueba procedimiento almacenado 3
 @s-14-p-lob-descarga-imagen-disco-prueba.sql
-
--- Prueba función 1
-
--- Prueba función 2
-
--- Prueba función 3
 
 -- Validador
 PROMPT ========================================================
@@ -123,7 +124,7 @@ PROMPT ========================================================
 
 -- Salir de la base
 PROMPT ========================================================
-PROMPT Saliendo de la PDB
-DISCONNECT;
+--PROMPT Saliendo de la PDB
+--DISCONNECT;
 PROMPT ========================================================
 SPOOL OFF
