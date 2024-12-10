@@ -72,6 +72,9 @@ PROMPT ========================================================
 -- Crear procedimiento almacenado 3
 @s-13-p-lob-descarga-imagen-disco.sql
 
+-- Crear procedimiento almacenado 4
+@s-13-p-historial-clinico.sql
+
 -- Cargar datos
 @/unam/bd/Proyecto/pet-home/carga-datos/s-09-carga-inicial.sql
 
@@ -97,13 +100,15 @@ PROMPT ========================================================
 
 -- Prueba función 3
 
--- Prueba procedimiento almacenado 1
 
--- Prueba procedimiento almacenado 2
+-- Prueba procedimiento almacenado 1
 @s-14-p-lob-carga-foto-prueba.sql
 
--- Prueba procedimiento almacenado 3
+-- Prueba procedimiento almacenado 2
 @s-14-p-lob-descarga-imagen-disco-prueba.sql
+
+-- Prueba procedimiento almacenado 3
+@s-14-historial-clinico-prueba.sql
 
 -- Validador
 PROMPT ========================================================
