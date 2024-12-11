@@ -9,11 +9,11 @@ define p_usuario_pass='contrasena'
 define p_sys_password='system1'
 define p_pdb='ghrbd_s1'
 
-!rm -rf tabla-externa
 !rm -rf descarga-centro
 !rm -rf descarga-mascota
+!rm -rf tabla-externa
 
-SET SERVEROUTPUT ON
+SET SERVEROUTPUT OFF
 -- Conectarse a la base de datos como sys
 PROMPT ========================================================
 PROMPT Conectando a la PDB
@@ -81,7 +81,7 @@ PROMPT ========================================================
 PROMPT ========================================================
 PROMPT Ejecutando pruebas
 PROMPT ========================================================
-
+SET SERVEROUTPUT ON
 -- Prueba trigger 1
 @s-12-historico-status-mascota-trigger-prueba.sql
 

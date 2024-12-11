@@ -5,6 +5,7 @@ PROMPT ========================================================
 PROMPT Creación de sinónimos
 PROMPT s-07-sinonimos.sql
 PROMPT ========================================================
+SET SERVEROUTPUT OFF
 
 define p_usuario='ah_proy_admin' 
 define p_usuario_pass='contrasena'

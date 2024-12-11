@@ -1,8 +1,7 @@
-SET SERVEROUTPUT ON;
-
 PROMPT ========================================================
 PROMPT Pruebas para el trigger de gestión de solicitudes de adopción
 PROMPT ========================================================
+SET SERVEROUTPUT ON;
 
 -- Crear un SAVEPOINT inicial para rollback
 SAVEPOINT inicial;

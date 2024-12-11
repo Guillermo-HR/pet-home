@@ -2,6 +2,12 @@
 --@Fecha: 04/10/2024
 --@Descripción: Se crea una tabla externa, se crea el archivo .csv
 
+PROMPT ========================================================
+PROMPT Creación de tablas externas
+PROMPT s-04-tablas-externas.sql
+PROMPT ========================================================
+
+SET SERVEROUTPUT OFF
 
 define p_usuario='ah_proy_admin'
 
@@ -13,12 +19,6 @@ define p_sys_password='system1'
 
 ---Alias de servicio de la PDB
 define p_pdb='ghrbd_s1'
-
-PROMPT ========================================================
-PROMPT Creación de tablas externas
-PROMPT s-04-tablas-externas.sql
-PROMPT ========================================================
-
 
 
 PROMPT Conectando como sys

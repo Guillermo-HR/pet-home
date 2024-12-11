@@ -1,14 +1,11 @@
 --@Autor(es): Aburto López Roberto
 --@Fecha creación: 5/12/2024
 --@Descripción: Creación de pruebas para la funcion historiales clinicos
-
-SET SERVEROUTPUT ON;
-
-
 PROMPT =============================================
 PROMPT PRUEBAS s-14-historial-clinico-prueba.sql
 PROMPT =============================================
 
+SET SERVEROUTPUT ON;
 
 PROMPT =============================================
 PROMPT Prueba 1: Procedimiento con datos correctos

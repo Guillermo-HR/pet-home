@@ -5,7 +5,6 @@ PROMPT ========================================================
 PROMPT Creación de pruebas para el triger historico de status mascota
 PROMPT s-12-historico-status-mascota-trigger-prueba.sql
 PROMPT ========================================================
-
 SET SERVEROUTPUT ON
 
 -- Probar insert

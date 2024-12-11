@@ -5,7 +5,6 @@ PROMPT ========================================================
 PROMPT Creación de pruebas para la funcion que genera numeros de revision
 PROMPT s-16-fx-generar-numero-revision-prueba.sql
 PROMPT ========================================================
-
 SET SERVEROUTPUT ON
 
 -- Prueba positiva

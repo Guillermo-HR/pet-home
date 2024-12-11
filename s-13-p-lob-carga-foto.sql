@@ -1,16 +1,17 @@
 --@AUTOR(ES):       Aburto López Roberto
 --@FECHA CREACIÓN:  07/12/2024
 --@DESCRIPCIÓN:     Procedimiento para almacenar fotos en la tabla monitoreo_cautiverio
+PROMPT ========================================================
+PROMPT Procedimiento para almacenar fotos en la tabla monitoreo_cautiverio
+PROMPT s-13-p-lob-carga-foto.sql
+PROMPT ======================================
+SET SERVEROUTPUT OFF
 
 define p_usuario='ah_proy_admin'
 define p_usuario_pass='contrasena'
 define p_sys_password='system1'
 define p_pdb='ghrbd_s1'
 
-PROMPT ========================================================
-PROMPT Procedimiento para almacenar fotos en la tabla monitoreo_cautiverio
-PROMPT s-13-p-lob-carga-foto.sql
-PROMPT ======================================
 
 PROMPT Conectando como sys
 CONNECT sys/&&p_sys_password@&&p_pdb AS SYSDBA 

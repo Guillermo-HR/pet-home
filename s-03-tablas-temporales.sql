@@ -6,6 +6,7 @@ PROMPT ========================================================
 PROMPT Creación de tablas temporales
 PROMPT s-03-tablas-temporales.sql
 PROMPT ========================================================
+SET SERVEROUTPUT OFF
 
 -- Tabla temporal privada on commit drop definition
 CREATE PRIVATE TEMPORARY TABLE ora$ptt_reporte_mensual_clinica(

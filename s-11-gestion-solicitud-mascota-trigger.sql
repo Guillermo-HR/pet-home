@@ -5,6 +5,7 @@ PROMPT ========================================================
 PROMPT Creación del triger para la gestion de solicitudes de adopcion
 PROMPT s-11-gestion-solicitud-mascota-trigger.sql
 PROMPT ========================================================
+SET SERVEROUTPUT OFF
 
 CREATE OR REPLACE TRIGGER solicitud_mascota_trigger
   FOR INSERT OR UPDATE ON cliente_mascota_solicitud
