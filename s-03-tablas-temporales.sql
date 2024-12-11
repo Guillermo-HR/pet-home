@@ -55,8 +55,9 @@ FROM cliente c, cliente_mascota_solicitud cms, mascota m, monitoreo_cautiverio m
 WHERE c.cliente_id = cms.cliente_id AND
   cms.mascota_id = m.mascota_id AND
   m.mascota_id = mc.mascota_id AND
+  mc.MONITOREO_CAUTIVERIO_ID = (SELECT MAX(MONITOREO_CAUTIVERIO_ID) FROM monitoreo_cautiverio WHERE mascota_id = m.mascota_id) AND
   cms.status_solicitud_id = 1;
-
+  
 PROMPT ========================================================
 PROMPT Ver los datos de la tabla temporal
 PROMPT ========================================================
