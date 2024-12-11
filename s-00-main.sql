@@ -2,18 +2,16 @@
 --@Fecha creación: 14/11/2024
 --@Descripción: MAIN
 
-spool /unam/bd/Proyecto/pet-home/s-00-main-spool.txt
 --Modificar las siguientes variables en caso de ser necesario
 
 define p_usuario='ah_proy_admin' 
 define p_usuario_pass='contrasena'
 define p_sys_password='system1'
+define p_pdb='ghrbd_s1'
 
-
-SET SERVEROUTPUT OFF
-define p_pdb='ralbd_s1'
-
-
+!rm -rf tabla-externa
+!rm -rf descarga-centro
+!rm -rf descarga-mascota
 
 SET SERVEROUTPUT ON
 -- Conectarse a la base de datos como sys
@@ -43,12 +41,6 @@ PROMPT ========================================================
 -- Crear los índices
 @s-06-indices.sql
 
--- Crear vistas
-@s-08-vistas.sql
-
--- Crear sinónimos
-@s-07-sinonimos.sql
-
 -- Crear trigger 1
 @s-11-historico-status-mascota-trigger.sql
 
@@ -60,8 +52,6 @@ PROMPT ========================================================
 
 -- Crear función 2
 @s-15-fx-generar-numero-revision.sql
-
--- Crear función 3
 
 -- Crear procedimiento almacenado 1
 @s-13-p-agregar-hijos.sql
@@ -77,6 +67,12 @@ PROMPT ========================================================
 
 -- Cargar datos
 @/unam/bd/Proyecto/pet-home/carga-datos/s-09-carga-inicial.sql
+
+-- Crear vistas
+@s-08-vistas.sql
+
+-- Crear sinónimos
+@s-07-sinonimos.sql
 
 -- Crear tablas temporales
 @s-03-tablas-temporales.sql
@@ -98,16 +94,15 @@ PROMPT ========================================================
 -- Prueba función 2
 @s-16-fx-generar-numero-revision-prueba.sql
 
--- Prueba función 3
-
-
 -- Prueba procedimiento almacenado 1
-@s-14-p-lob-carga-foto-prueba.sql
 
 -- Prueba procedimiento almacenado 2
-@s-14-p-lob-descarga-imagen-disco-prueba.sql
+@s-14-p-lob-carga-foto-prueba.sql
 
 -- Prueba procedimiento almacenado 3
+@s-14-p-lob-descarga-imagen-disco-prueba.sql
+
+-- Prueba procedimiento almacenado 4
 @s-14-historial-clinico-prueba.sql
 
 -- Validador
@@ -133,4 +128,3 @@ PROMPT ========================================================
 --PROMPT Saliendo de la PDB
 --DISCONNECT;
 PROMPT ========================================================
-SPOOL OFF

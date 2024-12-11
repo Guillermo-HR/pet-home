@@ -5,7 +5,7 @@
 DEFINE p_usuario='ah_proy_admin'
 DEFINE p_usuario_pass='contrasena'
 DEFINE p_sys_password='system1'
-DEFINE p_pdb='ralbd_s1'
+DEFINE p_pdb='ghrbd_s1'
 
 PROMPT ========================================================
 PROMPT Procedimiento para guardar historial clínico

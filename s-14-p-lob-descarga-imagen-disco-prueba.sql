@@ -5,6 +5,10 @@
 
 SET SERVEROUTPUT ON;
 
+exec carga_foto_dinamico('centro_refugio','logo','centro_refugio_id',1,'LOGO_REFUGIO','refugio1.jpg');
+COMMIT;
+select * from CENTRO_REFUGIO;
+
 -- Prueba 1: Procedimiento con datos correctos
 PROMPT =============================================
 PROMPT Prueba 1: Procedimiento con datos correctos
@@ -47,7 +51,6 @@ BEGIN
     );
 EXCEPTION
     WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('Prueba 2: Código: ' || SQLCODE || ' - ' || SQLERRM);
         IF SQLCODE = -20007 THEN
             DBMS_OUTPUT.PUT_LINE('Prueba 2: OK => Registro no existente manejado correctamente.');
         ELSE
@@ -75,7 +78,6 @@ BEGIN
         );
 EXCEPTION
     WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('Prueba 3: Código: ' || SQLCODE || ' - ' || SQLERRM);
         IF SQLCODE = -20010 THEN
             DBMS_OUTPUT.PUT_LINE('Prueba 3: OK => BLOB vacío manejado correctamente.');
         ELSE

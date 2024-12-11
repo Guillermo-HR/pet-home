@@ -47,14 +47,13 @@ CREATE GLOBAL TEMPORARY TABLE solicitudes_adopcion_cliente(
 
 -- Insertar datos en la tabla temporal
 INSERT INTO solicitudes_adopcion_cliente
-SELECT c.cliente_id, c.nombre || c.apellido_paterno || c.apellido_materno  nombre, 
+SELECT c.cliente_id, c.nombre || ' ' || c.apellido_paterno || ' ' || c.apellido_materno  nombre, 
   cms.cliente_mascota_solicitud_id solicitud_id, m.nombre nombre_mascota, mc.foto, 
   cms.status_solicitud_id, cms.comentario
 FROM cliente c, cliente_mascota_solicitud cms, mascota m, monitoreo_cautiverio mc
 WHERE c.cliente_id = cms.cliente_id AND
   cms.mascota_id = m.mascota_id AND
   m.mascota_id = mc.mascota_id AND
-  c.cliente_id = 1 AND
   cms.status_solicitud_id = 1;
 
 PROMPT ========================================================
@@ -65,3 +64,5 @@ PROMPT ========================================================
 SELECT * from solicitudes_adopcion_cliente;
 
 COMMIT;
+
+select * from cliente_mascota_solicitud where status_solicitud_id = 1;

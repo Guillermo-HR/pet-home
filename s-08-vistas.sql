@@ -20,7 +20,8 @@ WHERE m.mascota_tipo_id = mt.mascota_tipo_id AND
     WHERE mc1.mascota_id = m.mascota_id
     ORDER BY mc1.fecha DESC
     FETCH FIRST 1 ROW ONLY
-  )
+  ) AND 
+  m.status_mascota_id IN (1, 2, 3)
 ORDER BY m.mascota_id ASC;
 
 -- Vista mascotas adoptadas
