@@ -169,6 +169,11 @@ CREATE TABLE centro_refugio (
   numero_registro          VARCHAR2(8) NOT NULL,
   logo                     BLOB NOT NULL,
   lema                     VARCHAR2(30) NOT NULL,
+  necesita_comida          BOOLEAN DEFAULT ON NULL FALSE,
+  necesita_medicamentos    BOOLEAN DEFAULT ON NULL FALSE,
+  necesita_accesorios      BOOLEAN DEFAULT ON NULL FALSE,
+  necesita_inst_medic      BOOLEAN DEFAULT ON NULL FALSE,
+  necesita_servicios       BOOLEAN DEFAULT ON NULL FALSE,
   refugio_alterno,
   CONSTRAINT centro_refugio_pk PRIMARY KEY (centro_refugio_id),
   CONSTRAINT centro_refugio_centro_refugio_id_fk FOREIGN KEY (centro_refugio_id) 
@@ -202,6 +207,11 @@ CREATE TABLE clinica (
   hora_atencion_fin        DATE NOT NULL,
   telefono                 VARCHAR2(10) NOT NULL,
   telefono_emergencia      VARCHAR2(10) NOT NULL,
+  necesita_comida          BOOLEAN DEFAULT ON NULL FALSE,
+  necesita_medicamentos    BOOLEAN DEFAULT ON NULL FALSE,
+  necesita_accesorios      BOOLEAN DEFAULT ON NULL FALSE,
+  necesita_inst_medic      BOOLEAN DEFAULT ON NULL FALSE,
+  necesita_servicios       BOOLEAN DEFAULT ON NULL FALSE,
   CONSTRAINT clinica_pk PRIMARY KEY (clinica_id),
   CONSTRAINT clinica_clinica_id_fk FOREIGN KEY (clinica_id) 
     REFERENCES centro_operativo(centro_operativo_id),
