@@ -66,5 +66,3 @@ PROMPT ========================================================
 SELECT * from solicitudes_adopcion_cliente;
 
 COMMIT;
-
-select * from cliente_mascota_solicitud where status_solicitud_id = 1;

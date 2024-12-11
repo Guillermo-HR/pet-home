@@ -7,6 +7,23 @@ PROMPT s-16-fx-generar-folio-prueba.sql
 PROMPT ========================================================
 SET SERVEROUTPUT ON
 
+-- Inicializar las secuencias
+DECLARE
+  folio_perro NUMBER;
+  folio_gato NUMBER;
+BEGIN
+  SELECT folio_perro_seq.NEXTVAL, folio_gato_seq.NEXTVAL INTO folio_perro, folio_gato 
+  FROM dual;
+EXCEPTION
+  WHEN OTHERS THEN
+      DBMS_OUTPUT.PUT_LINE('Ocurrio un error inesperado');
+      DBMS_OUTPUT.PUT_LINE('Codigo: ' || SQLCODE);
+      DBMS_OUTPUT.PUT_LINE('Mensaje: ' || SQLERRM);
+      RAISE;
+    END IF;
+END;
+/
+
 -- Prueba positiva
 PROMPT ========================================================
 PROMPT Prueba positiva
