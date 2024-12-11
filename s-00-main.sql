@@ -9,7 +9,9 @@ define p_usuario_pass='contrasena'
 define p_sys_password='system1'
 define p_pdb='ghrbd_s1'
 
-
+!rm -rf tabla-externa
+!rm -rf descarga-centro
+!rm -rf descarga-mascota
 
 SET SERVEROUTPUT ON
 -- Conectarse a la base de datos como sys
