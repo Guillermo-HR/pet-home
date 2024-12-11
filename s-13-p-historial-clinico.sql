@@ -2,15 +2,17 @@
 --@FECHA CREACIÓN:  06/12/2024
 --@DESCRIPCIÓN:     Procedimiento para guardar historial clínico en archivo .txt
 
+PROMPT ========================================================
+PROMPT Procedimiento para guardar historial clínico
+PROMPT s-13-p-historial-clinico.sql
+PROMPT ========================================================
+SET SERVEROUTPUT OFF
+
 DEFINE p_usuario='ah_proy_admin'
 DEFINE p_usuario_pass='contrasena'
 DEFINE p_sys_password='system1'
 DEFINE p_pdb='ghrbd_s1'
 
-PROMPT ========================================================
-PROMPT Procedimiento para guardar historial clínico
-PROMPT s-13-p-historial-clinico.sql
-PROMPT ========================================================
 
 PROMPT Conectando como sys
 CONNECT sys/&&p_sys_password@&&p_pdb AS SYSDBA

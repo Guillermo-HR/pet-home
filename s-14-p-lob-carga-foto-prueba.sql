@@ -2,11 +2,10 @@
 -- @Fecha creación:  08/12/2024
 -- @Descripción:     Scripts de pruebas para almacenar fotos en tabla centro_refugio con manejo de rollbacks
 
-SET SERVEROUTPUT ON 
-
 PROMPT =============================================
 PROMPT PRUEBAS s-14-p-lob-carga-foto.sql
 PROMPT =============================================
+SET SERVEROUTPUT ON 
 
 -- Prueba 1: Procedimiento con datos correctos
 PROMPT =============================================

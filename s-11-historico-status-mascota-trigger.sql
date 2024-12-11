@@ -5,6 +5,7 @@ PROMPT ========================================================
 PROMPT Creación del triger para el historico de status mascota
 PROMPT s-11-historico-status-mascota-trigger.sql
 PROMPT ========================================================
+SET SERVEROUTPUT OFF
 
 CREATE OR REPLACE TRIGGER historico_status_macota_trigger
   AFTER INSERT OR UPDATE OF status_mascota_id ON mascota

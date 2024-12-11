@@ -6,6 +6,7 @@ PROMPT ========================================================
 PROMPT Definicion de la funcion para generar folios
 PROMPT s-15-fx-generar-folio.sql
 PROMPT ========================================================
+SET SERVEROUTPUT OFF
 
 CREATE OR REPLACE FUNCTION generar_folio(
   p_mascota_tipo_id mascota_tipo.mascota_tipo_id%TYPE,

@@ -5,6 +5,7 @@ PROMPT ========================================================
 PROMPT Creación de vistas
 PROMPT s-08-vistas.sql
 PROMPT ========================================================
+SET SERVEROUTPUT OFF
 
 -- Vista mascotas_disponibles
 CREATE OR REPLACE VIEW mascota_mascota_tipo_monitoreo_cautiverio_centro_refugio AS

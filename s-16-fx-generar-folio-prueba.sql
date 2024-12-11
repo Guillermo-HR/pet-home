@@ -5,7 +5,6 @@ PROMPT ========================================================
 PROMPT Creación de pruebas para la funcion que genera folios
 PROMPT s-16-fx-generar-folio-prueba.sql
 PROMPT ========================================================
-
 SET SERVEROUTPUT ON
 
 -- Prueba positiva

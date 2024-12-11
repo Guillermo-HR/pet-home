@@ -6,8 +6,7 @@ PROMPT ========================================================
 PROMPT Definicion del procedimiento que registra mascotas nacidas en el refugio
 PROMPT s-13-p-agregar-hijos.sql
 PROMPT ========================================================
-
-SET SERVEROUTPUT ON
+SET SERVEROUTPUT OFF
 CREATE OR REPLACE PROCEDURE agregar_hijos(
   p_padre_id IN NUMBER DEFAULT NULL,
   p_madre_id IN NUMBER,

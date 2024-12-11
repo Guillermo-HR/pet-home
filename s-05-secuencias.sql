@@ -6,6 +6,7 @@ PROMPT ========================================================
 PROMPT Creación de secuencias
 PROMPT s-05-secuencias.sql
 PROMPT ========================================================
+SET SERVEROUTPUT OFF
 
 -- Secuencias para las tablas
  

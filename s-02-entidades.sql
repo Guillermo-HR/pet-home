@@ -6,6 +6,7 @@ PROMPT ========================================================
 PROMPT Creación de entidades
 PROMPT s-02-entidades-1.sql
 PROMPT ========================================================
+SET SERVEROUTPUT OFF
 
 -- Tablas independientes
 

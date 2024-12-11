@@ -6,6 +6,7 @@ PROMPT ========================================================
 PROMPT Creación de usuarios
 PROMPT s-01-usuarios.sql
 PROMPT ========================================================
+SET SERVEROUTPUT OFF
 
 -- Limpiar usuarios y roles
 PROMPT Limpiando usuarios y roles usados en el proyecto

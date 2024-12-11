@@ -6,6 +6,7 @@ PROMPT ========================================================
 PROMPT Creación de indices
 PROMPT s-06-indices.sql
 PROMPT ========================================================
+SET SERVEROUTPUT OFF
 
 DROP INDEX IF EXISTS mascota_tipo_id_ix;
 CREATE INDEX mascota_tipo_id_ix 

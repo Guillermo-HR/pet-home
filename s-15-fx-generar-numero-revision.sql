@@ -6,6 +6,7 @@ PROMPT ========================================================
 PROMPT Definicion de la funcion para generar numeros de revisiones
 PROMPT s-15-fx-generar-numero-revision.sql
 PROMPT ========================================================
+SET SERVEROUTPUT OFF
 
 CREATE OR REPLACE FUNCTION generar_n_revision(
   p_mascota_id mascota.mascota_id%TYPE
