@@ -1,9 +1,15 @@
 Mascota id: 2
-Nombre: Molly
+Nombre: Rusty
 Tipo: Perro
-Subcategoría: Dachshund
-Refugio: Refugio de Animales Esperanza
+Subcategoría: Bóxer
+Refugio: Refugio y Clínica Veterinaria Corazón Animal
 -------------------------------------------------------------
-Fecha: 24-09-2021
+Fecha: 13-12-2022
 Diagnóstico: Mascota recibida en el centro de adopcion
+-------------------------------------------------------------
+Fecha: 08-07-2023
+Diagnóstico: Ok
+-------------------------------------------------------------
+Fecha: 17-01-2024
+Diagnóstico: Ok
 -------------------------------------------------------------
