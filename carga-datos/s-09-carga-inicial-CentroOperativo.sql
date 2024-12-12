@@ -10,8 +10,8 @@ PROMPT ========================================================
 INSERT INTO centro_operativo (centro_operativo_id, es_refugio, es_clinica, es_oficina, codigo, nombre, direccion, latitud, longitud, gerente_id)
 VALUES (centro_operativo_seq.NEXTVAL, '1', '0', '0', 'RR001', 'Refugio de Animales Esperanza', 'Avenida de la Paz 123, Ciudad', '19.432608', '-99.133209', 1);
 
-INSERT INTO centro_refugio (centro_refugio_id, capacidad_maxima, numero_registro, logo, lema, refugio_alterno)
-VALUES (centro_operativo_seq.CURRVAL, 50, 'MX001056', EMPTY_BLOB(), 'Refugio de Esperanza', NULL);
+INSERT INTO centro_refugio (centro_refugio_id, capacidad_maxima, numero_registro, logo, lema, refugio_alterno, material_requerido)
+VALUES (centro_operativo_seq.CURRVAL, 50, 'MX001056', EMPTY_BLOB(), 'Refugio de Esperanza', NULL, 'Medicamentos');
 
 INSERT INTO centro_refugio_web (centro_refugio_web_id, url, centro_refugio_id)
 VALUES (centro_refugio_web_seq.NEXTVAL, 'http://www.refugioesperanza.com', centro_operativo_seq.CURRVAL);
@@ -20,8 +20,8 @@ VALUES (centro_refugio_web_seq.NEXTVAL, 'http://www.refugioesperanza.com', centr
 INSERT INTO centro_operativo (centro_operativo_id, es_refugio, es_clinica, es_oficina, codigo, nombre, direccion, latitud, longitud, gerente_id)
 VALUES (centro_operativo_seq.NEXTVAL, '1', '1', '0', 'RC001', 'Refugio y Clínica Veterinaria Los Amigos', 'Avenida de los Animales 345, Ciudad', '19.430000', '-99.134000', 6);
 
-INSERT INTO centro_refugio (centro_refugio_id, capacidad_maxima, numero_registro, logo, lema, refugio_alterno)
-VALUES (centro_operativo_seq.CURRVAL, 120, 'MX005002', EMPTY_BLOB(), 'Refugio Animal Salvavidas', NULL);
+INSERT INTO centro_refugio (centro_refugio_id, capacidad_maxima, numero_registro, logo, lema, refugio_alterno, material_requerido)
+VALUES (centro_operativo_seq.CURRVAL, 120, 'MX005002', EMPTY_BLOB(), 'Refugio Animal Salvavidas', NULL, 'comida');
 
 INSERT INTO centro_refugio_web (centro_refugio_web_id, url, centro_refugio_id)
 VALUES (centro_refugio_web_seq.NEXTVAL, 'http://www.refugioanimal.com', centro_operativo_seq.CURRVAL);
@@ -53,8 +53,8 @@ VALUES (centro_operativo_seq.CURRVAL, TO_DATE('09:00:00', 'HH24:MI:SS'), TO_DATE
 INSERT INTO centro_operativo (centro_operativo_id, es_refugio, es_clinica, es_oficina, codigo, nombre, direccion, latitud, longitud, gerente_id)
 VALUES (centro_operativo_seq.NEXTVAL, '0', '1', '0', 'CC002', 'Clínica Veterinaria Bienestar Animal', 'Calle del Río 789, Ciudad', '19.418000', '-99.142500', 3);
 
-INSERT INTO clinica (clinica_id, hora_atencion_inicio, hora_atencion_fin, telefono, telefono_emergencia)
-VALUES (centro_operativo_seq.CURRVAL, TO_DATE('00:00:00', 'HH24:MI:SS'), TO_DATE('23:59:59', 'HH24:MI:SS'), '5554567890', '5550987654');
+INSERT INTO clinica (clinica_id, hora_atencion_inicio, hora_atencion_fin, telefono, telefono_emergencia, material_requerido)
+VALUES (centro_operativo_seq.CURRVAL, TO_DATE('00:00:00', 'HH24:MI:SS'), TO_DATE('23:59:59', 'HH24:MI:SS'), '5554567890', '5550987654', 'instrumental');
 
 --
 INSERT INTO centro_operativo (centro_operativo_id, es_refugio, es_clinica, es_oficina, codigo, nombre, direccion, latitud, longitud, gerente_id)

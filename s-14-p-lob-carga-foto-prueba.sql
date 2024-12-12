@@ -12,9 +12,9 @@ PROMPT =============================================
 PROMPT Prueba 1.
 PROMPT Procedimiento con datos correctos
 PROMPT =============================================
-BEGIN
-  SAVEPOINT prueba_1; -- Definir el punto de guardado dentro del mismo bloque
-  DECLARE
+SAVEPOINT sp_1;
+
+DECLARE
     v_blob BLOB;
   BEGIN
     carga_foto_dinamico(
@@ -36,12 +36,9 @@ BEGIN
     ELSE
       RAISE_APPLICATION_ERROR(-20000, 'ERROR: No se supero la prueba');
     END IF;
-  END; 
-  ROLLBACK TO prueba_1; 
-  COMMIT;
 END;
 /
-SHOW ERRORS;
+ROLLBACK sp_1;
 
 
 -- Prueba 2: Procedimiento con monitoreo no existente
@@ -49,11 +46,11 @@ PROMPT =============================================
 PROMPT Prueba 2.
 PROMPT Procedimiento con monitoreo no existente
 PROMPT =============================================
+
+SAVEPOINT sp_2;
 DECLARE
   v_codigo NUMBER;
   v_mensaje VARCHAR2(200);
-BEGIN
-  SAVEPOINT prueba_2;
   BEGIN
     carga_foto_dinamico(
         'centro_refugio',         -- Tabla
@@ -73,11 +70,9 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE('Error: excepcion no esperada');
         RAISE;
       END IF;
-  END;
-  ROLLBACK TO prueba_2; -- Revertimos cambios
 END;
 /
-SHOW ERRORS;
+ROLLBACK sp_2;
 
 
 -- Prueba 3: Procedimiento con extensión incorrecta
@@ -85,12 +80,12 @@ PROMPT =============================================
 PROMPT Prueba 3.
 PROMPT Procedimiento con extensión incorrecta
 PROMPT =============================================
+
+SAVEPOINT sp_3;
 DECLARE
   v_codigo NUMBER;
   v_mensaje VARCHAR2(200);
 BEGIN 
-  SAVEPOINT prueba_3;
-  BEGIN
     carga_foto_dinamico(
         'centro_refugio',         -- Tabla
         'logo',                   -- Columna BLOB
@@ -108,12 +103,9 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE('Error: excepcion no esperada');
         RAISE;
       END IF;
-  END;
-  ROLLBACK TO prueba_3; -- Revertimos cambios
 END;
 /
-SHOW ERRORS;
-
+ROLLBACK sp_3;
 
 
 -- Prueba 4: Procedimiento con archivo inexistente
@@ -121,11 +113,11 @@ PROMPT =============================================
 PROMPT Prueba 4.
 PROMPT Procedimiento con archivo inexistente
 PROMPT =============================================
+
+SAVEPOINT sp_4;
 DECLARE
   v_codigo NUMBER;
   v_mensaje VARCHAR2(200);
-BEGIN
-  SAVEPOINT prueba_4;
   BEGIN
         carga_foto_dinamico(
         'centro_refugio',         -- Tabla
@@ -144,11 +136,10 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE('Error: excepcion no esperada');
         RAISE;
       END IF;
-  END;
-  ROLLBACK TO prueba_4; -- Revertimos cambios
 END;
 /
-SHOW ERRORS;
+
+ROLLBACK sp_4;
 
 
 

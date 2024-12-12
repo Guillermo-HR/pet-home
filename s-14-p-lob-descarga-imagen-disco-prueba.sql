@@ -3,6 +3,11 @@
 --@FECHA CREACIÓN:  07/12/2024
 --@DESCRIPCIÓN:     Pruebas de Procedimiento para almacenar en disco lob (dinamico)
 
+-- Prueba 1: Procedimiento con datos correctos
+PROMPT ====================================================
+PROMPT Pruebas s-14-p-lob-descarga-imagen-disco-prueba.sql
+PROMPT ====================================================
+
 SET SERVEROUTPUT ON;
 
 exec carga_foto_dinamico('centro_refugio','logo','centro_refugio_id',1,'LOGO_REFUGIO','refugio1.jpg');
@@ -46,7 +51,7 @@ BEGIN
         'centro_refugio',           -- Nombre de la tabla
         'logo',                     -- Nombre de la columna BLOB
         'centro_refugio_id',        -- Nombre de la columna ID
-        9999,                          -- Valor del ID (registro a exportar)
+        9999,                       -- Valor del ID (no existe)
         v_longitud                  -- Variable para recibir la longitud del archivo exportado
     );
 EXCEPTION
@@ -73,7 +78,7 @@ BEGIN
             'centro_refugio',           -- Nombre de la tabla
             'logo',                     -- Nombre de la columna BLOB
             'centro_refugio_id',        -- Nombre de la columna ID
-            3,                          -- Valor del ID (registro a exportar)
+            3,                          -- Valor del ID (empty_blob)
             v_longitud                  -- Variable para recibir la longitud del archivo exportado
         );
 EXCEPTION
