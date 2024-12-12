@@ -1,9 +1,9 @@
 Mascota id: 2
-Nombre: Firulais
+Nombre: Molly
 Tipo: Perro
-Subcategoría: Mastín Inglés
-Refugio: Refugio y Clínica Veterinaria Corazón Animal
+Subcategoría: Dachshund
+Refugio: Refugio de Animales Esperanza
 -------------------------------------------------------------
-Fecha: 03-10-2021
+Fecha: 24-09-2021
 Diagnóstico: Mascota recibida en el centro de adopcion
 -------------------------------------------------------------

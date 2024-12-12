@@ -84,17 +84,24 @@ HAVING COUNT(mc.veterinario_id) = (
     )
 );
 
-SELECT * FROM proveedor_ext;
 
-/*
-Mostrar el id, nombres y tipo de producto de el proximo 
-pedido en llegar de medicamentos
-*/
-SELECT proveedor_id, nombre, tipo_producto, tiempo_entrega_dias
-FROM proveedor_ext
-WHERE UPPER(tipo_producto) = 'MEDICAMENTOS'
-    AND tiempo_entrega_dias = (
-        SELECT MIN(tiempo_entrega_dias)
-        FROM proveedor_ext
-    );
 
+select *
+from (
+    SELECT c.nombre, cr.material_requerido, 
+            pe.nombre AS proveedor, pe.tiempo_entrega_dias
+    FROM centro_refugio cr
+    JOIN centro_operativo c ON cr.centro_refugio_id = c.centro_operativo_id
+    JOIN proveedor_ext pe 
+        ON lower(cr.material_requerido) LIKE '%' || lower(pe.tipo_producto) || '%'
+    WHERE lower(cr.material_requerido) LIKE '%comida%'
+    UNION
+    SELECT c.nombre, cr.material_requerido,
+        pe.nombre AS proveedor, pe.tiempo_entrega_dias
+    FROM centro_refugio cr
+    JOIN centro_operativo c ON cr.centro_refugio_id = c.centro_operativo_id
+    JOIN proveedor_ext pe 
+        ON lower(cr.material_requerido) LIKE '%' || lower(pe.tipo_producto) || '%'
+    WHERE lower(cr.material_requerido) LIKE '%medicamentos%'
+)q1
+order by q1.tiempo_entrega_dias asc;
