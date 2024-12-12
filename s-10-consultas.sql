@@ -98,3 +98,21 @@ WHERE UPPER(tipo_producto) = 'MEDICAMENTOS'
         FROM proveedor_ext
     );
 
+/*
+Mostrar la informacion de las mascotas que murieron en el refugio
+*/
+SELECT m.mascota_id, m.nombre, ROUND(MONTHS_BETWEEN(SYSDATE, m.fecha_nacimiento)/12,1) edad, m.refugio_id, m.fecha_status fecha_muerte,
+  mt.subcategoria,
+  mc.fecha fecha_ultimo_monitoreo, mc.veterinario_id
+FROM mascota m, monitoreo_cautiverio mc, mascota_tipo mt
+WHERE m.mascota_id = mc.mascota_id(+) AND
+  m.mascota_tipo_id = mt.mascota_tipo_id AND
+  m.status_mascota_id = 6 AND
+  mc.monitoreo_cautiverio_id = (
+    SELECT mc1.monitoreo_cautiverio_id
+    FROM monitoreo_cautiverio mc1
+    WHERE mc1.mascota_id = m.mascota_id
+    ORDER BY mc1.monitoreo_cautiverio_id DESC
+    FETCH FIRST 1 ROW ONLY
+  )
+ORDER BY fecha_muerte ASC;
