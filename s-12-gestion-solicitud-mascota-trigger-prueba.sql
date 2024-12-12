@@ -84,7 +84,7 @@ BEGIN
 END;
 /
 ROLLBACK to sp_3;
-
+/*
 PROMPT ========================================================
 PROMPT Prueba para error -20005: "Solicitud de adopción fuera de tiempo"
 PROMPT ========================================================
@@ -116,7 +116,7 @@ END;
 /
 
 ROLLBACK to sp_4;
-
+*/
 PROMPT ========================================================
 PROMPT Fin de pruebas 
 PROMPT ========================================================
