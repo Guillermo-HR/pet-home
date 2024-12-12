@@ -18,7 +18,7 @@ define p_usuario_pass='contrasena'
 define p_sys_password='system1'
 
 ---Alias de servicio de la PDB
-define p_pdb='ghrbd_s1'
+define p_pdb='ralbd_s1'
 
 
 PROMPT Conectando como sys
@@ -102,4 +102,4 @@ PROMPT Cambiando permisos
 !chmod 755 /unam/bd/Proyecto/pet-home
 !chmod 777 /unam/bd/Proyecto/pet-home/tabla-externa
 
-SELECT * FROM proveedor_ext;
+--SELECT * FROM proveedor_ext;
